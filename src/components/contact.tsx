@@ -1,39 +1,30 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 
 export function Contact() {
-  // Contact information
+  // Contact information — IBBO VERSION
   const contactInfo = {
-    name: 'Raphael Giraud',
-    email: 'raphaelgiraud12@gmail.com',
-    handle: '@Raphael.Giraud',
+    name: 'Ibbo Abdoli',
+    email: 'ibbo.abdoli@elektroautomatik.se',
+    handle: '@ibboabdoli',
     socials: [
       {
         name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/raphael-giraud-60939519a/',
+        url: 'https://www.linkedin.com/in/ibbo-abdoli', // اگر لینک واقعی متفاوت است، این را اصلاح کن
       },
       {
-        name: 'Youtube',
-        url: 'https://www.youtube.com/@toukoum',
+        name: 'Website',
+        url: 'https://ibboabdoli.com',
+      },
+      {
+        name: 'GitHub',
+        url: 'https://github.com/ibboabdolii',
       },
       {
         name: 'Instagram',
-        url: 'https://www.instagram.com/raphael.giraud/',
-      },
-      {
-        name: 'Discord',
-        url: 'https://discord.com/users/toukoum',
-      },
-      {
-        name: 'Github',
-        url: 'https://github.com/toukoum',
-      },
-      {
-        name: 'X',
-        url: 'https://x.com/toukoumcode',
+        url: 'https://www.instagram.com', // اگر دوست نداری باشد → حذف کن
       },
     ],
   };
@@ -46,10 +37,11 @@ export function Contact() {
   return (
     <div className="mx-auto mt-8 w-full">
       <div className="bg-accent w-full overflow-hidden rounded-3xl px-6 py-8 font-sans sm:px-10 md:px-16 md:py-12">
+        
         {/* Header Section */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-            Contacts
+            Contact
           </h2>
           <span className="mt-2 sm:mt-0">
             {contactInfo.handle}
