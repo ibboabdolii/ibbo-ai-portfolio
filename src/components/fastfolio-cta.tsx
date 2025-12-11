@@ -11,7 +11,9 @@ export function FastfolioCTA() {
 
   return (
     <motion.button
-      className="fixed top-8 left-6 z-51 cursor-pointer group flex items-center gap-2 rounded-full bg-transparent backdrop-blur-2xl px-4 py-2.5 border hover:shadow-xl transition-all duration-300"
+      className="fixed top-8 left-6 z-50 cursor-pointer group flex items-center gap-2 
+                 rounded-full bg-white/20 backdrop-blur-xl px-4 py-2.5 border border-white/40 
+                 hover:shadow-lg transition-all duration-300"
       onClick={handleClick}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -21,21 +23,27 @@ export function FastfolioCTA() {
     >
       <Image 
         src="/ibbo-logo.png"
-        alt="Ibbo AI"
+        alt="Ibbo AI Assistant"
         width={24}
         height={24}
-        className="object-contain"
+        className="object-contain rounded"
       />
 
+      {/* متن برای دسکتاپ */}
       <span className="text-sm font-medium text-foreground hidden sm:inline">
         Explore Ibbo AI Assistant
       </span>
 
+      {/* متن کوتاه برای موبایل */}
       <span className="text-sm font-medium text-foreground sm:hidden">
         Visit
       </span>
 
-      <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform hidden sm:block" />
+      <ChevronRight 
+        className="h-4 w-4 group-hover:translate-x-0.5 transition-transform hidden sm:block" 
+      />
     </motion.button>
   );
 }
+
+export default FastfolioCTA;
