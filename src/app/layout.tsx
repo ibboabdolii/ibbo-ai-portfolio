@@ -14,43 +14,44 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Toukoum Portfolio',
+  title: 'Ibbo AI Portfolio',
   description:
-    'Interactive portfolio with an AI-powered Memoji that answers questions about me, my skills, and my experience',
+    'Interactive AI-powered portfolio for Ibbo Abdoli — Service Engineer & Automation Technician based in Sweden.',
   keywords: [
-    'Toukoum',
-    'Portfolio',
-    'Developer',
-    'AI',
-    'Interactive',
-    'Memoji',
-    'Web Development',
-    'Full Stack',
+    'Ibbo Abdoli',
+    'Ibbo',
+    'AI Portfolio',
+    'Automation',
+    'Service Engineer',
+    'PLC',
+    'ABB Robots',
+    'Industrial Automation',
+    'Elektroautomatik',
     'Next.js',
-    'React',
+    'AI',
   ],
   authors: [
     {
-      name: 'Toukoum',
-      url: 'https://toukoum.fr',
+      name: 'Ibbo Abdoli',
+      url: 'https://ibboabdoli.com',
     },
   ],
-  creator: 'Toukoum',
+  creator: 'Ibbo Abdoli',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://toukoum.fr',
-    title: 'Toukoum Portfolio',
+    url: 'https://ibboabdoli.com',
+    title: 'Ibbo AI Portfolio',
     description:
-      'Interactive portfolio with an AI-powered Memoji that answers questions about me',
-    siteName: 'Toukoum Portfolio',
+      'AI-powered interactive portfolio for Ibbo Abdoli — Service Engineer & Automation Technician.',
+    siteName: 'Ibbo AI Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Toukoum Portfolio',
+    title: 'Ibbo AI Portfolio',
     description:
-      'Interactive portfolio with an AI-powered Memoji that answers questions about me',
-    creator: '@toukoum',
+      'AI-powered interactive portfolio for Ibbo Abdoli — Service Engineer & Automation Technician.',
+    creator: '@ibboabdoli',
   },
   icons: {
     icon: [
@@ -63,6 +64,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.svg?v=2',
   },
 };
+
 
 export default function RootLayout({
   children,
