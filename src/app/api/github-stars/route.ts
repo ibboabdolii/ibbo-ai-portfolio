@@ -1,9 +1,12 @@
 export async function GET(req: Request) {
-  const res = await fetch('https://api.github.com/repos/toukoum/portfolio', {
-    headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-    },
-  });
+  const res = await fetch(
+    'https://api.github.com/repos/ibboabdolii/ibbo-ai-portfolio',
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+    }
+  );
 
   if (!res.ok) {
     return new Response('Failed to fetch stars', { status: res.status });
