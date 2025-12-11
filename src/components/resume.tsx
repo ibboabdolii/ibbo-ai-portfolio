@@ -2,26 +2,25 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownToLine, Download, Eye, File } from 'lucide-react';
+import { Download } from 'lucide-react';
 import Image from 'next/image';
 
 export function Resume() {
-  // Resume details
+  // Resume details — IBBO VERSION
   const resumeDetails = {
-    title: "Raphael's Resume",
-    description: 'Full Stack Developer • AI Specialist',
+    title: "Ibbo Abdoli – CV",
+    description: 'Service Engineer • Automation Technician',
     fileType: 'PDF',
-    lastUpdated: 'March 2025',
-    fileSize: '0.5 MB',
-    previewImageSrc: '/resume_giraud_preview.png',
-    downloadUrl: '/resume_giraud.pdf',
+    lastUpdated: 'December 2025',
+    fileSize: '1.1 MB',
+    previewImageSrc: '/resume_ibbo_preview.png', 
+    downloadUrl: '/Ibbo_Abdoli_CV.pdf', 
   };
 
   const handleDownload = () => {
-    // Create a link element
     const link = document.createElement('a');
     link.href = resumeDetails.downloadUrl;
-    link.download = resumeDetails.downloadUrl.split('/').pop() || 'resume.pdf';
+    link.download = resumeDetails.downloadUrl.split('/').pop() || 'Ibbo_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -37,7 +36,17 @@ export function Resume() {
         transition={{ duration: 0.0, ease: 'easeOut' }}
         whileHover={{ scale: 1.01 }}
       >
-        {/* Details area (bottom part) */}
+        {/* CV preview image */}
+        <div className="relative h-64 w-full overflow-hidden border-b border-black/5">
+          <Image
+            src={resumeDetails.previewImageSrc}
+            alt="CV Preview"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Details area */}
         <div className="p-5">
           <div className="flex items-center justify-between">
             <div>
@@ -56,7 +65,6 @@ export function Resume() {
               </div>
             </div>
 
-            {/* Download indicator */}
             <motion.div
               className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-primary-foreground group-hover:bg-black/80"
               initial={{ scale: 1 }}
