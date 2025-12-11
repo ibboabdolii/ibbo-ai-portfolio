@@ -11,17 +11,14 @@ import {
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Importation correcte pour Next.js 13+
 import { useState } from 'react';
 
-// Added a trigger prop to accept custom triggers
 interface WelcomeModalProps {
   trigger?: React.ReactNode;
 }
 
 export default function WelcomeModal({ trigger }: WelcomeModalProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter(); // Initialisation du router avec useRouter
 
   // Default trigger is the logo
   const defaultTrigger = (
@@ -31,21 +28,20 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
       onClick={() => setIsOpen(true)}
     >
       <Image
-        src="/logo-toukoum.svg"
+        src="/logo-ibbo.svg" // یک لوگو برای خودت در public بذار
         width={100}
         height={100}
-        alt="Logo"
+        alt="Ibbo AI Logo"
         className="w-6 md:w-8"
       />
-      <span className="sr-only">About Toukoum</span>
+      <span className="sr-only">About Ibbo AI Portfolio</span>
     </Button>
   );
 
-  // Fonction qui utilise window.location pour forcer un rechargement complet
   const handleContactMe = () => {
     setIsOpen(false);
-    // Forcer un rechargement complet de la page avec la requête
-    window.location.href = '/chat?query=How%20can%20I%20contact%20you%3F';
+    window.location.href =
+      '/chat?query=How%20can%20I%20contact%20you%20for%20service%20or%20automation%20projects%3F';
   };
 
   return (
@@ -69,10 +65,11 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
             <DialogHeader className="relative flex flex-row items-start justify-between px-8 pt-8 pb-6">
               <div>
                 <DialogTitle className="flex items-center gap-2 text-4xl font-bold tracking-tight">
-                  Welcome to AI Portfolio
+                  Welcome to Ibbo AI Portfolio
                 </DialogTitle>
                 <DialogDescription className="mt-2 text-base">
-                  {/*My interactive AI portfolio experience*/}
+                  An interactive AI version of me — here to talk about my work,
+                  projects, and experience in industrial automation.
                 </DialogDescription>
               </div>
               <Button
@@ -92,29 +89,33 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
                 {/* What section */}
                 <div className="space-y-3">
                   <h3 className="text-primary flex items-center gap-2 text-xl font-semibold">
-                    What's ????
+                    What is this?
                   </h3>
                   <p className="text-accent-foreground text-base leading-relaxed">
-                    I'm so excited to present my{' '}
-                    <strong>brand new AI Portfolio.</strong>
-                    <br /> Whether you're a recruiter, a friend, family member,
-                    or just curious, feel free to ask anything you want!
+                    This is my{' '}
+                    <strong>AI-powered interactive portfolio.</strong>
+                    <br />
+                    Instead of just scrolling through a static CV, you can chat
+                    with an AI version of me and ask about my background,
+                    experience, projects, and skills as a Service Engineer &
+                    Automation Technician.
                   </p>
                 </div>
 
                 {/* Why section */}
                 <div className="space-y-3">
                   <h3 className="text-primary flex items-center gap-2 text-xl font-semibold">
-                    Why ???
+                    Why this format?
                   </h3>
                   <p className="text-accent-foreground text-base leading-relaxed">
-                    Traditional portfolios can be limiting. <br /> They can't
-                    adapt to every visitor's specific needs. <br /> My portfolio
-                    becomes{' '}
-                    <strong>
-                      exactly what you're interested in knowing about me and my
-                      work.
-                    </strong>
+                    Traditional portfolios and CVs are one-way. <br />
+                    They don&apos;t adapt to what <strong>you</strong> are
+                    looking for.
+                    <br />
+                    Here, you can ask specific questions — about PLC work, ABB
+                    robots, electrical installations, or real projects at
+                    Scania, Lantmännen, Meritor, Volvo and more — and the AI
+                    will answer based on my real experience.
                   </p>
                 </div>
               </section>
@@ -134,7 +135,8 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
                 onClick={handleContactMe}
               >
                 <p className="text-muted-foreground">
-                  If you love it, please share it! Feedback is always welcome.
+                  If you like this format or want to work together, you&apos;re
+                  welcome to reach out.
                 </p>
                 <div className="flex cursor-pointer items-center text-blue-500 hover:underline">
                   Contact me.
