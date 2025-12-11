@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/dialog';
 import { BarChart3, Globe, MessageSquare, Sparkles } from 'lucide-react';
 import Image from 'next/image';
-import { PoweredByFastfolio } from './powered-by-fastfolio';
 
 interface FastfolioPopupProps {
   open: boolean;
@@ -18,12 +17,18 @@ interface FastfolioPopupProps {
   hasReachedLimit?: boolean;
 }
 
-export function FastfolioPopup({ open, onOpenChange, hasReachedLimit = false }: FastfolioPopupProps) {
+export function FastfolioPopup({
+  open,
+  onOpenChange,
+  hasReachedLimit = false,
+}: FastfolioPopupProps) {
   const handleCTA = () => {
-    window.open(
-      'https://fastfol.io?utm_source=toukoum_portfolio&utm_medium=popup&utm_campaign=portfolio_conversion',
-      '_blank'
-    );
+    // اینجا انتخاب کن می‌خوای کجا بره:
+    // 1) ایمیل مستقیم:
+    // window.location.href = 'mailto:ibbo.abdoli@elektroautomatik.se?subject=Contact%20regarding%20automation%20projects';
+
+    // 2) یا وب‌سایت/لینکدین:
+    window.open('https://ibboabdoli.com', '_blank');
     onOpenChange(false);
   };
 
@@ -32,36 +37,41 @@ export function FastfolioPopup({ open, onOpenChange, hasReachedLimit = false }: 
       <DialogContent className="overflow-hidden border-none p-0 sm:max-w-[500px]">
         <div className="relative">
           <Image
-            src="/portfolio-preview.png"
-            alt="Fastfolio Preview"
+            src="/ibbo-ai-preview.png" // یک تصویر کاور برای خودت در public بگذار
+            alt="Ibbo AI Preview"
             width={500}
             height={250}
             className="h-[200px] w-full object-cover"
           />
-          {/*<Badge 
-            className="absolute top-4 right-4 bg-white/90 text-gray-900 backdrop-blur-sm"
-            variant="secondary"
-          >
-            Join 500+ developers
-          </Badge>*/}
         </div>
 
         <div className="space-y-8 p-6">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold">
               {hasReachedLimit ? (
-                <>You've reached your message limit</>
+                <>You&apos;ve reached the chat limit</>
               ) : (
-                <>Build Your Own <span className="text-[#4c55fa]">AI Portfolio</span></>
+                <>
+                  Interested in{' '}
+                  <span className="text-[#4c55fa]">working together?</span>
+                </>
               )}
             </DialogTitle>
-            {/*<DialogDescription className="text-muted-foreground">
+            <DialogDescription className="text-muted-foreground">
               {hasReachedLimit ? (
-                <>Create your own Fastfolio to continue chatting!</>
+                <>
+                  If you want to continue the conversation or discuss a real
+                  project, feel free to reach out to me directly.
+                </>
               ) : (
-                <>Find your Jobs - More clients - Better Opportunities</>
+                <>
+                  I&apos;m a Service Engineer & Automation Technician working
+                  with PLC, ABB robots and industrial electrical systems in
+                  Sweden. If you&apos;re looking for help with automation,
+                  service, troubleshooting or projects – let&apos;s connect.
+                </>
               )}
-            </DialogDescription>*/}
+            </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-6">
@@ -69,7 +79,10 @@ export function FastfolioPopup({ open, onOpenChange, hasReachedLimit = false }: 
               <MessageSquare className="mt-0.5 h-5 w-5 text-[#4c55fa]" />
               <div>
                 <p className="text-sm font-medium">
-                  Answers 24/7 in your voice
+                  Real-world industrial experience
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Field work at Scania, Lantmännen, Meritor, Volvo and more.
                 </p>
               </div>
             </div>
@@ -78,17 +91,24 @@ export function FastfolioPopup({ open, onOpenChange, hasReachedLimit = false }: 
               <Sparkles className="mt-0.5 h-5 w-5 text-[#4c55fa]" />
               <div>
                 <p className="text-sm font-medium">
-                  GPT-5 powered conversations
+                  Automation, PLC & robotics
                 </p>
-                {/*<p className="text-xs text-muted-foreground">Engage visitors with intelligent AI responses</p>*/}
+                <p className="text-xs text-muted-foreground">
+                  PLC troubleshooting, ABB IRC5, motion supervision, sensors and
+                  production lines.
+                </p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
               <Globe className="mt-0.5 h-5 w-5 text-[#4c55fa]" />
               <div>
-                <p className="text-sm font-medium">Custom domain support</p>
-                {/*<p className="text-xs text-muted-foreground">Your portfolio, your brand</p>*/}
+                <p className="text-sm font-medium">
+                  Based in Sweden, open to projects
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Available for industrial service and automation work.
+                </p>
               </div>
             </div>
 
@@ -96,9 +116,11 @@ export function FastfolioPopup({ open, onOpenChange, hasReachedLimit = false }: 
               <BarChart3 className="mt-0.5 h-5 w-5 text-[#4c55fa]" />
               <div>
                 <p className="text-sm font-medium">
-                  Advanced analytics & insights
+                  Focus on reliability & uptime
                 </p>
-                {/*<p className="text-xs text-muted-foreground">Track visitor engagement and conversions</p>*/}
+                <p className="text-xs text-muted-foreground">
+                  Helping factories reduce downtime and keep production running.
+                </p>
               </div>
             </div>
           </div>
@@ -108,11 +130,15 @@ export function FastfolioPopup({ open, onOpenChange, hasReachedLimit = false }: 
               onClick={handleCTA}
               className="flex-1 cursor-pointer border-none bg-[#4c55fa] hover:bg-[#4c55fa]/80"
             >
-              Create Your Portfolio
+              Contact Ibbo
             </Button>
           </div>
 
-          <PoweredByFastfolio />
+          {/* اگر خواستی می‌تونی اینجا یه متن کوچیک برند خودت بذاری
+          <p className="text-center text-xs text-muted-foreground">
+            Ibbo AI Portfolio • ibboabdoli.com
+          </p>
+          */}
         </div>
       </DialogContent>
     </Dialog>
