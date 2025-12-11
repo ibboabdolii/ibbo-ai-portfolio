@@ -1,6 +1,5 @@
 'use client';
 
-import { FastfolioCTA } from '@/components/fastfolio-cta';
 import FluidCursor from '@/components/FluidCursor';
 import { Button } from '@/components/ui/button';
 import WelcomeModal from '@/components/welcome-modal';
@@ -20,8 +19,10 @@ import { useEffect, useRef, useState } from 'react';
 /* ---------- quick-question data ---------- */
 const questions = {
   Me: 'Who are you? Tell me about your background as a Service Engineer / Automation Technician.',
-  Projects: 'Tell me about your projects at Scania, Lantmännen, Meritor, Volvo, and Elektroautomatik.',
-  Skills: 'What are your main skills in PLC, ABB robots, and electrical installations?',
+  Projects:
+    'Tell me about your projects at Scania, Lantmännen, Meritor, Volvo, and Elektroautomatik.',
+  Skills:
+    'What are your main skills in PLC, ABB robots, and electrical installations?',
   Fun: 'What do you do for fun outside of work?',
   Contact: 'How can I contact you if I want to work with you?',
 } as const;
@@ -43,7 +44,7 @@ export default function Home() {
   const goToChat = (query: string) =>
     router.push(`/chat?query=${encodeURIComponent(query)}`);
 
-  /* hero animations (unchanged) */
+  /* hero animations */
   const topElementVariants = {
     hidden: { opacity: 0, y: -60 },
     visible: {
@@ -62,13 +63,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Précharger les assets du chat en arrière-plan
+    // Preload chat assets
     const img = new window.Image();
     img.src = '/landing-memojis.png';
 
-    // Précharger les vidéos aussi
     const linkWebm = document.createElement('link');
-    linkWebm.rel = 'preload'; // Note: prefetch au lieu de preload
+    linkWebm.rel = 'preload';
     linkWebm.as = 'video';
     linkWebm.href = '/final_memojis.webm';
     document.head.appendChild(linkWebm);
@@ -88,11 +88,9 @@ export default function Home() {
           className="hidden bg-gradient-to-b from-neutral-500/10 to-neutral-500/0 bg-clip-text text-[10rem] leading-none font-black text-transparent select-none sm:block lg:text-[16rem]"
           style={{ marginBottom: '-2.5rem' }}
         >
-            Ibbo Abdoli
+          Ibbo Abdoli
         </div>
       </div>
-
-      <FastfolioCTA/>
 
       {/* header */}
       <motion.div
@@ -109,7 +107,7 @@ export default function Home() {
           Hey, I'm Ibbo 👋
         </h2>
         <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
-           Ibbo AI Portfolio
+          Ibbo AI Portfolio
         </h1>
       </motion.div>
 
@@ -155,7 +153,7 @@ export default function Home() {
               aria-label="Submit question"
               className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white transition-colors hover:bg-blue-600 disabled:opacity-70 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
-              <ArrowRight  className="h-5 w-5" />
+              <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         </form>
@@ -177,6 +175,7 @@ export default function Home() {
           ))}
         </div>
       </motion.div>
+
       <FluidCursor />
     </div>
   );
