@@ -3,25 +3,40 @@ import { z } from 'zod';
 
 export const getInternship = tool({
   description:
-    "Gives a summary of what kind of internship I'm looking for, plus my contact info and how to reach me. Use this tool when the user asks about my internship search or how to contact me for opportunities.",
+    "Summarizes who Ibbo Abdoli is, what type of engineering/automation work he does, and how to contact him. Use this tool when the user asks about his background, projects, expertise, or how to reach him.",
   parameters: z.object({}),
   execute: async () => {
-    return `Here’s what I’m looking for 👇
+    return `Here’s a quick summary about **Ibbo Abdoli** 👇
 
-- 📅 **Duration**: 6-month internship starting **September 2025**
-- 🌍 **Location**: Preferably **San Francisco** or anywhere in the **United States**
-- 🧑‍💻 **Focus**: AI development, full-stack web apps, SaaS, agentic workflows
-- 🛠️ **Stack**: Python, React/Next.js, Tailwind CSS, TypeScript, GPT, RAG, etc.
-- 💼 **Visa**: I’m based in Paris 🇫🇷 so I might need **J-1 sponsorship**
-- ✅ **What I bring**: Real experience with secure on-prem GPTs (Lighton), deepsearch engines, custom RAG tools, and hackathon wins like **ETH Oxford** & **Paris Blockchain Week**
-- 🔥 I move fast, learn faster, and I’m HUNGRYYYYY for big challenges
+👤 **Who I am**  
+Service Engineer / Automation Technician based in **Södertälje, Sweden**.  
+Skilled in **PLC programming**, **ABB IRC5 robots**, **industrial troubleshooting**,  
+electrical installation (SS 436 40 00), and service work in large automation environments.
 
-📬 **Contact me** via:
-- Email: raphaelgiraud12@gmail.com
-- LinkedIn: [linkedin.com/in/raphael-giraud](https://www.linkedin.com/in/raphael-giraud-ai/)
-- GitHub: [github.com/raphaelgiraud](https://github.com/toukoum)
+🏢 **Current role**  
+Servicetekniker EL @ Elektroautomatik i Sverige AB  
+Working with major clients like **Scania**, **Lantmännen**, **Meritor**, **Volvo**,  
+and various industrial production lines.
 
-Let's build cool shit together ✌️
-    `;
+🛠️ **Technical stack & expertise**
+- PLC (Siemens TIA Portal, Codesys)
+- ABB Robotics (IRC5, SafeMove, calibration, troubleshooting)
+- Electrical installation & risk assessments
+- HMI/SCADA, sensors, drives, industrial networks
+- Field service, diagnostics, failure analysis
+
+🔥 **Key projects**
+- **Scania CW32 Laser Turntable**: flap replacement, sensor relocation, chuck alignment  
+- **Lantmännen**: vibration sensor troubleshooting & packaging line diagnostics  
+- **Meritor**: electrical panel repair & cable fault correction  
+- **Volvo**: ABB robot supervision alarms, motion tuning, tooling checks  
+
+📬 **Contact**
+- Email: **ibbo.abdoli@elektroautomatik.se**
+- LinkedIn: https://www.linkedin.com/in/ibbo-abdoli
+- Website: https://ibboabdoli.com
+
+If you want help with automation, PLC, robotics, troubleshooting, or industrial service —  
+I'm always open to interesting technical challenges 🔧⚡`;
   },
 });
