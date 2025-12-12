@@ -1,8 +1,6 @@
 import Image from 'next/image';
-import { Image as Img } from 'lucide-react';
 import { ChevronRight, Link } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { url } from 'inspector';
 
 // Enhanced project content array with all projects
 const PROJECT_CONTENT = [
@@ -15,13 +13,13 @@ const PROJECT_CONTENT = [
       'Säkerhetsgivare / sensorer',
       'Mekanisk justering',
       'Elinstallation',
-      'Felsökning'
+      'Felsökning',
     ],
     date: '2025',
     links: [
       {
         name: 'Internal Report (EA)',
-        url: 'https://ibboabdoli.com', // یا لینک واقعی اگر بعداً داشتی
+        url: 'https://ibboabdoli.com',
       },
     ],
     images: [
@@ -49,7 +47,7 @@ const PROJECT_CONTENT = [
     links: [
       {
         name: 'Summary',
-        url: 'https://ibboabdoli.com', 
+        url: 'https://ibboabdoli.com',
       },
     ],
     images: [
@@ -59,10 +57,34 @@ const PROJECT_CONTENT = [
       },
     ],
   },
+
+  // ✅ FIXED: این آبجکت باید کامل بسته بشه
   {
     title: 'Meritor – Electrical Panel & Cabling Repair',
-    description:
-      'Identifiering av glappkontakt / kabelbrott i ett elskåp hos Meritor. Läsa elscheman, mäta, hitta fel kabel, åtgärda
+    description: `Identifiering av glappkontakt / kabelbrott i ett elskåp hos Meritor.
+Läsa elscheman, mäta, hitta fel kabel, åtgärda kabeldragning och verifiera funktion genom testkörning.`,
+    techStack: [
+      'Elinstallation',
+      'Felsökning',
+      'Elscheman',
+      'Mätning / multimeter',
+      'Kablage',
+    ],
+    date: '2025',
+    links: [
+      {
+        name: 'Summary',
+        url: 'https://ibboabdoli.com',
+      },
+    ],
+    images: [
+      {
+        src: '/projects/meritor-1.jpg',
+        alt: 'Electrical panel troubleshooting at Meritor',
+      },
+    ],
+  },
+];
 
 // Define interface for project prop
 interface ProjectProps {
@@ -91,7 +113,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
             <span>{projectData.date}</span>
           </div>
 
-          <p className="text-secondary-foreground font-sans text-base leading-relaxed md:text-lg">
+          <p className="text-secondary-foreground font-sans whitespace-pre-line text-base leading-relaxed md:text-lg">
             {projectData.description}
           </p>
 
@@ -101,7 +123,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
               Technologies
             </h3>
             <div className="flex flex-wrap gap-2">
-              {projectData.techStack.map((tech, index) => (
+              {projectData.techStack?.map((tech, index) => (
                 <span
                   key={index}
                   className="rounded-full bg-neutral-200 px-3 py-1 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
@@ -117,7 +139,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
       {/* Links section */}
       {projectData.links && projectData.links.length > 0 && (
         <div className="mb-24">
-          <div className="px-6 mb-4 flex items-center gap-2">
+          <div className="mb-4 flex items-center gap-2 px-6">
             <h3 className="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
               Links
             </h3>
@@ -126,16 +148,16 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
           <Separator className="my-4" />
           <div className="space-y-3">
             {projectData.links.map((link, index) => (
-                <a
+              <a
                 key={index}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-[#F5F5F7] flex items-center justify-between rounded-xl p-4 transition-colors hover:bg-[#E5E5E7] dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                >
+                className="group flex items-center justify-between rounded-xl bg-[#F5F5F7] p-4 transition-colors hover:bg-[#E5E5E7] dark:bg-neutral-800 dark:hover:bg-neutral-700"
+              >
                 <span className="font-light capitalize">{link.name}</span>
                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+              </a>
             ))}
           </div>
         </div>
@@ -171,24 +193,40 @@ export const data = [
     category: 'Industrial Automation',
     title: 'Scania CW32 – Laser Protection Turntable',
     src: '/projects/scania-cw32-preview.jpg',
-    content: <ProjectContent project={{ title: 'Scania CW32 – Laser Protection Turntable' }} />,
+    content: (
+      <ProjectContent
+        project={{ title: 'Scania CW32 – Laser Protection Turntable' }}
+      />
+    ),
   },
   {
     category: 'Packaging Line',
     title: 'Lantmännen – Vibration Sensor & Packaging Line',
     src: '/projects/lantmannen-preview.jpg',
-    content: <ProjectContent project={{ title: 'Lantmännen – Vibration Sensor & Packaging Line' }} />,
+    content: (
+      <ProjectContent
+        project={{ title: 'Lantmännen – Vibration Sensor & Packaging Line' }}
+      />
+    ),
   },
   {
     category: 'Electrical',
     title: 'Meritor – Electrical Panel & Cabling Repair',
     src: '/projects/meritor-preview.jpg',
-    content: <ProjectContent project={{ title: 'Meritor – Electrical Panel & Cabling Repair' }} />,
+    content: (
+      <ProjectContent
+        project={{ title: 'Meritor – Electrical Panel & Cabling Repair' }}
+      />
+    ),
   },
   {
     category: 'Robotics',
     title: 'Volvo – ABB Robot Motion Supervision',
     src: '/projects/volvo-robot-preview.jpg',
-    content: <ProjectContent project={{ title: 'Volvo – ABB Robot Motion Supervision' }} />,
+    content: (
+      <ProjectContent
+        project={{ title: 'Volvo – ABB Robot Motion Supervision' }}
+      />
+    ),
   },
 ];
