@@ -62,32 +62,33 @@ export default function Home() {
     },
   };
 
-  useEffect(() => {
-  // Preload image
-  const img = new Image();
+ useEffect(() => {
+  // Preload image (IMPORTANT: use window.Image)
+  const img = new window.Image();
   img.src = '/landing-memojis.png';
 
-  // Preload webm video
+  // Preload videos
   const linkWebm = document.createElement('link');
   linkWebm.rel = 'preload';
   linkWebm.as = 'video';
   linkWebm.href = '/final_memojis.webm';
+  linkWebm.type = 'video/webm';
 
-  // Preload mp4 video (Safari / iOS)
   const linkMp4 = document.createElement('link');
   linkMp4.rel = 'preload';
   linkMp4.as = 'video';
   linkMp4.href = '/final_memojis_ios.mp4';
+  linkMp4.type = 'video/mp4';
 
   document.head.appendChild(linkWebm);
   document.head.appendChild(linkMp4);
 
-  // ✅ cleanup (خیلی مهم)
   return () => {
-    document.head.removeChild(linkWebm);
-    document.head.removeChild(linkMp4);
+    linkWebm.remove();
+    linkMp4.remove();
   };
 }, []);
+
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-10 md:pb-20">
