@@ -2,6 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Code, Cpu, PenTool, Users } from 'lucide-react';
 
@@ -77,14 +78,11 @@ const Skills = () => {
     },
   ];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
@@ -150,12 +148,14 @@ const Skills = () => {
                     <motion.div
                       key={idx}
                       variants={badgeVariants}
-                      whileHover={{
-                        scale: 1.04,
-                        transition: { duration: 0.2 },
-                      }}
+                      whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
                     >
-                      <Badge className="border px-3 py-1.5 font-normal">
+                      <Badge
+                        className={cn(
+                          'px-3 py-1.5 font-normal',
+                          section.color
+                        )}
+                      >
                         {skill}
                       </Badge>
                     </motion.div>
