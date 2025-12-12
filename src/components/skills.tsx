@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { Code, Cpu, PenTool, Users } from 'lucide-react';
+import { Cpu, Code, PenTool, Users } from 'lucide-react';
 
 const Skills = () => {
   const skillsData = [
@@ -12,14 +12,14 @@ const Skills = () => {
       category: 'Industrial Automation & PLC',
       icon: <Cpu className="h-5 w-5" />,
       skills: [
-        'PLC programming & troubleshooting',
-        'Siemens TIA Portal',
-        'Codesys',
-        'Basic HMI / SCADA',
-        'Sensor & I/O diagnostics',
-        'Drives & frequency inverters',
-        'Safety circuits (emergency stop, safety relays)',
-        'Production & packaging lines',
+        'Troubleshooting production & packaging lines',
+        'PLC diagnostics & logic understanding (Siemens / Codesys)',
+        'Siemens TIA Portal (basic to intermediate)',
+        'Codesys / SoMachine (basic troubleshooting)',
+        'HMI / SCADA basics (alarms, signals, commissioning)',
+        'Sensors & I/O diagnostics (PNP/NPN, analog/digital)',
+        'Drives & frequency inverters (basic parameters & fault finding)',
+        'Field service workflows (fault isolation, root cause, reporting)',
       ],
       color: 'bg-blue-50 text-blue-600 border border-blue-200',
     },
@@ -27,12 +27,13 @@ const Skills = () => {
       category: 'Robotics & Motion Control',
       icon: <Code className="h-5 w-5" />,
       skills: [
-        'ABB IRC5 robots',
-        'SafeMove basics',
-        'Robot path & TCP checks',
-        'Motion supervision troubleshooting',
+        'ABB robots (IRC5) — service & troubleshooting',
+        'SafeMove basics (common faults & checks)',
+        'TCP / tool data & workobject checks',
+        'Collision / motion supervision troubleshooting',
         'Calibration & reference checks',
-        'Mechanical alignment (chucks, axes, fixtures)',
+        'Vision offsets / picking limits (basic understanding)',
+        'Mechanical alignment (fixtures, chucks, axes, turntables)',
       ],
       color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
     },
@@ -40,38 +41,38 @@ const Skills = () => {
       category: 'Electrical & Installation',
       icon: <PenTool className="h-5 w-5" />,
       skills: [
-        'Electrical installation (SS 436 40 00)',
-        'Reading & interpreting electrical schematics',
-        'Panel work & cabling',
-        'Fault finding (loose connections, cable breaks)',
-        'Measurement & verification',
-        'Thermography & risk assessment',
-        'Industrial outlets, enclosures, EV outlets',
+        'Electrical installation & safety mindset (SS 436 40 00)',
+        'Reading and interpreting electrical schematics',
+        'Panel work: wiring, terminals, relays, contactors',
+        'Fault finding: loose connections, cable breaks, intermittent faults',
+        'Measurement & verification (multimeter, basic checks)',
+        'Thermography (basic) & risk assessment thinking',
+        'Industrial outlets / enclosures / cabling (workshop & site work)',
       ],
       color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
     },
     {
-      category: 'Software & Tools',
+      category: 'Tools, Documentation & IT',
       icon: <Code className="h-5 w-5" />,
       skills: [
-        'Windows & basic Linux',
-        'Git (version control basics)',
-        'Office / documentation tools',
-        'Basic web & UI (HTML/CSS)',
-        'Technical reporting & checklists',
+        'Windows troubleshooting & basic Linux',
+        'Technical documentation & service reporting',
+        'Structured checklists & handover notes',
+        'Git (basic) for versioning configs/projects',
+        'Basic web/UI (HTML/CSS) for personal projects',
       ],
       color: 'bg-purple-50 text-purple-600 border border-purple-200',
     },
     {
-      category: 'Soft Skills',
+      category: 'Soft Skills (Field Service)',
       icon: <Users className="h-5 w-5" />,
       skills: [
-        'Problem-solving under time pressure',
-        'Customer communication on-site',
-        'Structured troubleshooting',
-        'Learning agility',
-        'Teamwork with technicians & engineers',
-        'Responsibility & safety mindset',
+        'Structured troubleshooting under time pressure',
+        'Clear customer communication on-site',
+        'Ownership & responsibility for tasks',
+        'Teamwork with technicians, engineers & suppliers',
+        'Learning agility (fast onboarding on new equipment)',
+        'Safety-first mindset and disciplined work habits',
         'Working independently in the field',
       ],
       color: 'bg-amber-50 text-amber-600 border border-amber-200',
@@ -80,10 +81,7 @@ const Skills = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const itemVariants = {
@@ -150,12 +148,7 @@ const Skills = () => {
                       variants={badgeVariants}
                       whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
                     >
-                      <Badge
-                        className={cn(
-                          'px-3 py-1.5 font-normal',
-                          section.color
-                        )}
-                      >
+                      <Badge className={cn('px-3 py-1.5 font-normal', section.color)}>
                         {skill}
                       </Badge>
                     </motion.div>
