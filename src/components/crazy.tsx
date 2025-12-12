@@ -8,7 +8,7 @@ const Crazy = () => {
     {
       src: '/blancmont.JPG',
       alt: 'Mont Blanc summit',
-      caption: 'Summit of Mont Blanc – me in blue, after a challenging ascent',
+      caption: 'Summit of Mont Blanc – Ibbo Abdoli (blue jacket)',
     },
   ];
 
@@ -20,18 +20,23 @@ const Crazy = () => {
         </h2>
 
         <p className="text-secondary-foreground mt-4 max-w-3xl leading-relaxed">
-          One of the craziest things I’ve ever done was climbing Mont Blanc, the
-          highest mountain in the Alps and Western Europe. I completed the ascent
-          with a close friend, without a professional guide, which required
-          careful planning, physical endurance, and trust in each other.
+          I’m Ibbo Abdoli, a Service Engineer and Industrial Automation Technician
+          based in Sweden. One of the craziest things I’ve ever done was climbing
+          Mont Blanc, the highest mountain in the Alps and Western Europe.
         </p>
 
         <p className="text-secondary-foreground mt-3 max-w-3xl leading-relaxed">
-          During the climb, we faced extreme conditions, including winds reaching
-          up to 80 km/h. This experience pushed my physical and mental limits and
-          strengthened skills such as decision-making under pressure, resilience,
-          and teamwork — qualities that also define how I approach challenges in
-          my professional life.
+          I completed the ascent with a close friend, without a professional
+          guide, which required careful planning, physical endurance, and strong
+          trust in each other. During the climb, we faced extreme conditions,
+          including winds reaching up to 80 km/h.
+        </p>
+
+        <p className="text-secondary-foreground mt-3 max-w-3xl leading-relaxed">
+          This experience pushed my physical and mental limits and strengthened
+          skills such as decision-making under pressure, resilience, and
+          teamwork—qualities I also rely on in my professional work within
+          industrial automation and field service.
         </p>
       </div>
 
