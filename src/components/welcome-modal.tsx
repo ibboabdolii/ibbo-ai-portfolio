@@ -28,7 +28,7 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
       onClick={() => setIsOpen(true)}
     >
       <Image
-        src="/profil-ibbo.webp" // یک لوگو برای خودت در public بذار
+        src="/logo-ibbo.svg" // یک لوگو برای خودت در public بذار
         width={100}
         height={100}
         alt="Ibbo AI Logo"
