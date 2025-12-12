@@ -1,13 +1,16 @@
-
 import { tool } from "ai";
 import { z } from "zod";
 
-
 export const getCrazy = tool({
   description:
-    "This tool will the craziest thing I've ever done. use it when the user ask someting like : 'What the craziest thing you've ever done?'",
+    "Shares one of the craziest and most challenging experiences I've ever done. Use when the user asks something like: 'What is the craziest thing you've ever done?'",
   parameters: z.object({}),
   execute: async () => {
-    return "Above is a photo of Me On top of Mont Blanc, the highest mountain in the Alps and the highest in Europe. I made it with a friends of mine without guide, it was a great experience! You can see the 80km/h of wind on the photo! I made a youtube video of this adventure here: https://www.youtube.com/watch?v=rufGMSgzUOk&ab_channel=Toukoum";
+    return (
+      "One of the craziest things I've ever done was climbing Mont Blanc — the highest mountain in the Alps and Western Europe.\n\n" +
+      "I reached the summit together with a close friend, without a professional guide. It was an intense and unforgettable experience, with wind speeds reaching around 80 km/h near the top.\n\n" +
+      "This adventure taught me a lot about preparation, teamwork, decision-making under pressure, and respecting nature — lessons that also apply strongly to my work as a Service Engineer.\n\n" +
+      "I documented the experience in a video here: https://www.youtube.com/XXXXXXXX"
+    );
   },
 });
