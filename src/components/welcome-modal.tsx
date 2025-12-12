@@ -34,7 +34,7 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
         alt="Ibbo AI Logo"
         className="w-6 md:w-8"
       />
-      <span className="sr-only">About Ibbo AI Portfolio</span>
+      <span className="sr-only">About Ibbo AI Profile</span>
     </Button>
   );
 
@@ -65,7 +65,7 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
             <DialogHeader className="relative flex flex-row items-start justify-between px-8 pt-8 pb-6">
               <div>
                 <DialogTitle className="flex items-center gap-2 text-4xl font-bold tracking-tight">
-                  Welcome to Ibbo AI Portfolio
+                  Welcome to Ibbo AI Profile
                 </DialogTitle>
                 <DialogDescription className="mt-2 text-base">
                   An interactive AI version of me — here to talk about my work,
