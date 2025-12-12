@@ -8,7 +8,6 @@ export function Presentation() {
   // Personal information – IBBO VERSION
   const profile = {
     name: 'Ibbo Abdoli',
-    age: '36 years old',
     location: 'Södertälje / Stockholm, Sweden',
     description:
       "Hey 👋\nI'm Ibbo, a Service Engineer & Automation Technician based in Sweden. I work with industrial automation, PLC systems, ABB robots and electrical installations.\n\nMost of my time is spent out in the field – troubleshooting production lines, fixing electrical panels, tuning robot cells and helping customers keep their factories running. I love challenging projects, learning new things and making complex systems simpler and safer.",
