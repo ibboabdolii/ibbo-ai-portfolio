@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import { Image as Img } from "lucide-react";
 import { ChevronRight, Link } from "lucide-react";
@@ -16,13 +17,13 @@ type ProjectContentItem = {
   techStack: string[];
   date: string;
   links: ProjectLink[];
-  images: ProjectImage[]; // ✅ مهم: باعث میشه images never[] نشه
+  images: ProjectImage[]; // ✅ prevents never[]
 };
 
-type ProjectCard = {
+export type ProjectCard = {
   category: string;
   title: string;
-  src: string; // ✅ برای Carousel حتماً string
+  src: string; // ✅ Carousel expects string
   content: React.ReactNode;
 };
 
@@ -91,7 +92,6 @@ const PROJECT_CONTENT: ProjectContentItem[] = [
 /* ---------------------- UI ---------------------- */
 const ProjectContent = ({ title }: { title: string }) => {
   const projectData = PROJECT_CONTENT.find((p) => p.title === title);
-
   if (!projectData) return <div>Project details not available</div>;
 
   const hasImages = projectData.images.length > 0;
