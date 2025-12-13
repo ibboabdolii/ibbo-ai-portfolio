@@ -61,7 +61,7 @@ export const Carousel = ({
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
   };
 
-  const scrollAmount = 224 + 16; // card width + gap
+  const scrollAmount = 224 + 16;
 
   const scrollLeft = () => {
     carouselRef.current?.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
@@ -89,7 +89,7 @@ export const Carousel = ({
           onScroll={checkScrollability}
           className="flex w-full overflow-x-scroll scroll-smooth py-10 [scrollbar-width:none]"
         >
-          <div className="flex gap-4 mx-auto max-w-7xl">
+          <div className="mx-auto flex max-w-7xl gap-4">
             {items.map((item, index) => (
               <motion.div
                 key={index}
@@ -146,12 +146,13 @@ export const Card = ({
     document.body.style.overflow = open ? 'hidden' : 'auto';
   }, [open]);
 
-  useOutsideClick(ref, () => handleClose());
-
   const handleClose = () => {
     setOpen(false);
     onCardClose(index);
   };
+
+  // 👇 فقط وقتی کارت بازه، کلیک بیرون فعال می‌شه
+  useOutsideClick(ref, handleClose, open);
 
   return (
     <>
@@ -164,6 +165,7 @@ export const Card = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             />
+
             <motion.div
               ref={ref}
               layoutId={layout ? `card-${card.title}` : undefined}
@@ -220,13 +222,18 @@ export const Card = ({
           </motion.p>
         </div>
 
-        <BlurImage src={card.src} alt={card.title} fill className="object-cover" />
+        <BlurImage
+          src={card.src}
+          alt={card.title}
+          fill
+          className="object-cover"
+        />
       </motion.button>
     </>
   );
 };
 
-/* ---------------- BLUR IMAGE (FIXED) ---------------- */
+/* ---------------- BLUR IMAGE ---------------- */
 export const BlurImage = ({ className, alt, ...props }: ImageProps) => {
   const [loading, setLoading] = useState(true);
 
