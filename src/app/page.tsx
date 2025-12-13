@@ -121,17 +121,18 @@ export default function Home() {
         </h1>
       </motion.div>
 
-      {/* centre memoji */}
-      <div className="relative z-10 h-52 w-48 sm:h-72 sm:w-72">
+{/* centre memoji */}
+<div className="relative z-10 h-52 w-52 overflow-hidden rounded-full sm:h-72 sm:w-72">
   <Image
     src="/landing-memojis.png"
     alt="Hero memoji"
-    width={2000}
-    height={2000}
+    fill
     priority
-    className="h-full w-full object-contain"
+    sizes="(max-width: 640px) 208px, 288px"
+    className="object-cover"
   />
 </div>
+
 
 
       {/* input + quick buttons */}
