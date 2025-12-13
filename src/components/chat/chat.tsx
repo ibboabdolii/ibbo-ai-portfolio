@@ -52,33 +52,35 @@ const Avatar = dynamic<AvatarProps>(
           /iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream;
         const isIOSByPlatform = /iPad|iPhone|iPod/.test(platform);
         const isIPadOS =
-          platform === 'MacIntel' && maxTouchPoints > 1 && !(window as any).MSStream;
-        const isSafari =
-          /Safari/.test(userAgent) && !/Chrome/.test(userAgent);
+          platform === 'MacIntel' &&
+          maxTouchPoints > 1 &&
+          !(window as any).MSStream;
+        const isSafari = /Safari/.test(userAgent) && !/Chrome/.test(userAgent);
 
         return isIOSByUA || isIOSByPlatform || isIPadOS || isSafari;
       };
 
       return (
         <div
-          className={`flex items-center justify-center rounded-full transition-all duration-300 ${
+          className={`flex items-center justify-center transition-all duration-300 ${
             hasActiveTool ? 'h-20 w-20' : 'h-28 w-28'
           }`}
         >
+          {/* ✅ circle mask */}
           <div
-            className="relative cursor-pointer"
+            className="relative h-full w-full cursor-pointer overflow-hidden rounded-full"
             onClick={() => (window.location.href = '/')}
           >
             {isIOS() ? (
               <img
                 src="/landing-memojis.png"
                 alt="avatar"
-                className="h-full w-full scale-[1.8] object-contain"
+                className="h-full w-full object-cover"
               />
             ) : (
               <video
                 ref={videoRef}
-                className="h-full w-full scale-[1.8] object-contain"
+                className="h-full w-full object-cover"
                 muted
                 playsInline
                 loop
@@ -113,7 +115,7 @@ const Chat = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [isTalking, setIsTalking] = useState(false);
 
-  // ✅ دیگه limiter استفاده نمی‌کنیم
+  // ✅ no limiter
   const hasReachedLimit = false;
 
   const {
@@ -122,7 +124,6 @@ const Chat = () => {
     handleInputChange,
     isLoading,
     stop,
-    setMessages,
     setInput,
     reload,
     addToolResult,
@@ -382,8 +383,6 @@ const Chat = () => {
               disabled={false}
             />
           </div>
-          {/* دیگه PoweredByFastfolio اینجا نیست 👇 */}
-          {/* می‌تونی اگر خواستی یه متن ساده خودت اینجا بذاری */}
         </div>
       </div>
     </div>
