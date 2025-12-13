@@ -4,7 +4,16 @@ import { ChevronRight, Link } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 /* ---------------------- PROJECT CONTENT ---------------------- */
-const PROJECT_CONTENT = [
+type ProjectContentItem = {
+  title: string;
+  description: string;
+  techStack: string[];
+  date: string;
+  links: { name: string; url: string }[];
+  images: { src: string; alt: string }[];
+};
+
+const PROJECT_CONTENT: ProjectContentItem[] = [
   {
     title: "Scania CW32 – Laser Protection Turntable",
     description:
@@ -18,7 +27,7 @@ const PROJECT_CONTENT = [
     ],
     date: "2025",
     links: [{ name: "Internal Report (EA)", url: "https://ibboabdoli.com" }],
-    images: [], // no images for now
+    images: [],
   },
   {
     title: "Lantmännen – Vibration Sensor & Packaging Line",
@@ -54,24 +63,13 @@ const PROJECT_CONTENT = [
   },
 ];
 
-// Define interface for project prop (same as original)
-interface ProjectProps {
-  title: string;
-  description?: string;
-  techStack?: string[];
-  date?: string;
-  links?: { name: string; url: string }[];
-  images?: { src: string; alt: string }[];
-}
+/* ---------------------- UI ---------------------- */
+const ProjectContent = ({ title }: { title: string }) => {
+  const projectData = PROJECT_CONTENT.find((p) => p.title === title);
 
-const ProjectContent = ({ project }: { project: ProjectProps }) => {
-  const projectData = PROJECT_CONTENT.find((p) => p.title === project.title);
+  if (!projectData) return <div>Project details not available</div>;
 
-  if (!projectData) {
-    return <div>Project details not available</div>;
-  }
-
-  const hasImages = projectData.images && projectData.images.length > 0;
+  const hasImages = projectData.images.length > 0;
 
   return (
     <div className="space-y-10">
@@ -87,7 +85,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
           </p>
 
           {/* Tech stack */}
-          {!!projectData.techStack?.length && (
+          {!!projectData.techStack.length && (
             <div className="pt-4">
               <h3 className="mb-3 text-sm tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
                 Technologies
@@ -108,7 +106,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
       </div>
 
       {/* Links section */}
-      {projectData.links && projectData.links.length > 0 && (
+      {projectData.links.length > 0 && (
         <div className="mb-24">
           <div className="px-6 mb-4 flex items-center gap-2">
             <h3 className="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
@@ -146,8 +144,11 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
 
         {hasImages ? (
           <div className="grid grid-cols-1 gap-4">
-            {projectData.images!.map((image, index) => (
-              <div key={index} className="relative aspect-video overflow-hidden rounded-2xl">
+            {projectData.images.map((image, index) => (
+              <div
+                key={index}
+                className="relative aspect-video overflow-hidden rounded-2xl"
+              >
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -181,55 +182,41 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
 };
 
 /* ---------------------- MAIN DATA EXPORT ---------------------- */
-/**
- * ✅ same shape as original, but:
- * - src is optional (you have no images)
- * - cover gives you the same "nice card" feeling like original (gradient blob)
- */
-export const data = [
+export type ProjectCard = {
+  category: string;
+  title: string;
+  src?: string;   // keep optional for future
+  cover?: string; // for gradient cover
+  content: JSX.Element;
+};
+
+export const data: ProjectCard[] = [
   {
     category: "Industrial Automation",
     title: "Scania CW32 – Laser Protection Turntable",
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#ff4fd8,#2f6bff,#2dd4bf,#ffd54a,#ff4fd8)]",
-    content: (
-      <ProjectContent
-        project={{ title: "Scania CW32 – Laser Protection Turntable" }}
-      />
-    ),
+    content: <ProjectContent title="Scania CW32 – Laser Protection Turntable" />,
   },
   {
     category: "Packaging Line",
     title: "Lantmännen – Vibration Sensor & Packaging Line",
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#22c55e,#06b6d4,#3b82f6,#a78bfa,#22c55e)]",
-    content: (
-      <ProjectContent
-        project={{ title: "Lantmännen – Vibration Sensor & Packaging Line" }}
-      />
-    ),
+    content: <ProjectContent title="Lantmännen – Vibration Sensor & Packaging Line" />,
   },
   {
     category: "Electrical",
     title: "Meritor – Electrical Panel & Cabling Repair",
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#f59e0b,#fb7185,#ef4444,#f97316,#f59e0b)]",
-    content: (
-      <ProjectContent
-        project={{ title: "Meritor – Electrical Panel & Cabling Repair" }}
-      />
-    ),
+    content: <ProjectContent title="Meritor – Electrical Panel & Cabling Repair" />,
   },
   {
     category: "Robotics",
     title: "Volvo – ABB Robot Motion Supervision",
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#60a5fa,#34d399,#22c55e,#facc15,#60a5fa)]",
-    content: (
-      <ProjectContent
-        project={{ title: "Volvo – ABB Robot Motion Supervision" }}
-      />
-    ),
+    content: <ProjectContent title="Volvo – ABB Robot Motion Supervision" />,
   },
-] as const;
-
+];
