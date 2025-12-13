@@ -4,8 +4,8 @@ import { Image as Img } from "lucide-react";
 import { ChevronRight, Link } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
-// ✅ One local placeholder (put this file in: /public/projects/placeholder.png)
-const PLACEHOLDER_SRC = "/projects/placeholder.png";
+// ✅ Local placeholder (put this file in: /public/placeholder-project.jpg)
+const PLACEHOLDER_SRC = "/placeholder-project.jpg";
 
 /* ---------------------- TYPES (FIX NEVER[]) ---------------------- */
 type ProjectImage = { src: string; alt: string };
@@ -17,13 +17,13 @@ type ProjectContentItem = {
   techStack: string[];
   date: string;
   links: ProjectLink[];
-  images: ProjectImage[]; // ✅ prevents never[]
+  images: ProjectImage[];
 };
 
 export type ProjectCard = {
   category: string;
   title: string;
-  src: string; // ✅ Carousel expects string
+  src: string;
   content: React.ReactNode;
 };
 
@@ -98,7 +98,6 @@ const ProjectContent = ({ title }: { title: string }) => {
 
   return (
     <div className="space-y-10">
-      {/* Header */}
       <div className="rounded-3xl bg-[#F5F5F7] p-8 dark:bg-[#1D1D1F]">
         <div className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
@@ -109,7 +108,6 @@ const ProjectContent = ({ title }: { title: string }) => {
             {projectData.description}
           </p>
 
-          {/* Tech stack */}
           {projectData.techStack.length > 0 && (
             <div className="pt-4">
               <h3 className="mb-3 text-sm tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
@@ -130,7 +128,6 @@ const ProjectContent = ({ title }: { title: string }) => {
         </div>
       </div>
 
-      {/* Links */}
       {projectData.links.length > 0 && (
         <div className="mb-24">
           <div className="mb-4 flex items-center gap-2 px-6">
@@ -159,7 +156,6 @@ const ProjectContent = ({ title }: { title: string }) => {
         </div>
       )}
 
-      {/* Gallery */}
       {hasImages ? (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
