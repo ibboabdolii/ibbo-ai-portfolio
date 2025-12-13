@@ -5,7 +5,7 @@ import { ChevronRight, Link } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 // ✅ Local placeholder (put this file in: /public/placeholder-project.jpg)
-const PLACEHOLDER_SRC = "/placeholder-project.jpg";
+const PLACEHOLDER_SRC = "/placeholder-project.png";
 
 /* ---------------------- TYPES (FIX NEVER[]) ---------------------- */
 type ProjectImage = { src: string; alt: string };
