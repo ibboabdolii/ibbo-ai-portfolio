@@ -1,338 +1,78 @@
-import Image from 'next/image';
-import { Image as Img } from 'lucide-react';
-import { ChevronRight, Link } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
-import { url } from 'inspector';
+import Image from "next/image";
+import { Image as Img } from "lucide-react";
+import { ChevronRight, Link } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
-// Enhanced project content array with all projects
+// ✅ One local placeholder (put this file in: /public/projects/placeholder.png)
+const PLACEHOLDER_SRC = "/projects/placeholder.png";
+
+/** ---------------------- PROJECT CONTENT ---------------------- **/
 const PROJECT_CONTENT = [
   {
-    title: 'Synto',
+    title: "Scania CW32 – Laser Protection Turntable",
     description:
-      'Synto is an AI-powered interface that transforms complex blockchain interactions into simple, natural language commands. Whether you want to send tokens, stake assets, swap coins, or even create NFTs or liquidity pools, just tell Synto what to do — no manual wallet interactions, no technical jargon. One of my biggest projects yet',
+      "Work at Scania (CW32) on a laser protection turntable system.\nI handled flap removal/installation, sensor relocation, chuck fine-alignment, and functional safety verification together with Scania and Laserax.\n\nKey focus: safe mechanical + electrical integration, clean commissioning, and stable production restart.",
     techStack: [
-      'Next.js',
-      'TailwindCSS',
-      'Web3.js',
-      'shadcn-ui',
-      'TypeScript',
-      'Phantom Wallet',
-      'OpenAI API',
-      'Vercel AI SDK',
-      'Solana Agent kit',
-      'Neon',
-      'Prisma'
+      "ABB IRC5 (cell context)",
+      "Safety sensors / interlocks",
+      "Mechanical alignment (chuck/fixture)",
+      "Electrical installation",
+      "On-site troubleshooting",
     ],
-    date: '2025',
+    date: "2025",
     links: [
-      {
-        name: 'website',
-        url: 'https://synto.fun',
-      },
-      {
-        name: 'Launch Video',
-        url: 'https://www.youtube.com/watch?v=4QUE2KgKDUw',
-      },
-      {
-        name: 'X',
-        url: 'https://x.com/chainSynto',
-      },
-      {
-        name: 'Technical Video',
-        url: 'https://www.youtube.com/watch?v=1CjBLKPUwtA&feature=youtu.be',
-      },
-      {
-        name: 'Pitch Deck',
-        url: 'https://drive.google.com/file/d/1B3m44mEgv81rJHfjNfTKi147yX4raQed/view?usp=sharing',
-      },
-      {
-        name: 'Usage tutorial',
-        url: 'https://www.youtube.com/watch?v=PRu1cfvT2bA',
-      }
+      { name: "Report (Internal)", url: "https://ibboabdoli.com" },
     ],
-    images: [
-      {
-        src: '/synto1.png',
-        alt: 'Synto landing page',
-      },
-      {
-        src: '/synto2.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto3.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto4.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto5.png',
-        alt: 'Synto chat interface',
-      },
-      {
-        src: '/synto6.png',
-        alt: 'Synto chat interface',
-      },
-    ],
+    images: [], // no images for now
   },
   {
-    title: 'Rrate',
+    title: "Lantmännen – Vibration Sensor & Packaging Line",
     description:
-      "Rrate is a fun website to allow user to compare his salary with the richest people in the world. Try it now it's online!",
-    techStack: ['Html', 'Css', 'Javascript'],
-    date: '2024',
-    links: [
-      {
-        name: 'website',
-        url: 'https://rrate.app',
-      },
-      {
-        name: 'github',
-        url: 'https://github.com/toukoum/Rrate',
-      },
-    ],
-    images: [
-      {
-        src: '/rrate1.png',
-        alt: 'Rrate landing page',
-      },
-      {
-        src: '/rrate2.png',
-        alt: 'Rrate comparison page',
-      },
-      {
-        src: '/rrate3.png',
-        alt: 'Rrate comparison page',
-      },
-    ],
-  },
-  {
-    title: 'Defai',
-    description:
-      "We Win ETHOXford hackathon by building DEFAI. DEFAI stands for Decentralized Finance Artificial Intelligence. It's an AI-powered chat interface that simplifies on-chain operations on the Avalanche blockchain by allowing users to interact using natural language. This makes complex DeFi operations accessible even for those with limited technical expertise.",
+      "Troubleshooting vibration sensor alarms and disturbances on a packaging line at Lantmännen.\nI checked signals, cabling, PLC inputs, and mechanical root causes to reduce stops and stabilize the line.\n\nKey focus: fast diagnosis, clean signal verification, and production-friendly fixes.",
     techStack: [
-      'Next.js',
-      'TailwindCSS',
-      'shadcn-ui',
-      'Vercel AI SDK',
-      'TypeScript',
+      "PLC troubleshooting (Siemens / TIA Portal context)",
+      "Vibration sensors",
+      "I/O & signal tracing",
+      "Packaging / production lines",
     ],
-    date: '2025',
+    date: "2025",
     links: [
-      {
-        name: 'website',
-        url: 'https://dorahacks.io/buidl/22605',
-      },
-      {
-        name: 'github',
-        url: 'https://github.com/toukoum/DEFAI',
-      },
-      {
-        name: 'LinkedIn',
-        url: 'https://www.linkedin.com/feed/update/urn:li:activity:7299337190151483392/',
-      },
-      {
-        name: 'Youtube Video',
-        url: 'https://www.youtube.com/watch?v=N9O7los4-ng&t=34s&ab_channel=Toukoum',
-      }
+      { name: "Summary", url: "https://ibboabdoli.com" },
     ],
-    images: [
-      {
-        src: '/defai1.png',
-        alt: 'Landing Page of Defai',
-      },
-      {
-        src: '/defai2.png',
-        alt: 'Confirmation popup of Defai',
-      },
-      {
-        src: '/defai3.png',
-        alt: 'Chatbot of Defai',
-      },
-      {
-        src: '/defai4.jpeg',
-        alt: 'Winner team',
-      },
-    ],
+    images: [],
   },
   {
-    title: 'Fitgear',
+    title: "Meritor – Electrical Panel & Cabling Repair",
     description:
-      'Won the Gotta Go Hack IA by building Fitgear, a virtual voice seller accessible by QR code to improve the ratio between customers and sellers. Created an AI pipeline with API calls and a RAG system for natural language interactions.',
-    techStack: ['Next.js', 'TailwindCSS', 'OpenAI API', 'Langchain'],
-    date: '2024',
-    links: [
-      {
-        name: 'Linkedin',
-        url: 'https://www.linkedin.com/posts/raphael-giraud-60939519a_hackathon-innovation-sporttech-activity-7210399263774674946-qSXq?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC6vwikBVSEkS7XWktWS7y6GR3GHwAlKslc',
-      },
-    ],
-    images: [
-      {
-        src: '/fitgear2.png',
-        alt: 'Fitgear chatbot',
-      },
-      {
-        src: '/fitgear1.png',
-        alt: 'Fitgear landing page',
-      },
-    ],
-  },
-  {
-    title: 'Datai',
-    description:
-      "DATAI is an AI-powered agent that lets non-technical users query a database using natural language without writing SQL. Built using Next.js, TailwindCSS, shadcn-ui, and Anthropic's Claude API, this project focuses on simplicity, speed, and user-friendly design.",
+      "Investigation of intermittent faults in an electrical cabinet at Meritor.\nI read schematics, measured signals, located the faulty cable/connection, repaired wiring, and verified the system with test runs.\n\nKey focus: structured fault finding and safe, documented handover.",
     techStack: [
-      'Next.js',
-      'TailwindCSS',
-      'shadcn-ui',
-      'Claude API',
-      'TypeScript',
+      "Electrical installation",
+      "Schematics & documentation",
+      "Measurement / multimeter",
+      "Cabling & terminations",
+      "Functional verification",
     ],
-    date: '2024',
+    date: "2025",
     links: [
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/datai',
-      },
-      {
-        name: 'Youtube Video Demo',
-        url: 'https://youtu.be/iE0RXjdbQsw',
-      }
+      { name: "Summary", url: "https://ibboabdoli.com" },
     ],
-    images: [
-      {
-        src: '/datai1.png',
-        alt: 'Datai landing page',
-      },
-      {
-        src: '/datai2.png',
-        alt: 'Datai chatbot',
-      },
-      {
-        src: '/datai3.png',
-        alt: 'Datai chatbot',
-      },
-      {
-        src: '/datai4.png',
-        alt: 'Datai chatbot',
-      }
-    ],
+    images: [],
   },
   {
-    title: '3d Pong Game',
+    title: "Volvo – ABB Robot Motion Supervision",
     description:
-      "Transcendance is the final project of my 42 cursus. It's a 3D pong game with multiplayer capabilities, user authentication, and real-time gameplay. We had to do everything from scratch, so it was pretty challenging and we learned a lot.",
-    techStack: ['Django', 'Python', 'JavaScript', 'Websockets', 'PostgreSQL', 'Docker', 'Nginx', 'Web3', 'Solidity'],
-    date: '2023',
+      "Troubleshooting ABB robot alarms related to SafeMove / motion supervision.\nI verified axis supervision signals/logs, checked positions/limits, and supported adjustments to reduce recurring stops.\n\nKey focus: safety-aware debugging and stable operation in production.",
+    techStack: [
+      "ABB IRC5",
+      "SafeMove (supervision context)",
+      "RobotStudio (analysis/support)",
+      "Production troubleshooting",
+    ],
+    date: "2025",
     links: [
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/Transcendance',
-      },
+      { name: "Summary", url: "https://ibboabdoli.com" },
     ],
-    images: [
-      {
-        src: '/trans1.png',
-        alt: 'Transcendance landing page',
-      },
-      {
-        src: '/trans2.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans3.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans4.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans5.png',
-        alt: 'Transcendance game',
-      },
-      {
-        src: '/trans6.png',
-        alt: 'Transcendance game',
-      }
-
-    ],
-  },
-  {
-    title: 'Minishell',
-    description:
-      "Minishell is a project that aims to create a simple shell. It's a great introduction to process creation and management in C, offering fundamental Unix command-line functionality. This was a very challenging project, but I learned a lot from it.",
-    techStack: ['C', 'Unix', 'Bash'],
-    date: '2023',
-    links: [
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/Michelle-42',
-      },
-    ],
-    images: [
-      {
-        src: '/minishell1.png',
-        alt: 'Minishell landing page',
-      }
-    ],
-  },
-  {
-    title: 'YouBot',
-    description:
-      'YouBot is a Python Bot that Scrapes Videos from Pexels, adds a random song from a Songs Folder, then auto-uploads the videos to your YouTube Channel for continuous content generation.',
-    techStack: ['Python', 'YouTube API', 'Pexels API'],
-    date: '2022',
-    links: [
-      {
-        name: "YouTube Video",
-        url: "https://youtu.be/vp1v5mBG7rA "
-      },
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/YouBot',
-      }
-    ],
-    images: [
-      {
-        src: '/youbot1.jpg',
-        alt: 'Youbot landing page',
-      },
-      {
-        src: '/youbot2.png',
-        alt: 'Youbot chatbot',
-      },
-    ],
-  },
-  {
-    title: 'Old Portfolio',
-    description:
-      'My previous traditional portfolio built with vanilla HTML, CSS and JS with GSAP animations for a smooth and interactive user experience.',
-    techStack: ['HTML', 'CSS', 'JavaScript', 'GSAP'],
-    date: '2022',
-    links: [
-      {
-        name: 'Website',
-        url: 'https://toukoum.github.io/oldPortfolio/',
-      },
-      {
-        name: 'GitHub',
-        url: 'https://github.com/toukoum/portfolio',
-      },
-    ],
-    images: [
-      {
-        src: '/oldport1.png',
-        alt: 'Old Portfolio landing page',
-      },
-      {
-        src: '/oldport2.png',
-        alt: 'Old Portfolio projects',
-      }
-    ],
+    images: [],
   },
 ];
 
@@ -347,12 +87,11 @@ interface ProjectProps {
 }
 
 const ProjectContent = ({ project }: { project: ProjectProps }) => {
-  // Find the matching project data
   const projectData = PROJECT_CONTENT.find((p) => p.title === project.title);
 
-  if (!projectData) {
-    return <div>Project details not available</div>;
-  }
+  if (!projectData) return <div>Project details not available</div>;
+
+  const hasImages = projectData.images && projectData.images.length > 0;
 
   return (
     <div className="space-y-10">
@@ -363,7 +102,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
             <span>{projectData.date}</span>
           </div>
 
-          <p className="text-secondary-foreground font-sans text-base leading-relaxed md:text-lg">
+          <p className="text-secondary-foreground whitespace-pre-line font-sans text-base leading-relaxed md:text-lg">
             {projectData.description}
           </p>
 
@@ -398,23 +137,23 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
           <Separator className="my-4" />
           <div className="space-y-3">
             {projectData.links.map((link, index) => (
-                <a
+              <a
                 key={index}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-[#F5F5F7] flex items-center justify-between rounded-xl p-4 transition-colors hover:bg-[#E5E5E7] dark:bg-neutral-800 dark:hover:bg-neutral-700"
-                >
+              >
                 <span className="font-light capitalize">{link.name}</span>
                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+              </a>
             ))}
           </div>
         </div>
       )}
 
       {/* Images gallery */}
-      {projectData.images && projectData.images.length > 0 && (
+      {hasImages ? (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
             {projectData.images.map((image, index) => (
@@ -432,65 +171,62 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
             ))}
           </div>
         </div>
+      ) : (
+        // ✅ nice empty state (ke UI ghashang bemone)
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 px-6">
+            <h3 className="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
+              Gallery
+            </h3>
+            <Img className="h-4 w-4 text-muted-foreground" />
+          </div>
+          <Separator className="my-4" />
+          <div className="rounded-3xl bg-[#F5F5F7] p-10 dark:bg-neutral-800">
+            <div className="flex items-start gap-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/10 dark:bg-white/10">
+                <Img className="h-5 w-5 text-neutral-700 dark:text-neutral-200" />
+              </div>
+              <div>
+                <p className="text-secondary-foreground font-sans text-base md:text-lg">
+                  No images added yet
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                  I keep this documented internally. If needed, I can add a few anonymized
+                  (non-sensitive) photos later to show the setup and key steps.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
 };
 
-// Main data export with updated content
+// Main data export (✅ keep src string to avoid TS errors in Carousel)
 export const data = [
   {
-    category: 'Startup Project',
-    title: 'Synto',
-    src: '/syntopreview.png',
-    content: <ProjectContent project={{ title: 'Synto' }} />,
+    category: "Industrial Automation",
+    title: "Scania CW32 – Laser Protection Turntable",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent project={{ title: "Scania CW32 – Laser Protection Turntable" }} />,
   },
   {
-    category: 'Fun Tool',
-    title: 'Rrate',
-    src: '/ratepreview.png',
-    content: <ProjectContent project={{ title: 'Rrate' }} />,
+    category: "Packaging Line",
+    title: "Lantmännen – Vibration Sensor & Packaging Line",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent project={{ title: "Lantmännen – Vibration Sensor & Packaging Line" }} />,
   },
   {
-    category: 'Hackathon Winner',
-    title: 'Defai',
-    src: '/defaipreview.png',
-    content: <ProjectContent project={{ title: 'Defai' }} />,
+    category: "Electrical",
+    title: "Meritor – Electrical Panel & Cabling Repair",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent project={{ title: "Meritor – Electrical Panel & Cabling Repair" }} />,
   },
   {
-    category: 'Hackathon Winner',
-    title: 'Fitgear',
-    src: '/fitgearpreview.png',
-    content: <ProjectContent project={{ title: 'Fitgear' }} />,
-  },
-  {
-    category: 'Business Intelligence',
-    title: 'Datai',
-    src: '/dataipreview.png',
-    content: <ProjectContent project={{ title: 'Datai' }} />,
-  },
-  {
-    category: '42 Project',
-    title: '3d Pong Game',
-    src: '/transcendancepreview.png',
-    content: <ProjectContent project={{ title: '3d Pong Game' }} />,
-  },
-  {
-    category: '42 Project',
-    title: 'Minishell',
-    src: '/minishellpreview.png',
-    content: <ProjectContent project={{ title: 'Minishell' }} />,
-  },
-  {
-    category: 'Automation',
-    title: 'YouBot',
-    src: '/youbotpreview.png',
-    content: <ProjectContent project={{ title: 'YouBot' }} />,
-  },
-  {
-    category: 'Web Development',
-    title: 'Old Portfolio',
-    src: '/oldportfoliopreview.png',
-    content: <ProjectContent project={{ title: 'Old Portfolio' }} />,
+    category: "Robotics",
+    title: "Volvo – ABB Robot Motion Supervision",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent project={{ title: "Volvo – ABB Robot Motion Supervision" }} />,
   },
 ];
