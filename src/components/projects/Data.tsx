@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ChevronRight, Link as LinkIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -17,16 +16,7 @@ const PROJECT_CONTENT = [
     ],
     date: "2025",
     links: [{ name: "Internal Report (EA)", url: "https://ibboabdoli.com" }],
-    images: [
-      {
-        src: "/projects/scania-cw32-1.jpg",
-        alt: "Scania CW32 laser protection turntable",
-      },
-      {
-        src: "/projects/scania-cw32-2.jpg",
-        alt: "Sensor relocation and flap installation",
-      },
-    ],
+    // ✅ no images needed
   },
   {
     title: "Lantmännen – Vibration Sensor & Packaging Line",
@@ -40,12 +30,6 @@ const PROJECT_CONTENT = [
     ],
     date: "2025",
     links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
-    images: [
-      {
-        src: "/projects/lantmannen-1.jpg",
-        alt: "Packaging line at Lantmännen",
-      },
-    ],
   },
   {
     title: "Meritor – Electrical Panel & Cabling Repair",
@@ -54,12 +38,6 @@ const PROJECT_CONTENT = [
     techStack: ["Elinstallation", "Felsökning", "Elscheman", "Mätning", "Kablage"],
     date: "2025",
     links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
-    images: [
-      {
-        src: "/projects/meritor-1.jpg",
-        alt: "Electrical panel troubleshooting at Meritor",
-      },
-    ],
   },
   {
     title: "Volvo – ABB Robot Motion Supervision",
@@ -68,12 +46,6 @@ const PROJECT_CONTENT = [
     techStack: ["ABB IRC5", "SafeMove", "RobotStudio", "Felsökning", "Produktion"],
     date: "2025",
     links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
-    images: [
-      {
-        src: "/projects/volvo-robot-1.jpg",
-        alt: "ABB robot troubleshooting at Volvo",
-      },
-    ],
   },
 ] as const;
 
@@ -82,17 +54,11 @@ type ProjectItem = (typeof PROJECT_CONTENT)[number];
 
 interface ProjectProps {
   title: ProjectItem["title"];
-  description?: string;
-  techStack?: string[];
-  date?: string;
-  links?: { name: string; url: string }[];
-  images?: { src: string; alt: string }[];
 }
 
 /* ---------------------- UI ---------------------- */
-const ProjectContent = ({ project }: { project: Pick<ProjectProps, "title"> }) => {
+const ProjectContent = ({ project }: { project: ProjectProps }) => {
   const projectData = PROJECT_CONTENT.find((p) => p.title === project.title);
-
   if (!projectData) return <div>Project details not available</div>;
 
   return (
@@ -157,57 +123,42 @@ const ProjectContent = ({ project }: { project: Pick<ProjectProps, "title"> }) =
           </div>
         </div>
       ) : null}
-
-      {/* Images gallery */}
-      {projectData.images?.length ? (
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 gap-4">
-            {projectData.images.map((image, index) => (
-              <div
-                key={index}
-                className="group relative aspect-video overflow-hidden rounded-2xl"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 900px"
-                  className="object-cover transition duration-300 group-hover:scale-[1.02]"
-                  priority={index === 0}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 };
 
 /* ---------------------- EXPORT ---------------------- */
+/**
+ * ✅ Instead of src (image), we use gradientCover.
+ * Your Card component will show this when no src exists.
+ */
 export const data = [
   {
     category: "Industrial Automation",
     title: "Scania CW32 – Laser Protection Turntable",
-    src: "/projects/scania-cw32-preview.jpg",
+    gradientCover:
+      "bg-[conic-gradient(from_180deg_at_50%_50%,#ff4fd8,#2f6bff,#2dd4bf,#ffd54a,#ff4fd8)]",
     content: <ProjectContent project={{ title: "Scania CW32 – Laser Protection Turntable" }} />,
   },
   {
     category: "Packaging Line",
     title: "Lantmännen – Vibration Sensor & Packaging Line",
-    src: "/projects/lantmannen-preview.jpg",
+    gradientCover:
+      "bg-[conic-gradient(from_180deg_at_50%_50%,#22c55e,#06b6d4,#3b82f6,#a78bfa,#22c55e)]",
     content: <ProjectContent project={{ title: "Lantmännen – Vibration Sensor & Packaging Line" }} />,
   },
   {
     category: "Electrical",
     title: "Meritor – Electrical Panel & Cabling Repair",
-    src: "/projects/meritor-preview.jpg",
+    gradientCover:
+      "bg-[conic-gradient(from_180deg_at_50%_50%,#f59e0b,#fb7185,#ef4444,#f97316,#f59e0b)]",
     content: <ProjectContent project={{ title: "Meritor – Electrical Panel & Cabling Repair" }} />,
   },
   {
     category: "Robotics",
     title: "Volvo – ABB Robot Motion Supervision",
-    src: "/projects/volvo-robot-preview.jpg",
+    gradientCover:
+      "bg-[conic-gradient(from_180deg_at_50%_50%,#60a5fa,#34d399,#22c55e,#facc15,#60a5fa)]",
     content: <ProjectContent project={{ title: "Volvo – ABB Robot Motion Supervision" }} />,
   },
 ] as const;
