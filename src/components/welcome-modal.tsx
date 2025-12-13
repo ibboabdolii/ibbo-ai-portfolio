@@ -27,13 +27,14 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
       className="h-auto w-auto cursor-pointer rounded-2xl bg-white/30 p-3 shadow-lg backdrop-blur-lg hover:bg-white/60 focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
       onClick={() => setIsOpen(true)}
     >
-      <Image
-        src="/logo-ibbo.svg" // یک لوگو برای خودت در public بذار
-        width={100}
-        height={100}
-        alt="Ibbo AI Logo"
-        className="w-6 md:w-8"
-      />
+<Image
+  src="/logo-ibbo.svg"
+  width={160}
+  height={160}
+  alt="Ibbo AI Logo"
+  className="h-10 w-10 md:h-14 md:w-14"
+  priority
+/>
       <span className="sr-only">About Ibbo AI Profile</span>
     </Button>
   );
