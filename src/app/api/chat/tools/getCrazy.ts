@@ -3,13 +3,13 @@ import { z } from "zod";
 
 export const getCrazy = tool({
   description:
-    "Explains one of my toughest adventures: climbing Mont Blanc without a professional guide. Use when the user asks about my adventures, challenges, mindset under pressure, or personal story.",
+    "Shares a real personal challenge from my life that shaped my discipline, focus, and ability to work under pressure. Use when the user asks about personal challenges, mindset, discipline, or how my background influences my work.",
   parameters: z.object({}),
   execute: async () => {
     return (
-      "One of the most challenging and unforgettable experiences in my life was reaching the summit of Mont Blanc, the highest mountain in the Alps.\n\n" +
-      "I completed the climb together with a close friend, without a professional guide. Near the summit, the conditions were extreme, with strong winds around 80 km/h and demanding terrain.\n\n" +
-      "This adventure pushed me both physically and mentally. It strengthened my mindset around preparation, risk awareness, teamwork, and staying calm under pressure — lessons I apply daily in my work as a Service Engineer and Automation Technician."
+      "Before working in industrial automation, I spent many years competing at a high level in mountain bike racing across Europe.\n\n" +
+      "Training and racing at that level required strict discipline, constant preparation, and the ability to perform under physical and mental pressure. Standing on start lines at international competitions taught me how to stay focused, manage stress, and make fast, accurate decisions.\n\n" +
+      "This background has strongly shaped how I work today as a Service Engineer and Automation Technician. I stay calm in critical situations, pay close attention to details, and approach complex technical problems in a structured and reliable way."
     );
   },
 });
