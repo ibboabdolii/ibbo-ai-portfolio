@@ -1,45 +1,39 @@
 'use client';
 
 import React from 'react';
-import { Photos, PhotoItem } from './photos';
 
-const Crazy = () => {
-  const adventurePhotos: PhotoItem[] = [
-    {
-      src: '/blancmont.JPG', // باید دقیقاً داخل public باشد
-      alt: 'On top of Mont Blanc',
-      caption: 'Mont Blanc summit — extreme wind and challenging conditions',
-    },
-  ];
-
+const AboutMe = () => {
   return (
-    <div className="mx-auto w-full">
-      <div className="mb-6">
+    <div className="mx-auto w-full max-w-3xl">
+      <div className="mb-8">
         <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-          One of My Craziest Adventures
+          About Me
         </h2>
 
-        <p className="text-secondary-foreground mt-4 max-w-3xl leading-relaxed">
-          One of the most challenging and memorable experiences in my life was
-          reaching the summit of Mont&nbsp;Blanc, the highest mountain in the Alps.
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          I am a hands-on Service Engineer and Automation Technician who enjoys
+          working in challenging environments and solving complex technical
+          problems. I am naturally curious, detail-oriented, and driven by
+          continuous learning.
         </p>
 
-        <p className="text-secondary-foreground mt-3 max-w-3xl leading-relaxed">
-          I completed the climb together with a close friend, without a professional
-          guide. The conditions were extreme, with strong winds reaching around
-          80&nbsp;km/h near the summit.
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          My background includes working with industrial automation systems,
+          electrical installations, and troubleshooting production equipment
+          under real-world conditions. I am comfortable taking responsibility,
+          working under pressure, and collaborating closely with others to find
+          reliable solutions.
         </p>
 
-        <p className="text-secondary-foreground mt-3 max-w-3xl leading-relaxed">
-          This experience pushed me both physically and mentally, and taught me the
-          importance of preparation, teamwork, and staying calm under pressure —
-          lessons I apply daily in my work as a Service Engineer.
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          Outside of work, I value discipline, physical activity, and personal
+          growth. These experiences shape the way I approach my professional
+          life — staying calm in critical situations, focusing on safety and
+          quality, and always aiming to improve.
         </p>
       </div>
-
-      <Photos photos={adventurePhotos} />
     </div>
   );
 };
 
-export default Crazy;
+export default AboutMe;
