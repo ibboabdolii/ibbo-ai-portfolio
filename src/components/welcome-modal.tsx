@@ -29,8 +29,8 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
     >
 <Image
   src="/logo-ibbo.svg"
-  width={160}
-  height={160}
+  width={200}
+  height={200}
   alt="Ibbo AI Logo"
   className="h-10 w-10 md:h-14 md:w-14"
   priority
