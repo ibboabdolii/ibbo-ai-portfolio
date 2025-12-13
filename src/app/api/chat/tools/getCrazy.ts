@@ -1,16 +1,15 @@
 import { tool } from "ai";
 import { z } from "zod";
 
-export const getWorkExperience = tool({
+export const getCrazy = tool({
   description:
-    "Explains the type of work and responsibilities I have handled in my role as a Service Engineer and Automation Technician. Use when the user asks about my work, experience, or responsibilities.",
+    "Explains one of my toughest adventures: climbing Mont Blanc without a professional guide. Use when the user asks about my adventures, challenges, mindset under pressure, or personal story.",
   parameters: z.object({}),
   execute: async () => {
     return (
-      "I work as a Service Engineer and Automation Technician, primarily within industrial production environments in Sweden.\n\n" +
-      "My work includes troubleshooting and maintaining automated production lines, electrical panels, PLC-controlled systems, and ABB robot cells. I regularly work hands-on with fault diagnosis, sensor and actuator troubleshooting, I/O signals, safety circuits, and communication between PLCs, HMIs, and robots.\n\n" +
-      "I have experience working on-site at customer facilities, where I handle both planned service tasks and urgent breakdowns. This often involves analyzing electrical schematics, modifying PLC logic, adjusting robot programs, and ensuring that machines are restarted safely and efficiently.\n\n" +
-      "In addition to technical work, I place strong focus on documentation, communication with customers and colleagues, and working according to Swedish electrical safety standards. My goal is always to create stable, safe, and maintainable solutions while minimizing production downtime."
+      "One of the most challenging and unforgettable experiences in my life was reaching the summit of Mont Blanc, the highest mountain in the Alps.\n\n" +
+      "I completed the climb together with a close friend, without a professional guide. Near the summit, the conditions were extreme, with strong winds around 80 km/h and demanding terrain.\n\n" +
+      "This adventure pushed me both physically and mentally. It strengthened my mindset around preparation, risk awareness, teamwork, and staying calm under pressure — lessons I apply daily in my work as a Service Engineer and Automation Technician."
     );
   },
 });
