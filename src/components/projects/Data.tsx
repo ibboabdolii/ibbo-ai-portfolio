@@ -6,8 +6,28 @@ import { Separator } from "@/components/ui/separator";
 // ✅ One local placeholder (put this file in: /public/projects/placeholder.png)
 const PLACEHOLDER_SRC = "/projects/placeholder.png";
 
+/* ---------------------- TYPES (FIX NEVER[]) ---------------------- */
+type ProjectImage = { src: string; alt: string };
+type ProjectLink = { name: string; url: string };
+
+type ProjectContentItem = {
+  title: string;
+  description: string;
+  techStack: string[];
+  date: string;
+  links: ProjectLink[];
+  images: ProjectImage[]; // ✅ مهم: باعث میشه images never[] نشه
+};
+
+type ProjectCard = {
+  category: string;
+  title: string;
+  src: string; // ✅ برای Carousel حتماً string
+  content: React.ReactNode;
+};
+
 /** ---------------------- PROJECT CONTENT ---------------------- **/
-const PROJECT_CONTENT = [
+const PROJECT_CONTENT: ProjectContentItem[] = [
   {
     title: "Scania CW32 – Laser Protection Turntable",
     description:
@@ -20,10 +40,8 @@ const PROJECT_CONTENT = [
       "On-site troubleshooting",
     ],
     date: "2025",
-    links: [
-      { name: "Report (Internal)", url: "https://ibboabdoli.com" },
-    ],
-    images: [], // no images for now
+    links: [{ name: "Report (Internal)", url: "https://ibboabdoli.com" }],
+    images: [],
   },
   {
     title: "Lantmännen – Vibration Sensor & Packaging Line",
@@ -36,9 +54,7 @@ const PROJECT_CONTENT = [
       "Packaging / production lines",
     ],
     date: "2025",
-    links: [
-      { name: "Summary", url: "https://ibboabdoli.com" },
-    ],
+    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
     images: [],
   },
   {
@@ -53,9 +69,7 @@ const PROJECT_CONTENT = [
       "Functional verification",
     ],
     date: "2025",
-    links: [
-      { name: "Summary", url: "https://ibboabdoli.com" },
-    ],
+    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
     images: [],
   },
   {
@@ -69,33 +83,22 @@ const PROJECT_CONTENT = [
       "Production troubleshooting",
     ],
     date: "2025",
-    links: [
-      { name: "Summary", url: "https://ibboabdoli.com" },
-    ],
+    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
     images: [],
   },
 ];
 
-// Define interface for project prop
-interface ProjectProps {
-  title: string;
-  description?: string;
-  techStack?: string[];
-  date?: string;
-  links?: { name: string; url: string }[];
-  images?: { src: string; alt: string }[];
-}
-
-const ProjectContent = ({ project }: { project: ProjectProps }) => {
-  const projectData = PROJECT_CONTENT.find((p) => p.title === project.title);
+/* ---------------------- UI ---------------------- */
+const ProjectContent = ({ title }: { title: string }) => {
+  const projectData = PROJECT_CONTENT.find((p) => p.title === title);
 
   if (!projectData) return <div>Project details not available</div>;
 
-  const hasImages = projectData.images && projectData.images.length > 0;
+  const hasImages = projectData.images.length > 0;
 
   return (
     <div className="space-y-10">
-      {/* Header section with description */}
+      {/* Header */}
       <div className="rounded-3xl bg-[#F5F5F7] p-8 dark:bg-[#1D1D1F]">
         <div className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
@@ -107,34 +110,38 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
           </p>
 
           {/* Tech stack */}
-          <div className="pt-4">
-            <h3 className="mb-3 text-sm tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
-              Technologies
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {projectData.techStack.map((tech, index) => (
-                <span
-                  key={index}
-                  className="rounded-full bg-neutral-200 px-3 py-1 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
-                >
-                  {tech}
-                </span>
-              ))}
+          {projectData.techStack.length > 0 && (
+            <div className="pt-4">
+              <h3 className="mb-3 text-sm tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
+                Technologies
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {projectData.techStack.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="rounded-full bg-neutral-200 px-3 py-1 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
-      {/* Links section */}
-      {projectData.links && projectData.links.length > 0 && (
+      {/* Links */}
+      {projectData.links.length > 0 && (
         <div className="mb-24">
-          <div className="px-6 mb-4 flex items-center gap-2">
+          <div className="mb-4 flex items-center gap-2 px-6">
             <h3 className="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
               Links
             </h3>
             <Link className="text-muted-foreground w-4" />
           </div>
+
           <Separator className="my-4" />
+
           <div className="space-y-3">
             {projectData.links.map((link, index) => (
               <a
@@ -142,7 +149,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-[#F5F5F7] flex items-center justify-between rounded-xl p-4 transition-colors hover:bg-[#E5E5E7] dark:bg-neutral-800 dark:hover:bg-neutral-700"
+                className="group flex items-center justify-between rounded-xl bg-[#F5F5F7] p-4 transition-colors hover:bg-[#E5E5E7] dark:bg-neutral-800 dark:hover:bg-neutral-700"
               >
                 <span className="font-light capitalize">{link.name}</span>
                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -152,7 +159,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
         </div>
       )}
 
-      {/* Images gallery */}
+      {/* Gallery */}
       {hasImages ? (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
@@ -165,14 +172,14 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover transition-transform"
+                  sizes="(max-width: 768px) 100vw, 900px"
+                  className="object-cover transition duration-300"
                 />
               </div>
             ))}
           </div>
         </div>
       ) : (
-        // ✅ nice empty state (ke UI ghashang bemone)
         <div className="space-y-3">
           <div className="flex items-center gap-2 px-6">
             <h3 className="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
@@ -180,7 +187,9 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
             </h3>
             <Img className="h-4 w-4 text-muted-foreground" />
           </div>
+
           <Separator className="my-4" />
+
           <div className="rounded-3xl bg-[#F5F5F7] p-10 dark:bg-neutral-800">
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/10 dark:bg-white/10">
@@ -191,8 +200,8 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
                   No images added yet
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
-                  I keep this documented internally. If needed, I can add a few anonymized
-                  (non-sensitive) photos later to show the setup and key steps.
+                  I keep this documented internally. If needed, I can add a few
+                  anonymized (non-sensitive) photos later to show the setup and key steps.
                 </p>
               </div>
             </div>
@@ -203,30 +212,30 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
   );
 };
 
-// Main data export (✅ keep src string to avoid TS errors in Carousel)
-export const data = [
+/* ---------------------- MAIN DATA EXPORT ---------------------- */
+export const data: ProjectCard[] = [
   {
     category: "Industrial Automation",
     title: "Scania CW32 – Laser Protection Turntable",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent project={{ title: "Scania CW32 – Laser Protection Turntable" }} />,
+    content: <ProjectContent title="Scania CW32 – Laser Protection Turntable" />,
   },
   {
     category: "Packaging Line",
     title: "Lantmännen – Vibration Sensor & Packaging Line",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent project={{ title: "Lantmännen – Vibration Sensor & Packaging Line" }} />,
+    content: <ProjectContent title="Lantmännen – Vibration Sensor & Packaging Line" />,
   },
   {
     category: "Electrical",
     title: "Meritor – Electrical Panel & Cabling Repair",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent project={{ title: "Meritor – Electrical Panel & Cabling Repair" }} />,
+    content: <ProjectContent title="Meritor – Electrical Panel & Cabling Repair" />,
   },
   {
     category: "Robotics",
     title: "Volvo – ABB Robot Motion Supervision",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent project={{ title: "Volvo – ABB Robot Motion Supervision" }} />,
+    content: <ProjectContent title="Volvo – ABB Robot Motion Supervision" />,
   },
 ];
