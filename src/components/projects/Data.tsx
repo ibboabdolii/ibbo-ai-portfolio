@@ -1,92 +1,103 @@
-import Image from 'next/image';
-import { ChevronRight, Link as LinkIcon } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+import Image from "next/image";
+import { ChevronRight, Link as LinkIcon } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
-/* ---------------------- DATA ---------------------- */
+/* ---------------------- PROJECT CONTENT ---------------------- */
 const PROJECT_CONTENT = [
   {
-    title: 'Scania CW32 – Laser Protection Turntable',
+    title: "Scania CW32 – Laser Protection Turntable",
     description:
-      'Flap och väggskydd på en laserstation hos Scania (CW32).\nJag ansvarade för demontering/montering av flappen, flytt av givare, finjustering av chucken och test av säkerhetsfunktionen tillsammans med Scania och Laserax.',
+      "Flap och väggskydd på en laserstation hos Scania (CW32).\nJag ansvarade för demontering/montering av flappen, flytt av givare, finjustering av chucken och test av säkerhetsfunktionen tillsammans med Scania och Laserax.",
     techStack: [
-      'ABB IRC5',
-      'Säkerhetsgivare / sensorer',
-      'Mekanisk justering',
-      'Elinstallation',
-      'Felsökning',
+      "ABB IRC5",
+      "Säkerhetsgivare / sensorer",
+      "Mekanisk justering",
+      "Elinstallation",
+      "Felsökning",
     ],
-    date: '2025',
-    links: [{ name: 'Internal Report (EA)', url: 'https://ibboabdoli.com' }],
+    date: "2025",
+    links: [{ name: "Internal Report (EA)", url: "https://ibboabdoli.com" }],
     images: [
       {
-        src: '/projects/scania-cw32-1.jpg',
-        alt: 'Scania CW32 laser protection turntable',
+        src: "/projects/scania-cw32-1.jpg",
+        alt: "Scania CW32 laser protection turntable",
       },
       {
-        src: '/projects/scania-cw32-2.jpg',
-        alt: 'Sensor relocation and flap installation',
+        src: "/projects/scania-cw32-2.jpg",
+        alt: "Sensor relocation and flap installation",
       },
     ],
   },
   {
-    title: 'Lantmännen – Vibration Sensor & Packaging Line',
+    title: "Lantmännen – Vibration Sensor & Packaging Line",
     description:
-      'Felsökning på vibrationsgivare och störningar i en förpackningslina hos Lantmännen.\nKontroll av signaler, kablage, PLC-ingångar och mekaniska orsaker till larm och stopp.',
+      "Felsökning på vibrationsgivare och störningar i en förpackningslina hos Lantmännen.\nKontroll av signaler, kablage, PLC-ingångar och mekaniska orsaker till larm och stopp.",
     techStack: [
-      'PLC (Siemens / TIA Portal)',
-      'Vibrationssensorer',
-      'Signal- och I/O-felsökning',
-      'Produktionslinor',
+      "PLC (Siemens / TIA Portal)",
+      "Vibrationssensorer",
+      "Signal- och I/O-felsökning",
+      "Produktionslinor",
     ],
-    date: '2025',
-    links: [{ name: 'Summary', url: 'https://ibboabdoli.com' }],
-    images: [
-      { src: '/projects/lantmannen-1.jpg', alt: 'Packaging line at Lantmännen' },
-    ],
-  },
-  {
-    title: 'Meritor – Electrical Panel & Cabling Repair',
-    description:
-      'Identifiering av glappkontakt / kabelbrott i ett elskåp hos Meritor.\nLäsa elscheman, mäta, hitta fel kabel, åtgärda kabeldragning och verifiera funktion genom testkörning.',
-    techStack: ['Elinstallation', 'Felsökning', 'Elscheman', 'Mätning', 'Kablage'],
-    date: '2025',
-    links: [{ name: 'Summary', url: 'https://ibboabdoli.com' }],
+    date: "2025",
+    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
     images: [
       {
-        src: '/projects/meritor-1.jpg',
-        alt: 'Electrical panel troubleshooting at Meritor',
+        src: "/projects/lantmannen-1.jpg",
+        alt: "Packaging line at Lantmännen",
       },
     ],
   },
   {
-    title: 'Volvo – ABB Robot Motion Supervision',
+    title: "Meritor – Electrical Panel & Cabling Repair",
     description:
-      'Felsökning av SafeMove / motion supervision-larm på ABB-robot.\nVerifiering av axelövervakning, loggar, positioner och justering av gränser/offsets tillsammans med produktion.',
-    techStack: ['ABB IRC5', 'SafeMove', 'RobotStudio', 'Felsökning', 'Produktion'],
-    date: '2025',
-    links: [{ name: 'Summary', url: 'https://ibboabdoli.com' }],
+      "Identifiering av glappkontakt / kabelbrott i ett elskåp hos Meritor.\nLäsa elscheman, mäta, hitta fel kabel, åtgärda kabeldragning och verifiera funktion genom testkörning.",
+    techStack: ["Elinstallation", "Felsökning", "Elscheman", "Mätning", "Kablage"],
+    date: "2025",
+    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
     images: [
       {
-        src: '/projects/volvo-robot-1.jpg',
-        alt: 'ABB robot troubleshooting at Volvo',
+        src: "/projects/meritor-1.jpg",
+        alt: "Electrical panel troubleshooting at Meritor",
       },
     ],
   },
-];
+  {
+    title: "Volvo – ABB Robot Motion Supervision",
+    description:
+      "Felsökning av SafeMove / motion supervision-larm på ABB-robot.\nVerifiering av axelövervakning, loggar, positioner och justering av gränser/offsets tillsammans med produktion.",
+    techStack: ["ABB IRC5", "SafeMove", "RobotStudio", "Felsökning", "Produktion"],
+    date: "2025",
+    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
+    images: [
+      {
+        src: "/projects/volvo-robot-1.jpg",
+        alt: "ABB robot troubleshooting at Volvo",
+      },
+    ],
+  },
+] as const;
 
 /* ---------------------- TYPES ---------------------- */
+type ProjectItem = (typeof PROJECT_CONTENT)[number];
+
 interface ProjectProps {
-  title: string;
+  title: ProjectItem["title"];
+  description?: string;
+  techStack?: string[];
+  date?: string;
+  links?: { name: string; url: string }[];
+  images?: { src: string; alt: string }[];
 }
 
 /* ---------------------- UI ---------------------- */
-const ProjectContent = ({ project }: { project: ProjectProps }) => {
+const ProjectContent = ({ project }: { project: Pick<ProjectProps, "title"> }) => {
   const projectData = PROJECT_CONTENT.find((p) => p.title === project.title);
+
   if (!projectData) return <div>Project details not available</div>;
 
   return (
     <div className="space-y-10">
-      {/* Description */}
+      {/* Header / Description */}
       <div className="rounded-3xl bg-[#F5F5F7] p-8 dark:bg-[#1D1D1F]">
         <div className="space-y-6">
           <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
@@ -98,21 +109,23 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
           </p>
 
           {/* Tech stack */}
-          <div className="pt-4">
-            <h3 className="mb-3 text-sm tracking-wide uppercase text-neutral-500 dark:text-neutral-400">
-              Technologies
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {projectData.techStack?.map((tech, index) => (
-                <span
-                  key={index}
-                  className="rounded-full bg-neutral-200 px-3 py-1 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
-                >
-                  {tech}
-                </span>
-              ))}
+          {projectData.techStack?.length ? (
+            <div className="pt-4">
+              <h3 className="mb-3 text-sm tracking-wide uppercase text-neutral-500 dark:text-neutral-400">
+                Technologies
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {projectData.techStack.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="rounded-full bg-neutral-200 px-3 py-1 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
 
@@ -125,7 +138,9 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
             </h3>
             <LinkIcon className="text-muted-foreground w-4" />
           </div>
+
           <Separator className="my-4" />
+
           <div className="space-y-3">
             {projectData.links.map((link, index) => (
               <a
@@ -143,7 +158,7 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
         </div>
       ) : null}
 
-      {/* Images */}
+      {/* Images gallery */}
       {projectData.images?.length ? (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
@@ -172,27 +187,27 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
 /* ---------------------- EXPORT ---------------------- */
 export const data = [
   {
-    category: 'Industrial Automation',
-    title: 'Scania CW32 – Laser Protection Turntable',
-    src: '/projects/scania-cw32-preview.jpg',
-    content: <ProjectContent project={{ title: 'Scania CW32 – Laser Protection Turntable' }} />,
+    category: "Industrial Automation",
+    title: "Scania CW32 – Laser Protection Turntable",
+    src: "/projects/scania-cw32-preview.jpg",
+    content: <ProjectContent project={{ title: "Scania CW32 – Laser Protection Turntable" }} />,
   },
   {
-    category: 'Packaging Line',
-    title: 'Lantmännen – Vibration Sensor & Packaging Line',
-    src: '/projects/lantmannen-preview.jpg',
-    content: <ProjectContent project={{ title: 'Lantmännen – Vibration Sensor & Packaging Line' }} />,
+    category: "Packaging Line",
+    title: "Lantmännen – Vibration Sensor & Packaging Line",
+    src: "/projects/lantmannen-preview.jpg",
+    content: <ProjectContent project={{ title: "Lantmännen – Vibration Sensor & Packaging Line" }} />,
   },
   {
-    category: 'Electrical',
-    title: 'Meritor – Electrical Panel & Cabling Repair',
-    src: '/projects/meritor-preview.jpg',
-    content: <ProjectContent project={{ title: 'Meritor – Electrical Panel & Cabling Repair' }} />,
+    category: "Electrical",
+    title: "Meritor – Electrical Panel & Cabling Repair",
+    src: "/projects/meritor-preview.jpg",
+    content: <ProjectContent project={{ title: "Meritor – Electrical Panel & Cabling Repair" }} />,
   },
   {
-    category: 'Robotics',
-    title: 'Volvo – ABB Robot Motion Supervision',
-    src: '/projects/volvo-robot-preview.jpg',
-    content: <ProjectContent project={{ title: 'Volvo – ABB Robot Motion Supervision' }} />,
+    category: "Robotics",
+    title: "Volvo – ABB Robot Motion Supervision",
+    src: "/projects/volvo-robot-preview.jpg",
+    content: <ProjectContent project={{ title: "Volvo – ABB Robot Motion Supervision" }} />,
   },
-];
+] as const;
