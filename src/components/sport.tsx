@@ -1,31 +1,38 @@
-<h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-  Sports & Discipline
-</h2>
+'use client';
 
-<p className="mt-4 text-muted-foreground leading-relaxed">
-  My name is Ibbo Abdoli. One of the most demanding and formative experiences
-  in my life was competing at a high level in mountain bike racing across
-  Europe. Standing on international start lines required complete focus,
-  physical endurance, and mental control.
-</p>
+import React from 'react';
 
-<p className="mt-3 text-muted-foreground leading-relaxed">
-  Training and racing under pressure taught me discipline, stress management,
-  and the ability to make fast, precise decisions when it matters most.
-  You learn quickly that losing focus for even a moment can have real
-  consequences.
-</p>
+const Sports = () => {
+  return (
+    <div className="mx-auto w-full">
+      <div className="mb-8 max-w-3xl">
+        <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
+          Sports & Balance
+        </h2>
 
-<p className="mt-3 text-muted-foreground leading-relaxed">
-  Today, I bring the same mindset into my work as a Service Engineer and
-  Automation Technician. Whether I am troubleshooting industrial systems,
-  working with production lines, or handling critical on-site situations,
-  I stay calm, structured, and solution-focused — exactly as I did in
-  competition.
-</p>
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          Staying physically active is an important part of how I maintain focus,
+          energy, and mental balance alongside my technical work. I currently train
+          regularly at <strong>Actic Gym</strong>, and I also spend time on
+          <strong> walking</strong> and <strong>swimming</strong> as part of my routine.
+        </p>
 
-<p className="mt-3 text-muted-foreground leading-relaxed">
-  Outside of work, I still enjoy staying active, traveling, and cooking with
-  friends. Sports remain an important part of how I maintain balance,
-  energy, and long-term performance.
-</p>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          These activities help me manage stress, stay disciplined, and keep a clear
+          mindset. Maintaining good physical condition directly supports my ability
+          to stay calm, precise, and structured when working in demanding technical
+          environments.
+        </p>
+
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          As a <strong>Service Engineer and Automation Technician</strong>, this balance
+          plays a key role in how I approach troubleshooting, on-site work, and complex
+          problem-solving. The discipline I build through regular training reflects
+          directly in my professional performance.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Sports;
