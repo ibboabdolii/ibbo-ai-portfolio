@@ -190,33 +190,46 @@ export const data = [
   {
     category: "Industrial Automation",
     title: "Scania CW32 – Laser Protection Turntable",
-    src: undefined, // no image
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#ff4fd8,#2f6bff,#2dd4bf,#ffd54a,#ff4fd8)]",
-    content: <ProjectContent project={{ title: "Scania CW32 – Laser Protection Turntable" }} />,
+    content: (
+      <ProjectContent
+        project={{ title: "Scania CW32 – Laser Protection Turntable" }}
+      />
+    ),
   },
   {
     category: "Packaging Line",
     title: "Lantmännen – Vibration Sensor & Packaging Line",
-    src: undefined,
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#22c55e,#06b6d4,#3b82f6,#a78bfa,#22c55e)]",
-    content: <ProjectContent project={{ title: "Lantmännen – Vibration Sensor & Packaging Line" }} />,
+    content: (
+      <ProjectContent
+        project={{ title: "Lantmännen – Vibration Sensor & Packaging Line" }}
+      />
+    ),
   },
   {
     category: "Electrical",
     title: "Meritor – Electrical Panel & Cabling Repair",
-    src: undefined,
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#f59e0b,#fb7185,#ef4444,#f97316,#f59e0b)]",
-    content: <ProjectContent project={{ title: "Meritor – Electrical Panel & Cabling Repair" }} />,
+    content: (
+      <ProjectContent
+        project={{ title: "Meritor – Electrical Panel & Cabling Repair" }}
+      />
+    ),
   },
   {
     category: "Robotics",
     title: "Volvo – ABB Robot Motion Supervision",
-    src: undefined,
     cover:
       "bg-[conic-gradient(from_180deg_at_50%_50%,#60a5fa,#34d399,#22c55e,#facc15,#60a5fa)]",
-    content: <ProjectContent project={{ title: "Volvo – ABB Robot Motion Supervision" }} />,
+    content: (
+      <ProjectContent
+        project={{ title: "Volvo – ABB Robot Motion Supervision" }}
+      />
+    ),
   },
 ] as const;
+
