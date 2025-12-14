@@ -87,6 +87,26 @@ const PROJECT_CONTENT: ProjectContentItem[] = [
     links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
     images: [],
   },
+  {
+  title: "SKF Mekan – ABB Robot Palletizing Cell",
+  description:
+    "On-site troubleshooting of an ABB robot palletizing cell at SKF Mekan.\n" +
+    "I worked with recurring stops related to robot motion supervision, position limits, and PLC–robot signal interaction.\n" +
+    "Tasks included checking SafeMove-related alarms, verifying workobject and TCP data, reviewing I/O signals, and supporting adjustments together with the team to stabilize operation.\n\n" +
+    "Key focus: structured fault isolation, safety-aware debugging, and reducing unplanned production stops.",
+  techStack: [
+    "ABB IRC5",
+    "SafeMove (basic troubleshooting)",
+    "Robot motion supervision",
+    "WorkObject / TCP verification",
+    "PLC–robot I/O signals",
+    "Production troubleshooting"
+  ],
+  date: "2025",
+  links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
+  images: [],
+}
+
 ];
 
 /* ---------------------- UI ---------------------- */
