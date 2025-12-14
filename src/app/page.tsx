@@ -41,8 +41,14 @@ export default function Home() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const goToChat = (query: string) =>
-    router.push(`/chat?query=${encodeURIComponent(query)}`);
+  // ✅ اصلاح اصلی: بدون query در URL
+  const goToChat = (query: string) => {
+    const q = query.trim();
+    if (!q) return;
+
+    sessionStorage.setItem('chat_prefill', q);
+    router.push('/chat');
+  };
 
   /* hero animations */
   const topElementVariants = {
@@ -62,46 +68,33 @@ export default function Home() {
     },
   };
 
- useEffect(() => {
-  // Preload image (IMPORTANT: use window.Image)
-  const img = new window.Image();
-  img.src = '/landing-memojis.png';
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = '/landing-memojis.png';
 
-  // Preload videos
-  const linkWebm = document.createElement('link');
-  linkWebm.rel = 'preload';
-  linkWebm.as = 'video';
-  linkWebm.href = '/final_memojis.webm';
-  linkWebm.type = 'video/webm';
+    const linkWebm = document.createElement('link');
+    linkWebm.rel = 'preload';
+    linkWebm.as = 'video';
+    linkWebm.href = '/final_memojis.webm';
+    linkWebm.type = 'video/webm';
 
-  const linkMp4 = document.createElement('link');
-  linkMp4.rel = 'preload';
-  linkMp4.as = 'video';
-  linkMp4.href = '/final_memojis_ios.mp4';
-  linkMp4.type = 'video/mp4';
+    const linkMp4 = document.createElement('link');
+    linkMp4.rel = 'preload';
+    linkMp4.as = 'video';
+    linkMp4.href = '/final_memojis_ios.mp4';
+    linkMp4.type = 'video/mp4';
 
-  document.head.appendChild(linkWebm);
-  document.head.appendChild(linkMp4);
+    document.head.appendChild(linkWebm);
+    document.head.appendChild(linkMp4);
 
-  return () => {
-    linkWebm.remove();
-    linkMp4.remove();
-  };
-}, []);
-
+    return () => {
+      linkWebm.remove();
+      linkMp4.remove();
+    };
+  }, []);
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-10 md:pb-20">
-      {/* big blurred footer word */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
-        <div
-          className="hidden bg-gradient-to-b from-neutral-500/10 to-neutral-500/0 bg-clip-text text-[10rem] leading-none font-black text-transparent select-none sm:block lg:text-[16rem]"
-          style={{ marginBottom: '-2.5rem' }}
-        >
-          Ibbo Abdoli
-        </div>
-      </div>
-
       {/* header */}
       <motion.div
         className="z-1 mt-24 mb-8 flex flex-col items-center text-center md:mt-4 md:mb-12"
@@ -109,9 +102,7 @@ export default function Home() {
         initial="hidden"
         animate="visible"
       >
-        <div className="z-100">
-          <WelcomeModal />
-        </div>
+        <WelcomeModal />
 
         <h2 className="text-secondary-foreground mt-1 text-xl font-semibold md:text-2xl">
           Hey, I'm Ibbo 👋
@@ -121,19 +112,17 @@ export default function Home() {
         </h1>
       </motion.div>
 
-{/* centre memoji */}
-<div className="relative z-10 h-52 w-52 overflow-hidden rounded-full sm:h-72 sm:w-72">
-  <Image
-    src="/landing-memojis.png"
-    alt="Hero memoji"
-    fill
-    priority
-    sizes="(max-width: 640px) 208px, 288px"
-    className="object-cover"
-  />
-</div>
-
-
+      {/* memoji */}
+      <div className="relative z-10 h-52 w-52 overflow-hidden rounded-full sm:h-72 sm:w-72">
+        <Image
+          src="/landing-memojis.png"
+          alt="Hero memoji"
+          fill
+          priority
+          sizes="(max-width: 640px) 208px, 288px"
+          className="object-cover"
+        />
+      </div>
 
       {/* input + quick buttons */}
       <motion.div
@@ -146,41 +135,40 @@ export default function Home() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (input.trim()) goToChat(input.trim());
+            if (input.trim()) goToChat(input);
           }}
           className="relative w-full max-w-lg"
         >
-          <div className="mx-auto flex items-center rounded-full border border-neutral-200 bg-white/30 py-2.5 pr-2 pl-6 backdrop-blur-lg transition-all hover:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-600">
+          <div className="mx-auto flex items-center rounded-full border border-neutral-200 bg-white/30 py-2.5 pr-2 pl-6 backdrop-blur-lg">
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask me anything about my experience, projects, or skills…"
-              className="w-full border-none bg-transparent text-base text-neutral-800 placeholder:text-neutral-500 focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-500"
+              className="w-full border-none bg-transparent text-base focus:outline-none"
             />
             <button
               type="submit"
               disabled={!input.trim()}
-              aria-label="Submit question"
-              className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white transition-colors hover:bg-blue-600 disabled:opacity-70 dark:bg-blue-600 dark:hover:bg-blue-700"
+              className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white"
             >
               <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         </form>
 
-        {/* quick-question grid */}
+        {/* quick questions */}
         <div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-5">
           {questionConfig.map(({ key, color, icon: Icon }) => (
             <Button
               key={key}
               onClick={() => goToChat(questions[key])}
               variant="outline"
-              className="border-border hover:bg-border/30 aspect-square w-full cursor-pointer rounded-2xl border bg-white/30 py-8 shadow-none backdrop-blur-lg active:scale-95 md:p-10"
+              className="aspect-square rounded-2xl"
             >
-              <div className="flex h-full flex-col items-center justify-center gap-1 text-gray-700">
-                <Icon size={22} strokeWidth={2} color={color} />
+              <div className="flex flex-col items-center gap-1">
+                <Icon size={22} color={color} />
                 <span className="text-xs font-medium sm:text-sm">{key}</span>
               </div>
             </Button>
