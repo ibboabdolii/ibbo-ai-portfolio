@@ -30,9 +30,14 @@ export function Contact() {
   };
 
   // Function to handle opening links
-  const openLink = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+ const openLink = (url: string) => {
+  if (url.startsWith('mailto:')) {
+    window.location.href = url; // 👈 برای ایمیل
+  } else {
+    window.open(url, '_blank', 'noopener,noreferrer'); // 👈 برای لینک‌ها
+  }
+};
+
 
   return (
     <div className="mx-auto mt-8 w-full">
