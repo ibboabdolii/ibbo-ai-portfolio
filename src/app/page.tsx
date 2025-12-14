@@ -41,13 +41,11 @@ export default function Home() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // ✅ اصلاح اصلی: بدون query در URL
+  // ✅ حالت قبلی: سوال داخل URL
   const goToChat = (query: string) => {
     const q = query.trim();
     if (!q) return;
-
-    sessionStorage.setItem('chat_prefill', q);
-    router.push('/chat');
+    router.push(`/chat?query=${encodeURIComponent(q)}`);
   };
 
   /* hero animations */
@@ -105,7 +103,7 @@ export default function Home() {
         <WelcomeModal />
 
         <h2 className="text-secondary-foreground mt-1 text-xl font-semibold md:text-2xl">
-          Hey, I'm Ibbo 👋
+          Hey, I&apos;m Ibbo 👋
         </h2>
         <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
           Ibbo AI Portfolio
@@ -151,7 +149,8 @@ export default function Home() {
             <button
               type="submit"
               disabled={!input.trim()}
-              className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white"
+              className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white disabled:opacity-70"
+              aria-label="Submit question"
             >
               <ArrowRight className="h-5 w-5" />
             </button>
