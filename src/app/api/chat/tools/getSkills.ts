@@ -6,6 +6,6 @@ export const getSkills = tool({
     'This tool show a list of my skills.',
   parameters: z.object({}),
   execute: async () => {
-    return "You can see all my skills above.";
+    return "My skills are listed in the Skills section above, covering industrial automation, PLCs, ABB robots, electrical installations, and field service work.";
   },
 });
