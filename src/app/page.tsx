@@ -41,12 +41,9 @@ export default function Home() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // ✅ حالت قبلی: سوال داخل URL
-  const goToChat = (query: string) => {
-    const q = query.trim();
-    if (!q) return;
-    router.push(`/chat?query=${encodeURIComponent(q)}`);
-  };
+  // ✅ FIX: must be a string (template literal), not a regex
+  const goToChat = (query: string) =>
+    router.push(`/chat?query=${encodeURIComponent(query)}`);
 
   /* hero animations */
   const topElementVariants = {
@@ -67,9 +64,11 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // Preload image (IMPORTANT: use window.Image)
     const img = new window.Image();
     img.src = '/landing-memojis.png';
 
+    // Preload videos
     const linkWebm = document.createElement('link');
     linkWebm.rel = 'preload';
     linkWebm.as = 'video';
@@ -93,6 +92,16 @@ export default function Home() {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-10 md:pb-20">
+      {/* big blurred footer word */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
+        <div
+          className="hidden bg-gradient-to-b from-neutral-500/10 to-neutral-500/0 bg-clip-text text-[10rem] leading-none font-black text-transparent select-none sm:block lg:text-[16rem]"
+          style={{ marginBottom: '-2.5rem' }}
+        >
+          Ibbo Abdoli
+        </div>
+      </div>
+
       {/* header */}
       <motion.div
         className="z-1 mt-24 mb-8 flex flex-col items-center text-center md:mt-4 md:mb-12"
@@ -100,7 +109,9 @@ export default function Home() {
         initial="hidden"
         animate="visible"
       >
-        <WelcomeModal />
+        <div className="z-100">
+          <WelcomeModal />
+        </div>
 
         <h2 className="text-secondary-foreground mt-1 text-xl font-semibold md:text-2xl">
           Hey, I&apos;m Ibbo 👋
@@ -110,7 +121,7 @@ export default function Home() {
         </h1>
       </motion.div>
 
-      {/* memoji */}
+      {/* centre memoji */}
       <div className="relative z-10 h-52 w-52 overflow-hidden rounded-full sm:h-72 sm:w-72">
         <Image
           src="/landing-memojis.png"
@@ -133,41 +144,41 @@ export default function Home() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (input.trim()) goToChat(input);
+            if (input.trim()) goToChat(input.trim());
           }}
           className="relative w-full max-w-lg"
         >
-          <div className="mx-auto flex items-center rounded-full border border-neutral-200 bg-white/30 py-2.5 pr-2 pl-6 backdrop-blur-lg">
+          <div className="mx-auto flex items-center rounded-full border border-neutral-200 bg-white/30 py-2.5 pr-2 pl-6 backdrop-blur-lg transition-all hover:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-600">
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask me anything about my experience, projects, or skills…"
-              className="w-full border-none bg-transparent text-base focus:outline-none"
+              className="w-full border-none bg-transparent text-base text-neutral-800 placeholder:text-neutral-500 focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-500"
             />
             <button
               type="submit"
               disabled={!input.trim()}
-              className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white disabled:opacity-70"
               aria-label="Submit question"
+              className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white transition-colors hover:bg-blue-600 disabled:opacity-70 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
               <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         </form>
 
-        {/* quick questions */}
+        {/* quick-question grid */}
         <div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-5">
           {questionConfig.map(({ key, color, icon: Icon }) => (
             <Button
               key={key}
               onClick={() => goToChat(questions[key])}
               variant="outline"
-              className="aspect-square rounded-2xl"
+              className="border-border hover:bg-border/30 aspect-square w-full cursor-pointer rounded-2xl border bg-white/30 py-8 shadow-none backdrop-blur-lg active:scale-95 md:p-10"
             >
-              <div className="flex flex-col items-center gap-1">
-                <Icon size={22} color={color} />
+              <div className="flex h-full flex-col items-center justify-center gap-1 text-gray-700">
+                <Icon size={22} strokeWidth={2} color={color} />
                 <span className="text-xs font-medium sm:text-sm">{key}</span>
               </div>
             </Button>
