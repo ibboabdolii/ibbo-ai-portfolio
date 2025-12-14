@@ -1,36 +1,48 @@
 'use client';
 
-import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronRight, Copy, Mail } from 'lucide-react';
 
 export function Contact() {
+  const [copied, setCopied] = useState(false);
+
   const contactInfo = {
     name: 'Ibbo Abdoli',
     email: 'ibbo.abdoli@elektroautomatik.se',
     handle: '@ibboabdoli',
     socials: [
-      {
-        name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/ibbo-abdoli',
-      },
-      {
-        name: 'Website',
-        url: 'https://ibboabdoli.com',
-      },
-      {
-        name: 'GitHub',
-        url: 'https://github.com/ibboabdolii',
-      },
-      // اگر نمی‌خوای، این مورد رو حذف کن
-      {
-        name: 'Instagram',
-        url: 'https://www.instagram.com',
-      },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ibbo-abdoli' },
+      { name: 'Website', url: 'https://ibboabdoli.com' },
+      { name: 'GitHub', url: 'https://github.com/ibboabdolii' },
+      { name: 'Instagram', url: 'https://www.instagram.com' },
     ],
   };
 
   const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const openGmailCompose = () => {
+    const to = encodeURIComponent(contactInfo.email);
+    openLink(`https://mail.google.com/mail/?view=cm&fs=1&to=${to}`);
+  };
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contactInfo.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // fallback خیلی ساده اگر clipboard مجوز نداشت
+      const ta = document.createElement('textarea');
+      ta.value = contactInfo.email;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    }
   };
 
   return (
@@ -44,18 +56,49 @@ export function Contact() {
           <span className="mt-2 sm:mt-0">{contactInfo.handle}</span>
         </div>
 
-        {/* Email + Socials */}
-        <div className="mt-8 flex flex-col md:mt-10">
-          {/* Email */}
-          <a
-            href={`mailto:${contactInfo.email}`}
-            className="group mb-5 inline-flex items-center gap-1 cursor-pointer"
-          >
-            <span className="text-base font-medium text-blue-500 hover:underline sm:text-lg">
-              {contactInfo.email}
-            </span>
-            <ChevronRight className="h-5 w-5 text-blue-500 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+        {/* Email + Actions + Socials */}
+        <div className="mt-8 flex flex-col gap-4 md:mt-10">
+          {/* Email row */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <a
+              href={`mailto:${contactInfo.email}`}
+              className="group inline-flex items-center gap-2 cursor-pointer"
+              title="Open default email app"
+            >
+              <Mail className="h-4 w-4 text-blue-500" />
+              <span className="text-base font-medium text-blue-500 hover:underline sm:text-lg">
+                {contactInfo.email}
+              </span>
+              <ChevronRight className="h-5 w-5 text-blue-500 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+
+            {/* Actions */}
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={openGmailCompose}
+                className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
+                title="Open Gmail compose"
+              >
+                Open Gmail
+              </button>
+
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex items-center gap-2 rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
+                title="Copy email"
+              >
+                <Copy className="h-4 w-4" />
+                Copy
+              </button>
+            </div>
+          </div>
+
+          {/* کوچک و واضح: اگر mailto روی سیستم کار نکند */}
+          <p className="text-xs text-muted-foreground">
+            If clicking the email doesn’t open a mail app on your device, use <b>Open Gmail</b> or <b>Copy</b>.
+          </p>
 
           {/* Social Links */}
           <div className="flex flex-wrap gap-x-6 gap-y-5 sm:gap-x-8">
@@ -71,6 +114,13 @@ export function Contact() {
               </button>
             ))}
           </div>
+
+          {/* Toast */}
+          {copied && (
+            <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-2xl bg-black px-4 py-2 text-sm text-white shadow-lg">
+              Email copied ✅
+            </div>
+          )}
         </div>
       </div>
     </div>
