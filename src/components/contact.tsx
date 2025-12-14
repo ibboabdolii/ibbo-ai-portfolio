@@ -27,13 +27,19 @@ export function Contact() {
     openLink(`https://mail.google.com/mail/?view=cm&fs=1&to=${to}`);
   };
 
+  // Outlook Web (works everywhere)
+  const openOutlookWebCompose = () => {
+    const to = encodeURIComponent(contactInfo.email);
+    // Outlook on the web compose
+    openLink(`https://outlook.office.com/mail/deeplink/compose?to=${to}`);
+  };
+
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(contactInfo.email);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
     } catch {
-      // fallback خیلی ساده اگر clipboard مجوز نداشت
       const ta = document.createElement('textarea');
       ta.value = contactInfo.email;
       document.body.appendChild(ta);
@@ -78,9 +84,18 @@ export function Contact() {
                 type="button"
                 onClick={openGmailCompose}
                 className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
-                title="Open Gmail compose"
+                title="Compose in Gmail"
               >
                 Open Gmail
+              </button>
+
+              <button
+                type="button"
+                onClick={openOutlookWebCompose}
+                className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
+                title="Compose in Outlook Web"
+              >
+                Open Outlook
               </button>
 
               <button
@@ -95,9 +110,8 @@ export function Contact() {
             </div>
           </div>
 
-          {/* کوچک و واضح: اگر mailto روی سیستم کار نکند */}
           <p className="text-xs text-muted-foreground">
-            If clicking the email doesn’t open a mail app on your device, use <b>Open Gmail</b> or <b>Copy</b>.
+            If mailto doesn’t open on your device, use <b>Open Gmail</b> or <b>Open Outlook</b>, or copy the email.
           </p>
 
           {/* Social Links */}
