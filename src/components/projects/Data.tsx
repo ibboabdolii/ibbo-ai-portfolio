@@ -1,13 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { Image as Img } from "lucide-react";
-import { ChevronRight, Link } from "lucide-react";
+import { Image as Img, ChevronRight, Link } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
-// ✅ Local placeholder (put this file in: /public/placeholder-project.jpg)
+// ✅ Local placeholder (put this file in: /public/placeholder-project.png)
 const PLACEHOLDER_SRC = "/placeholder-project.png";
 
-/* ---------------------- TYPES (FIX NEVER[]) ---------------------- */
+/* ---------------------- TYPES ---------------------- */
 type ProjectImage = { src: string; alt: string };
 type ProjectLink = { name: string; url: string };
 
@@ -88,25 +87,24 @@ const PROJECT_CONTENT: ProjectContentItem[] = [
     images: [],
   },
   {
-  title: "SKF Mekan – ABB Robot Palletizing Cell",
-  description:
-    "On-site troubleshooting of an ABB robot palletizing cell at SKF Mekan.\n" +
-    "I worked with recurring stops related to robot motion supervision, position limits, and PLC–robot signal interaction.\n" +
-    "Tasks included checking SafeMove-related alarms, verifying workobject and TCP data, reviewing I/O signals, and supporting adjustments together with the team to stabilize operation.\n\n" +
-    "Key focus: structured fault isolation, safety-aware debugging, and reducing unplanned production stops.",
-  techStack: [
-    "ABB IRC5",
-    "SafeMove (basic troubleshooting)",
-    "Robot motion supervision",
-    "WorkObject / TCP verification",
-    "PLC–robot I/O signals",
-    "Production troubleshooting"
-  ],
-  date: "2025",
-  links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
-  images: [],
-}
-
+    title: "SKF Mekan – ABB Robot Palletizing Cell",
+    description:
+      "On-site troubleshooting of an ABB robot palletizing cell at SKF Mekan.\n" +
+      "I worked with recurring stops related to robot motion supervision, position limits, and PLC–robot signal interaction.\n" +
+      "Tasks included checking SafeMove-related alarms, verifying workobject and TCP data, reviewing I/O signals, and supporting adjustments together with the team to stabilize operation.\n\n" +
+      "Key focus: structured fault isolation, safety-aware debugging, and reducing unplanned production stops.",
+    techStack: [
+      "ABB IRC5",
+      "SafeMove (basic troubleshooting)",
+      "Robot motion supervision",
+      "WorkObject / TCP verification",
+      "PLC–robot I/O signals",
+      "Production troubleshooting",
+    ],
+    date: "2025",
+    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
+    images: [],
+  },
 ];
 
 /* ---------------------- UI ---------------------- */
@@ -217,7 +215,8 @@ const ProjectContent = ({ title }: { title: string }) => {
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
                   I keep this documented internally. If needed, I can add a few
-                  anonymized (non-sensitive) photos later to show the setup and key steps.
+                  anonymized (non-sensitive) photos later to show the setup and
+                  key steps.
                 </p>
               </div>
             </div>
@@ -240,7 +239,9 @@ export const data: ProjectCard[] = [
     category: "Packaging Line",
     title: "Lantmännen – Vibration Sensor & Packaging Line",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent title="Lantmännen – Vibration Sensor & Packaging Line" />,
+    content: (
+      <ProjectContent title="Lantmännen – Vibration Sensor & Packaging Line" />
+    ),
   },
   {
     category: "Electrical",
@@ -253,5 +254,11 @@ export const data: ProjectCard[] = [
     title: "Volvo – ABB Robot Motion Supervision",
     src: PLACEHOLDER_SRC,
     content: <ProjectContent title="Volvo – ABB Robot Motion Supervision" />,
+  },
+  {
+    category: "Robotics",
+    title: "SKF Mekan – ABB Robot Palletizing Cell",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="SKF Mekan – ABB Robot Palletizing Cell" />,
   },
 ];
