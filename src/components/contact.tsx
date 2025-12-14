@@ -21,7 +21,7 @@ export function Contact() {
         name: 'GitHub',
         url: 'https://github.com/ibboabdolii',
       },
-      // اگر نمی‌خوای، همین آیتم رو حذف کن
+      // اگر نمی‌خوای، این مورد رو حذف کن
       {
         name: 'Instagram',
         url: 'https://www.instagram.com',
@@ -44,11 +44,12 @@ export function Contact() {
           <span className="mt-2 sm:mt-0">{contactInfo.handle}</span>
         </div>
 
-        {/* Email */}
+        {/* Email + Socials */}
         <div className="mt-8 flex flex-col md:mt-10">
+          {/* Email */}
           <a
-            className="group mb-5 inline-flex cursor-pointer items-center gap-1"
             href={`mailto:${contactInfo.email}`}
+            className="group mb-5 inline-flex items-center gap-1 cursor-pointer"
           >
             <span className="text-base font-medium text-blue-500 hover:underline sm:text-lg">
               {contactInfo.email}
