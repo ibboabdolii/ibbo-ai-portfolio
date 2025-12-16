@@ -32,16 +32,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'bg-background min-h-screen font-sans antialiased',
+          'min-h-screen bg-background font-sans antialiased',
           inter.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <main className="flex min-h-screen flex-col">{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+        >
+          <main className="min-h-screen">{children}</main>
           <Toaster />
         </ThemeProvider>
 
-        {/* مثل اورجینال: بیرون ThemeProvider */}
+        {/* Must be inside <body>, can be outside ThemeProvider */}
         <Analytics />
       </body>
     </html>
