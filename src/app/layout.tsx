@@ -83,8 +83,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <main className="flex min-h-screen flex-col">{children}</main>
           <Toaster />
-          <Analytics />
         </ThemeProvider>
+
+        <Analytics />
       </body>
     </html>
   );
