@@ -24,10 +24,18 @@ export const metadata: Metadata = {
   title: 'Ibbo AI Portfolio',
   description:
     'Interactive AI-powered portfolio for Ibbo Abdoli — Service Engineer & Automation Technician based in Sweden.',
-  // ... بقیه metadata همون قبلی
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -45,7 +53,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Toaster />
         </ThemeProvider>
 
-        {/* Must be inside <body>, can be outside ThemeProvider */}
         <Analytics />
       </body>
     </html>
