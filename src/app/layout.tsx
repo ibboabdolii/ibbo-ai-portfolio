@@ -21,11 +21,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ai.ibboabdoli.com'),
-
   title: 'Ibbo AI Portfolio',
   description:
     'Interactive AI-powered portfolio for Ibbo Abdoli — Service Engineer & Automation Technician based in Sweden.',
-
   keywords: [
     'Ibbo Abdoli',
     'Ibbo',
@@ -39,10 +37,8 @@ export const metadata: Metadata = {
     'Next.js',
     'AI',
   ],
-
   authors: [{ name: 'Ibbo Abdoli', url: 'https://ibboabdoli.com' }],
   creator: 'Ibbo Abdoli',
-
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -60,7 +56,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   twitter: {
     card: 'summary_large_image',
     title: 'Ibbo Abdoli – AI Portfolio',
@@ -69,7 +64,6 @@ export const metadata: Metadata = {
     images: ['/ai-preview.jpg'],
     creator: '@ibboabdoli',
   },
-
   icons: {
     icon: [{ url: '/favicon.svg', sizes: 'any' }],
     shortcut: '/favicon.svg?v=2',
@@ -89,8 +83,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <main className="flex min-h-screen flex-col">{children}</main>
           <Toaster />
+          <Analytics />
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   );
