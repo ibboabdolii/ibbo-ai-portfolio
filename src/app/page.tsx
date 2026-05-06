@@ -7,10 +7,10 @@ import { motion } from 'framer-motion';
 import {
   ArrowRight,
   BriefcaseBusiness,
-  Laugh,
   Layers,
-  PartyPopper,
   UserRoundSearch,
+  UserSearch,
+  Wrench,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -30,10 +30,10 @@ const questions = {
 } as const;
 
 const questionConfig = [
-  { key: 'Me', color: '#329696', icon: Laugh },
+  { key: 'Me', color: '#329696', icon: UserSearch },
   { key: 'Projects', color: '#3E9858', icon: BriefcaseBusiness },
   { key: 'Skills', color: '#856ED9', icon: Layers },
-  { key: 'Fun', color: '#B95F9D', icon: PartyPopper },
+  { key: 'Troubleshooting', color: '#B95F9D', icon: Wrench },
   { key: 'Contact', color: '#C19433', icon: UserRoundSearch },
 ] as const;
 
