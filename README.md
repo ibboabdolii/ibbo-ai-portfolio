@@ -1,12 +1,9 @@
 ![image](assets/readme-photo.png)
  
-# World's first AI portfolio 🤖✨  
+# Ibbo Abdoli – Service Engineering Portfolio 🤖✨  
 
-**Static portfolios are dead.**  
-So I built [toukoum.fr](https://toukoum.fr).
-
-Instead of making you scroll endlessly, my portfolio adapts to *you*.  
-Ask a question — my AI avatar replies instantly.
+**A practical automation portfolio with an AI-driven conversation layer.**  
+Ask about my work in industrial automation, ABB robots, machine vision, PLC/I/O and troubleshooting.
 
 ## 👇 What can you ask?
 
@@ -19,7 +16,7 @@ Ask a question — my AI avatar replies instantly.
 This is not a portfolio.  
 It’s a **conversation tailored to your curiosity**.
 
-➡️ **Try it now:** [https://toukoum.fr](https://toukoum.fr)  
+➡️ **Try it now:** Use the local app or deploy the portfolio to see Ibbo's automation story in action.  
 *What will you ask?*
 
 ## 🚀 How to run

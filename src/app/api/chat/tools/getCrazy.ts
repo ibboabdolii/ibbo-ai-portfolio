@@ -7,9 +7,9 @@ export const getCrazy = tool({
   parameters: z.object({}),
   execute: async () => {
     return (
-      "One of the most important things that shaped my discipline and mindset is maintaining a consistent fitness routine and active lifestyle.\n\n" +
-      "I regularly train at the Actic gym, and I also include walking and swimming as part of my routine. Staying consistent with training has taught me how to manage stress, stay focused even on demanding days, and keep a clear structure in everything I do.\n\n" +
-      "I bring the same mindset into my work as a Service Engineer and Automation Technician. In high-pressure situations, I stay calm, work step by step, and approach complex technical problems in a structured, reliable, and safety-focused way."
+      "I keep a structured routine that supports my field service work and my ability to stay calm on site.\n\n" +
+      "That routine helps me manage stress, stay focused on technical details, and maintain a consistent process when I diagnose automation issues.\n\n" +
+      "I bring the same mindset into work as a Service Engineer and Automation Technician: stay calm, work step by step, and handle complex technical problems in a structured, safety-focused way."
     );
   },
 });

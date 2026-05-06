@@ -7,26 +7,20 @@ export const getExperience = tool({
   parameters: z.object({}),
   execute: async () => {
     return `
-Ibbo Abdoli works as a Service Engineer and Automation Technician in Sweden, with practical field experience in industrial automation, electrical troubleshooting, PLC/I/O checks, ABB robots, and machine vision systems.
+I work with industrial automation and field service across production lines, robot cells, machine vision systems, and electrical troubleshooting.
 
-Main experience areas:
+My experience includes:
+- Machine vision service with EA Vision Studio and Cognex VisionPro, including camera settings, trigger functions, and communication with ABB robots
+- ABB robot troubleshooting using RobotStudio simulation, RAPID program review, gripper behavior, positions, and collision risk assessment
+- Robot status, alarm, and safety signal verification, including motor signals, stop reasons, I/O signals, and safety states
+- Communication troubleshooting between devices like Weber applicators and Zebra printers, focusing on signal timing and configuration
+- Robot program cleanup and signal review for maintainability and easier troubleshooting
+- PLC programming and simulation with Siemens TIA Portal S7-1200 and Factory I/O for sorting logic
+- Industrial electrical service at customers like Lantmännen, Cummins, and DeLaval, including motors, fans, sensors, PLCs, and preventive maintenance
+- Weekly fault-finding cases such as cable repairs, pump troubleshooting, wiring corrections, HMI issues, and safety sensor adjustments
+- Thermography, electrical inspections, root-cause analysis, and technical documentation to support production and reduce downtime
 
-1. Industrial automation service
-Troubleshooting production equipment, sensors, actuators, control cabinets, electrical faults, and machine-level problems.
-
-2. PLC and I/O diagnostics
-Checking signals, inputs/outputs, communication issues, sequence problems, and root causes behind production stops.
-
-3. ABB robot troubleshooting
-Working with ABB IRC5 robots, RobotStudio checks, alarm investigation, signal verification, motion supervision problems, and safe recovery after faults.
-
-4. Machine vision systems
-Working with EA Vision Studio, Cognex VisionPro, camera triggers, image acquisition, vision recipes, backup verification, and upgrade-related troubleshooting.
-
-5. Production support
-Supporting production teams during breakdowns, planned stops, commissioning, verification, and technical improvements.
-
-The main goal is always to reduce downtime, find the real root cause, and restore stable production safely.
+My focus is to reduce unplanned downtime by securing the machine first, isolating the real cause, and restoring production safely.
     `.trim();
   },
 });

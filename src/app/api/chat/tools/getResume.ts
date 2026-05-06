@@ -3,9 +3,12 @@ import { z } from 'zod';
 
 export const getResume = tool({
   description:
-    'This tool show my resume.',
+    'This tool shows where to access my resume or CV.',
   parameters: z.object({}),
   execute: async () => {
-    return "You can download my resume by clicking on the link above.";
+    return `
+My resume is available through the resume section on this page.
+Download the PDF to see my service engineering experience, automation projects, and technical documentation work.
+    `.trim();
   },
 });

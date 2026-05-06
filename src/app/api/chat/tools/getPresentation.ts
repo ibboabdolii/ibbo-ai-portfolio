@@ -8,12 +8,10 @@ export const getPresentation = tool({
   execute: async () => {
     return {
       presentation: `
-I'm Ibbo Abdoli, a Service Engineer and Industrial Automation Technician based in Sweden.
-I work at Elektroautomatik i Sverige AB, focusing on troubleshooting, commissioning, and optimizing industrial automation systems.
+I’m Ibbo Abdoli, a Service Engineer and Automation Technician based in Södertälje / Stockholm, Sweden.
+I work hands-on with industrial automation, electrical troubleshooting, PLC/I/O, ABB robots and machine vision systems.
 
-My background includes PLC programming, industrial electrical installations, ABB robots, and field service operations across production environments such as Scania, Lantmännen, Volvo, and Meritor.
-
-I’m highly detail-oriented, thrive in complex technical environments, and enjoy solving challenging problems that improve system reliability, safety, and performance.
+My focus is to reduce unplanned production downtime by finding the real technical root cause step by step, then restoring stable and safe production.
       `.trim(),
     };
   },

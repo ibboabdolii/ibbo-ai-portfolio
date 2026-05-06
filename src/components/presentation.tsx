@@ -9,7 +9,7 @@ export function Presentation() {
     name: 'Ibbo Abdoli',
     location: 'Södertälje / Stockholm, Sweden',
     description:
-      "Hey 👋\nI'm Ibbo, a Service Engineer & Automation Technician based in Sweden. I work with industrial automation, PLC systems, ABB robots and electrical installations.\n\nMost of my time is spent out in the field – troubleshooting production lines, fixing electrical panels, tuning robot cells and helping customers keep their factories running. I love challenging projects, learning new things and making complex systems simpler and safer.",
+      "Hey 👋\nI'm Ibbo, a Service Engineer and Automation Technician based in Sweden. I work hands-on with industrial automation, electrical troubleshooting, PLC/I/O, ABB robots and machine vision systems.\n\nMy focus is to reduce downtime by finding the real technical root cause step by step. Most of my time is spent in the field supporting production lines, robot cells and electrical cabinets.",
     src: '/profil-ibbo.png',
     fallbackSrc:
       'https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3',
@@ -36,25 +36,27 @@ export function Presentation() {
   return (
     <div className="mx-auto w-full max-w-5xl py-6 font-sans">
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
-        {/* Image */}
-        <div className="relative mx-auto aspect-square w-full max-w-sm">
-          <div className="relative h-full w-full overflow-hidden rounded-2xl">
-            <motion.div
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-              className="h-full w-full"
-            >
-              <Image
-                src={profile.src}
-                alt={profile.name}
-                width={500}
-                height={500}
-                className="h-full w-full object-cover object-center"
-              />
-            </motion.div>
-          </div>
-        </div>
+        
+       {/* Image */}
+<div className="relative mx-auto w-full max-w-[520px]">
+  <div className="relative w-full overflow-hidden rounded-2xl bg-transparent">
+    <motion.div
+      initial={{ scale: 0.92, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+      className="w-full"
+    >
+      <Image
+        src={profile.src}
+        alt="Ibbo Abdoli - Service Engineer and Automation Technician"
+        width={900}
+        height={700}
+        priority
+        className="h-auto w-full object-contain object-center"
+      />
+    </motion.div>
+  </div>
+</div>
 
         {/* Text */}
         <div className="flex flex-col">

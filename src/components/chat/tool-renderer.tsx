@@ -1,7 +1,7 @@
 // src/components/chat/tool-renderer.tsx
 import { Contact } from '../contact';
 import Crazy from '../crazy';
-import InternshipCard from '../InternshipCard';
+import ExperienceCard from '../ExperienceCard';
 import { Presentation } from '../presentation';
 import AllProjects from '../projects/AllProjects';
 import Resume from '../resume';
@@ -79,10 +79,10 @@ export default function ToolRenderer({
               </div>
             );
 
-          case 'getInternship':
+          case 'getExperience':
             return (
               <div key={toolCallId} className="w-full rounded-lg">
-                <InternshipCard />
+                <ExperienceCard />
               </div>
             );
 

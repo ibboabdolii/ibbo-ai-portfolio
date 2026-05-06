@@ -29,80 +29,155 @@ export type ProjectCard = {
 /** ---------------------- PROJECT CONTENT ---------------------- **/
 const PROJECT_CONTENT: ProjectContentItem[] = [
   {
-    title: "Scania CW32 – Laser Protection Turntable",
+    title: "Machine Vision & ABB Robot Cell Troubleshooting",
     description:
-      "Work at Scania (CW32) on a laser protection turntable system.\nI handled flap removal/installation, sensor relocation, chuck fine-alignment, and functional safety verification together with Scania and Laserax.\n\nKey focus: safe mechanical + electrical integration, clean commissioning, and stable production restart.",
+      "Troubleshooting machine vision timeouts and robot communication in an ABB robot cell.\nWorked with EA Vision Studio and Cognex VisionPro on camera acquisition, trigger functions, and backup of project files, recipes, and camera settings.\nReviewed RAPID programs, multitasking, EIO configuration, robot status indication, and red lamp logic.\n\nKey focus: understanding the full chain between vision, robot, PLC signals, and operator information to restore stable inspection flow.",
     techStack: [
-      "ABB IRC5 (cell context)",
-      "Safety sensors / interlocks",
-      "Mechanical alignment (chuck/fixture)",
-      "Electrical installation",
-      "On-site troubleshooting",
+      "EA Vision Studio",
+      "Cognex VisionPro",
+      "ABB IRC5",
+      "RAPID programming",
+      "PLC signals",
+      "EIO configuration",
     ],
-    date: "2025",
-    links: [{ name: "Report (Internal)", url: "https://ibboabdoli.com" }],
+    date: "2024",
+    links: [{ name: "Service Report", url: "https://ibboabdoli.com" }],
     images: [],
   },
   {
-    title: "Lantmännen – Vibration Sensor & Packaging Line",
+    title: "ABB Robot Troubleshooting & RobotStudio Simulation",
     description:
-      "Troubleshooting vibration sensor alarms and disturbances on a packaging line at Lantmännen.\nI checked signals, cabling, PLC inputs, and mechanical root causes to reduce stops and stabilize the line.\n\nKey focus: fast diagnosis, clean signal verification, and production-friendly fixes.",
-    techStack: [
-      "PLC troubleshooting (Siemens / TIA Portal context)",
-      "Vibration sensors",
-      "I/O & signal tracing",
-      "Packaging / production lines",
-    ],
-    date: "2025",
-    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
-    images: [],
-  },
-  {
-    title: "Meritor – Electrical Panel & Cabling Repair",
-    description:
-      "Investigation of intermittent faults in an electrical cabinet at Meritor.\nI read schematics, measured signals, located the faulty cable/connection, repaired wiring, and verified the system with test runs.\n\nKey focus: structured fault finding and safe, documented handover.",
-    techStack: [
-      "Electrical installation",
-      "Schematics & documentation",
-      "Measurement / multimeter",
-      "Cabling & terminations",
-      "Functional verification",
-    ],
-    date: "2025",
-    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
-    images: [],
-  },
-  {
-    title: "Volvo – ABB Robot Motion Supervision",
-    description:
-      "Troubleshooting ABB robot alarms related to SafeMove / motion supervision.\nI verified axis supervision signals/logs, checked positions/limits, and supported adjustments to reduce recurring stops.\n\nKey focus: safety-aware debugging and stable operation in production.",
+      "Analyzed ABB robot movements and simulated operations in RobotStudio to assess collision risks.\nReviewed RAPID programs, verified gripper behavior and robot positions.\nMade program adjustments before production testing to ensure safe operation.\n\nKey focus: preventive troubleshooting and simulation-based verification.",
     techStack: [
       "ABB IRC5",
-      "SafeMove (supervision context)",
-      "RobotStudio (analysis/support)",
-      "Production troubleshooting",
+      "RobotStudio",
+      "RAPID programming",
+      "Collision detection",
+      "Gripper control",
     ],
-    date: "2025",
-    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
+    date: "2024",
+    links: [{ name: "Simulation Summary", url: "https://ibboabdoli.com" }],
     images: [],
   },
   {
-    title: "SKF Mekan – ABB Robot Palletizing Cell",
+    title: "ABB Robot Status, Alarm & Safety Signal Verification",
     description:
-      "On-site troubleshooting of an ABB robot palletizing cell at SKF Mekan.\n" +
-      "I worked with recurring stops related to robot motion supervision, position limits, and PLC–robot signal interaction.\n" +
-      "Tasks included checking SafeMove-related alarms, verifying workobject and TCP data, reviewing I/O signals, and supporting adjustments together with the team to stabilize operation.\n\n" +
-      "Key focus: structured fault isolation, safety-aware debugging, and reducing unplanned production stops.",
+      "Verified ABB robot status, motor signals, stop reasons, alarm logic, I/O signals, and safety states.\nSupported operators with troubleshooting guidance and clear documentation of signal checks.\n\nKey focus: safety verification and operator assistance in fault resolution.",
     techStack: [
       "ABB IRC5",
-      "SafeMove (basic troubleshooting)",
-      "Robot motion supervision",
-      "WorkObject / TCP verification",
-      "PLC–robot I/O signals",
-      "Production troubleshooting",
+      "Safety signals",
+      "I/O verification",
+      "Alarm logic",
+      "Motor signals",
     ],
-    date: "2025",
-    links: [{ name: "Summary", url: "https://ibboabdoli.com" }],
+    date: "2024",
+    links: [{ name: "Verification Report", url: "https://ibboabdoli.com" }],
+    images: [],
+  },
+  {
+    title: "Weber Applicator & Zebra Printer Communication Troubleshooting",
+    description:
+      "Troubleshot communication issues between Weber applicator, Zebra printer, and the control system.\nChecked signal timing, configuration settings, and ensured production stability.\n\nKey focus: device communication and signal synchronization.",
+    techStack: [
+      "Weber applicator",
+      "Zebra printer",
+      "Signal timing",
+      "Communication protocols",
+      "Configuration",
+    ],
+    date: "2024",
+    links: [{ name: "Communication Fix", url: "https://ibboabdoli.com" }],
+    images: [],
+  },
+  {
+    title: "Robot Program Cleanup & Signal Review",
+    description:
+      "Cleaned up old robot signals and removed unused program parts to improve maintainability.\nReviewed signals for clarity and easier future troubleshooting.\n\nKey focus: program optimization and documentation.",
+    techStack: [
+      "ABB robots",
+      "RAPID programming",
+      "Signal review",
+      "Program cleanup",
+      "Maintenance",
+    ],
+    date: "2024",
+    links: [{ name: "Cleanup Summary", url: "https://ibboabdoli.com" }],
+    images: [],
+  },
+  {
+    title: "Sorting by Height — Factory I/O & Siemens TIA Portal S7-1200",
+    description:
+      "Developed a sorting simulation using Factory I/O and Siemens TIA Portal with S7-1200 PLC.\nImplemented sensor-based height detection and basic PLC sorting logic.\nGitHub project for learning and practicing automation concepts.\n\nKey focus: PLC programming and simulation.",
+    techStack: [
+      "Factory I/O",
+      "Siemens TIA Portal",
+      "S7-1200 PLC",
+      "Sensor integration",
+      "Sorting logic",
+    ],
+    date: "2024",
+    links: [{ name: "GitHub Project", url: "https://github.com/ibboabdoli/sorting-height" }],
+    images: [],
+  },
+  {
+    title: "Lantmännen — Industrial Electrical Service & Production Support",
+    description:
+      "Provided urgent troubleshooting for motors, fans, elevators, electrical cabinets, and production equipment at Lantmännen.\nConducted thermography, electrical inspections, preventive maintenance, and worked with PLCs, level sensors, weighing systems, and conveyors.\nPrepared technical documentation and reports to reduce downtime.\n\nKey focus: electrical service and production support.",
+    techStack: [
+      "Electrical troubleshooting",
+      "Thermography",
+      "PLC systems",
+      "Sensors",
+      "Preventive maintenance",
+    ],
+    date: "2024",
+    links: [{ name: "Service Documentation", url: "https://ibboabdoli.com" }],
+    images: [],
+  },
+  {
+    title: "Cummins — Industrial Automation Service & Operational Support",
+    description:
+      "Handled electrical and automation troubleshooting on machines, sensors, motors, and electrical components at Cummins.\nProvided production support, preventive maintenance, and technical follow-up.\n\nKey focus: operational support and maintenance.",
+    techStack: [
+      "Electrical components",
+      "Sensors",
+      "Motors",
+      "Preventive maintenance",
+      "Automation troubleshooting",
+    ],
+    date: "2024",
+    links: [{ name: "Support Report", url: "https://ibboabdoli.com" }],
+    images: [],
+  },
+  {
+    title: "DeLaval — Testing, Troubleshooting & Quality Verification",
+    description:
+      "Conducted testing and verification of technical systems, checking for electrical and mechanical deviations.\nVerified sensors and system functions, documented test results for quality improvement.\n\nKey focus: quality verification and testing.",
+    techStack: [
+      "System testing",
+      "Electrical verification",
+      "Mechanical checks",
+      "Sensor testing",
+      "Quality documentation",
+    ],
+    date: "2024",
+    links: [{ name: "Test Results", url: "https://ibboabdoli.com" }],
+    images: [],
+  },
+  {
+    title: "Weekly Service & Fault-Finding Cases",
+    description:
+      "Handled various weekly fault-finding cases including ABB robot sensor cable repair, cooling water pump troubleshooting, fan motor wiring correction, HMI troubleshooting, ABB Eden safety sensor adjustment, and pressure switch checks.\nMaintained a service report mindset for clear documentation.\n\nKey focus: routine maintenance and quick fixes.",
+    techStack: [
+      "Cable repair",
+      "Pump troubleshooting",
+      "Wiring",
+      "HMI systems",
+      "Safety sensors",
+      "Pressure switches",
+    ],
+    date: "2024",
+    links: [{ name: "Weekly Reports", url: "https://ibboabdoli.com" }],
     images: [],
   },
 ];
@@ -230,35 +305,63 @@ const ProjectContent = ({ title }: { title: string }) => {
 /* ---------------------- MAIN DATA EXPORT ---------------------- */
 export const data: ProjectCard[] = [
   {
-    category: "Industrial Automation",
-    title: "Scania CW32 – Laser Protection Turntable",
+    category: "Machine Vision",
+    title: "Machine Vision & ABB Robot Cell Troubleshooting",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent title="Scania CW32 – Laser Protection Turntable" />,
-  },
-  {
-    category: "Packaging Line",
-    title: "Lantmännen – Vibration Sensor & Packaging Line",
-    src: PLACEHOLDER_SRC,
-    content: (
-      <ProjectContent title="Lantmännen – Vibration Sensor & Packaging Line" />
-    ),
-  },
-  {
-    category: "Electrical",
-    title: "Meritor – Electrical Panel & Cabling Repair",
-    src: PLACEHOLDER_SRC,
-    content: <ProjectContent title="Meritor – Electrical Panel & Cabling Repair" />,
+    content: <ProjectContent title="Machine Vision & ABB Robot Cell Troubleshooting" />,
   },
   {
     category: "Robotics",
-    title: "Volvo – ABB Robot Motion Supervision",
+    title: "ABB Robot Troubleshooting & RobotStudio Simulation",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent title="Volvo – ABB Robot Motion Supervision" />,
+    content: <ProjectContent title="ABB Robot Troubleshooting & RobotStudio Simulation" />,
   },
   {
     category: "Robotics",
-    title: "SKF Mekan – ABB Robot Palletizing Cell",
+    title: "ABB Robot Status, Alarm & Safety Signal Verification",
     src: PLACEHOLDER_SRC,
-    content: <ProjectContent title="SKF Mekan – ABB Robot Palletizing Cell" />,
+    content: <ProjectContent title="ABB Robot Status, Alarm & Safety Signal Verification" />,
+  },
+  {
+    category: "Communication",
+    title: "Weber Applicator & Zebra Printer Communication Troubleshooting",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="Weber Applicator & Zebra Printer Communication Troubleshooting" />,
+  },
+  {
+    category: "Robotics",
+    title: "Robot Program Cleanup & Signal Review",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="Robot Program Cleanup & Signal Review" />,
+  },
+  {
+    category: "PLC Simulation",
+    title: "Sorting by Height — Factory I/O & Siemens TIA Portal S7-1200",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="Sorting by Height — Factory I/O & Siemens TIA Portal S7-1200" />,
+  },
+  {
+    category: "Electrical Service",
+    title: "Lantmännen — Industrial Electrical Service & Production Support",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="Lantmännen — Industrial Electrical Service & Production Support" />,
+  },
+  {
+    category: "Automation Service",
+    title: "Cummins — Industrial Automation Service & Operational Support",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="Cummins — Industrial Automation Service & Operational Support" />,
+  },
+  {
+    category: "Quality Verification",
+    title: "DeLaval — Testing, Troubleshooting & Quality Verification",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="DeLaval — Testing, Troubleshooting & Quality Verification" />,
+  },
+  {
+    category: "Fault-Finding",
+    title: "Weekly Service & Fault-Finding Cases",
+    src: PLACEHOLDER_SRC,
+    content: <ProjectContent title="Weekly Service & Fault-Finding Cases" />,
   },
 ];

@@ -7,28 +7,15 @@ const Sports = () => {
     <div className="mx-auto w-full">
       <div className="mb-8 max-w-3xl">
         <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-          Sports & Balance
+          Work Balance & Focus
         </h2>
 
         <p className="mt-4 leading-relaxed text-muted-foreground">
-          Staying physically active is an important part of how I maintain focus,
-          energy, and mental balance alongside my technical work. I currently train
-          regularly at <strong>Actic Gym</strong>, and I also spend time on
-          <strong> walking</strong> and <strong>swimming</strong> as part of my routine.
+          Maintaining focus and structure helps me stay sharp in field service and troubleshooting work. A stable routine supports clear thinking when I diagnose automation or electrical faults.
         </p>
 
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          These activities help me manage stress, stay disciplined, and keep a clear
-          mindset. Maintaining good physical condition directly supports my ability
-          to stay calm, precise, and structured when working in demanding technical
-          environments.
-        </p>
-
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          As a <strong>Service Engineer and Automation Technician</strong>, this balance
-          plays a key role in how I approach troubleshooting, on-site work, and complex
-          problem-solving. The discipline I build through regular training reflects
-          directly in my professional performance.
+          Good physical and mental balance matters when I work on production lines, ABB robot cells, or machine vision systems. It helps me stay calm, safe and precise during demanding service jobs.
         </p>
       </div>
     </div>
