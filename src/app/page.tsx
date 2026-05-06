@@ -18,13 +18,15 @@ import { useEffect, useRef, useState } from 'react';
 
 /* ---------- quick-question data ---------- */
 const questions = {
-  Me: 'Who are you? Tell me about your background as a Service Engineer / Automation Technician.',
+  Me: "Who are you? Tell me about your background as a Service Engineer and Automation Technician.",
   Projects:
-    'Tell me about your projects at Scania, Lantmännen, Meritor, Volvo, and Elektroautomatik.',
+    "Can you show me selected projects in industrial automation, ABB robots, machine vision, and troubleshooting?",
   Skills:
-    'What are your main skills in PLC, ABB robots, and electrical installations?',
-  Fun: 'What do you do for fun outside of work?',
-  Contact: 'How can I contact you if I want to work with you?',
+    "What are your strongest technical skills in PLC, electrical troubleshooting, ABB robots, and machine vision?",
+  Troubleshooting:
+    "How do you troubleshoot production stops and technical faults step by step?",
+  Contact:
+    "How can I contact you for automation, service, troubleshooting, or technical support work?",
 } as const;
 
 const questionConfig = [
