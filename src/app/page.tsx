@@ -3,7 +3,7 @@
 import FluidCursor from '@/components/FluidCursor';
 import { Button } from '@/components/ui/button';
 import WelcomeModal from '@/components/welcome-modal';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -48,20 +48,20 @@ export default function Home() {
     router.push(`/chat?query=${encodeURIComponent(query)}`);
 
   /* hero animations */
-  const topElementVariants = {
+  const topElementVariants: Variants = {
     hidden: { opacity: 0, y: -60 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: 'ease', duration: 0.8 },
+      transition: { type: 'tween', ease: 'easeOut', duration: 0.8 },
     },
   };
-  const bottomElementVariants = {
+  const bottomElementVariants: Variants = {
     hidden: { opacity: 0, y: 80 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: 'ease', duration: 0.8, delay: 0.2 },
+      transition: { type: 'tween', ease: 'easeOut', duration: 0.8, delay: 0.2 },
     },
   };
 

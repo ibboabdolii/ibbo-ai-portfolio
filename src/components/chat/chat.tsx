@@ -1,7 +1,7 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, type HTMLMotionProps } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -96,7 +96,10 @@ const Avatar = dynamic<AvatarProps>(
   { ssr: false }
 );
 
-const MOTION_CONFIG = {
+const MOTION_CONFIG: Pick<
+  HTMLMotionProps<'div'>,
+  'initial' | 'animate' | 'exit' | 'transition'
+> = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: 20 },

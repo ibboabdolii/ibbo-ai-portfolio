@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 
@@ -15,7 +15,7 @@ export function Presentation() {
       'https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3',
   };
 
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -24,7 +24,7 @@ export function Presentation() {
     },
   };
 
-  const paragraphAnimation = {
+  const paragraphAnimation: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
