@@ -7,9 +7,15 @@ import { Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
 import './globals.css';
 
+const siteUrl = 'https://ai.ibboabdoli.com';
+const siteTitle = 'Ibbo AI Portfolio';
+const siteDescription =
+  'Interactive AI-powered portfolio for Ibbo Abdoli — Service Engineer and Automation Technician in Sweden, focused on industrial automation, PLC, ABB robots, machine vision and technical troubleshooting.';
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
 });
 
 export const viewport: Viewport = {
@@ -20,10 +26,52 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ai.ibboabdoli.com'),
-  title: 'Ibbo AI Portfolio',
-  description:
-    'Interactive AI-powered portfolio for Ibbo Abdoli — Service Engineer & Automation Technician based in Sweden.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: `%s | ${siteTitle}`,
+  },
+  description: siteDescription,
+  applicationName: siteTitle,
+  authors: [{ name: 'Ibbo Abdoli', url: 'https://ibboabdoli.com' }],
+  creator: 'Ibbo Abdoli',
+  publisher: 'Ibbo Abdoli',
+  keywords: [
+    'Ibbo Abdoli',
+    'AI portfolio',
+    'Service Engineer',
+    'Automation Technician',
+    'industrial automation',
+    'PLC troubleshooting',
+    'ABB robots',
+    'machine vision',
+    'Sweden',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    siteName: siteTitle,
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: siteTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/opengraph-image'],
+  },
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
