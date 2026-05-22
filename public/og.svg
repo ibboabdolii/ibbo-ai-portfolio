@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="72" y="72" width="96" height="96" rx="24" fill="#ffffff"/>
+  <text x="120" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#0f172a">IA</text>
+  <text x="196" y="132" font-family="Arial, sans-serif" font-size="30" fill="#93c5fd">Interactive AI Portfolio</text>
+  <text x="72" y="320" font-family="Arial, sans-serif" font-size="78" font-weight="700" fill="#ffffff">Ibbo Abdoli</text>
+  <text x="72" y="385" font-family="Arial, sans-serif" font-size="36" fill="#dbeafe">Service Engineer / Automation Technician</text>
+  <text x="72" y="445" font-family="Arial, sans-serif" font-size="28" fill="#cbd5e1">Industrial automation, PLC troubleshooting, ABB robots and machine vision in Sweden.</text>
+</svg>
