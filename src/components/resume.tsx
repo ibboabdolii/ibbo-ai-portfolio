@@ -7,12 +7,12 @@ import { Download, FileText } from 'lucide-react';
 const cvLinks = {
   sv: {
     label: 'Download Swedish CV',
-    href: '/Ibbo_Abdoli_CV.pdf',
+    href: '/Ibbo_Abdoli_CV_2026_SV_Final.pdf',
     filename: 'Ibbo_Abdoli_CV_2026_SV_Final.pdf',
   },
   en: {
     label: 'Download English CV',
-    href: '/Ibbo_Abdoli_CV.pdf',
+    href: '/Ibbo_Abdoli_CV_2026_EN_Final.pdf',
     filename: 'Ibbo_Abdoli_CV_2026_EN_Final.pdf',
   },
 };
