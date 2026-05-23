@@ -23,15 +23,34 @@ export function Contact() {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const openGmailCompose = () => {
-    const to = encodeURIComponent(PERSONAL_EMAIL);
-    openLink(`https://mail.google.com/mail/?view=cm&fs=1&to=${to}`);
+  const openWithFallback = (appUrl: string, fallbackUrl: string) => {
+    window.location.href = appUrl;
+
+    window.setTimeout(() => {
+      if (!document.hidden) {
+        openLink(fallbackUrl);
+      }
+    }, 900);
   };
 
-  // Outlook Web (works everywhere)
-  const openOutlookWebCompose = () => {
+  const openDefaultEmailApp = () => {
+    window.location.href = `mailto:${PERSONAL_EMAIL}`;
+  };
+
+  const openGmailCompose = () => {
     const to = encodeURIComponent(PERSONAL_EMAIL);
-    openLink(`https://outlook.office.com/mail/deeplink/compose?to=${to}`);
+    openWithFallback(
+      `googlegmail://co?to=${to}`,
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${to}`
+    );
+  };
+
+  const openOutlookCompose = () => {
+    const to = encodeURIComponent(PERSONAL_EMAIL);
+    openWithFallback(
+      `ms-outlook://compose?to=${to}`,
+      `https://outlook.office.com/mail/deeplink/compose?to=${to}`
+    );
   };
 
   const copyEmail = async () => {
@@ -66,9 +85,10 @@ export function Contact() {
         <div className="mt-8 flex flex-col gap-4 md:mt-10">
           {/* Email row */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <a
-              href={`mailto:${PERSONAL_EMAIL}`}
-              className="group inline-flex cursor-pointer items-center gap-2"
+            <button
+              type="button"
+              onClick={openDefaultEmailApp}
+              className="group inline-flex cursor-pointer items-center gap-2 text-left"
               title="Open default email app"
             >
               <Mail className="h-4 w-4 text-blue-500" />
@@ -76,26 +96,35 @@ export function Contact() {
                 {PERSONAL_EMAIL}
               </span>
               <ChevronRight className="h-5 w-5 text-blue-500 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            </button>
 
             {/* Actions */}
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                onClick={openGmailCompose}
+                onClick={openDefaultEmailApp}
                 className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
-                title="Compose in Gmail"
+                title="Open default email app"
               >
-                Open Gmail
+                Email app
               </button>
 
               <button
                 type="button"
-                onClick={openOutlookWebCompose}
+                onClick={openGmailCompose}
                 className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
-                title="Compose in Outlook Web"
+                title="Open Gmail app, fallback to Gmail Web"
               >
-                Open Outlook
+                Gmail
+              </button>
+
+              <button
+                type="button"
+                onClick={openOutlookCompose}
+                className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
+                title="Open Outlook app, fallback to Outlook Web"
+              >
+                Outlook
               </button>
 
               <button
@@ -111,7 +140,7 @@ export function Contact() {
           </div>
 
           <p className="text-xs text-muted-foreground">
-            If mailto doesn’t open on your device, use <b>Open Gmail</b> or <b>Open Outlook</b>, or copy the email.
+            Use <b>Email app</b> for the default mail app. Gmail and Outlook try the app first and fall back to web if the app is not available.
           </p>
 
           {/* Social Links */}
