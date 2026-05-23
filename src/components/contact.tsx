@@ -8,13 +8,12 @@ export function Contact() {
 
   const contactInfo = {
     name: 'Ibbo Abdoli',
-    email: 'ibbo.abdoli@elektroautomatik.se',
+    email: 'ibbo.abdoli@gmail.com',
     handle: '@ibboabdoli',
     socials: [
       { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ibbo-abdoli' },
       { name: 'Website', url: 'https://ibboabdoli.com' },
       { name: 'GitHub', url: 'https://github.com/ibboabdolii' },
-      { name: 'Instagram', url: 'https://www.instagram.com' },
     ],
   };
 
@@ -30,7 +29,6 @@ export function Contact() {
   // Outlook Web (works everywhere)
   const openOutlookWebCompose = () => {
     const to = encodeURIComponent(contactInfo.email);
-    // Outlook on the web compose
     openLink(`https://outlook.office.com/mail/deeplink/compose?to=${to}`);
   };
 
