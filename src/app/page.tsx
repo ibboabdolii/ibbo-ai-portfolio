@@ -18,6 +18,8 @@ import { useEffect, useRef, useState } from 'react';
 
 type Language = 'sv' | 'en';
 
+const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
+
 const content = {
   sv: {
     eyebrow: 'Servicetekniker / Automationstekniker',
@@ -90,8 +92,15 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
   const t = content[language];
 
+  const setPreferredLanguage = (nextLanguage: Language) => {
+    setLanguage(nextLanguage);
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+  };
+
   const goToChat = (query: string) =>
-    router.push(`/chat?query=${encodeURIComponent(query)}`);
+    router.push(
+      `/chat?lang=${language}&query=${encodeURIComponent(query)}`
+    );
 
   const topElementVariants: Variants = {
     hidden: { opacity: 0, y: -60 },
@@ -112,6 +121,11 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (storedLanguage === 'sv' || storedLanguage === 'en') {
+      setLanguage(storedLanguage);
+    }
+
     const img = new window.Image();
     img.src = '/landing-memojis.png';
 
@@ -150,7 +164,7 @@ export default function Home() {
       <div className="absolute top-4 right-4 z-30 flex rounded-full border border-neutral-200 bg-white/60 p-1 text-xs font-semibold shadow-sm backdrop-blur-md dark:border-neutral-700 dark:bg-neutral-900/60">
         <button
           type="button"
-          onClick={() => setLanguage('sv')}
+          onClick={() => setPreferredLanguage('sv')}
           className={`rounded-full px-3 py-1 transition ${
             language === 'sv'
               ? 'bg-[#0171E3] text-white'
@@ -162,7 +176,7 @@ export default function Home() {
         </button>
         <button
           type="button"
-          onClick={() => setLanguage('en')}
+          onClick={() => setPreferredLanguage('en')}
           className={`rounded-full px-3 py-1 transition ${
             language === 'en'
               ? 'bg-[#0171E3] text-white'
