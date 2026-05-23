@@ -7,7 +7,6 @@ import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
-// Component imports
 import ChatBottombar from '@/components/chat/chat-bottombar';
 import ChatLanding from '@/components/chat/chat-landing';
 import ChatMessageContent from '@/components/chat/chat-message-content';
@@ -20,7 +19,10 @@ import WelcomeModal from '@/components/welcome-modal';
 import { Info } from 'lucide-react';
 import HelperBoost from './HelperBoost';
 
-// ---------------- ClientOnly ----------------
+type Language = 'sv' | 'en';
+
+const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
+
 const ClientOnly = ({ children }: { children: React.ReactNode }) => {
   const [hasMounted, setHasMounted] = useState(false);
 
@@ -32,14 +34,12 @@ const ClientOnly = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-// ---------------- Avatar props ----------------
 interface AvatarProps {
   hasActiveTool: boolean;
   videoRef: React.RefObject<HTMLVideoElement | null>;
   isTalking: boolean;
 }
 
-// ---------------- Avatar (dynamic) ----------------
 const Avatar = dynamic<AvatarProps>(
   () =>
     Promise.resolve(({ hasActiveTool, videoRef }: AvatarProps) => {
@@ -66,7 +66,6 @@ const Avatar = dynamic<AvatarProps>(
             hasActiveTool ? 'h-20 w-20' : 'h-28 w-28'
           }`}
         >
-          {/* ✅ circle mask */}
           <div
             className="relative h-full w-full cursor-pointer overflow-hidden rounded-full"
             onClick={() => (window.location.href = '/')}
@@ -113,12 +112,13 @@ const Chat = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('query');
+  const langParam = searchParams.get('lang');
 
+  const [language, setLanguage] = useState<Language>('sv');
   const [autoSubmitted, setAutoSubmitted] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [isTalking, setIsTalking] = useState(false);
 
-  // ✅ no limiter
   const hasReachedLimit = false;
 
   const {
@@ -222,6 +222,18 @@ const Chat = () => {
   };
 
   useEffect(() => {
+    const nextLanguage =
+      langParam === 'sv' || langParam === 'en'
+        ? langParam
+        : window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+
+    if (nextLanguage === 'sv' || nextLanguage === 'en') {
+      setLanguage(nextLanguage);
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    }
+  }, [langParam]);
+
+  useEffect(() => {
     if (videoRef.current) {
       videoRef.current.loop = true;
       videoRef.current.muted = true;
@@ -271,7 +283,6 @@ const Chat = () => {
 
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Info button / Welcome */}
       <div className="absolute top-6 right-8 z-50 flex flex-col-reverse items-center justify-center gap-1 md:flex-row">
         <WelcomeModal
           trigger={
@@ -282,7 +293,6 @@ const Chat = () => {
         />
       </div>
 
-      {/* Fixed Avatar Header with Gradient */}
       <div
         className="fixed top-0 right-0 left-0 z-40"
         style={{
@@ -327,9 +337,7 @@ const Chat = () => {
         </div>
       </div>
 
-      {/* Main Content Area */}
       <div className="container mx-auto flex h-full max-w-3xl flex-col">
-        {/* Scrollable Chat Content */}
         <div
           className="flex-1 overflow-y-auto px-2"
           style={{ paddingTop: `${headerHeight}px` }}
@@ -368,10 +376,10 @@ const Chat = () => {
           </AnimatePresence>
         </div>
 
-        {/* Fixed Bottom Bar */}
         <div className="sticky bottom-0 bg-white px-2 pt-3 md:px-0 md:pb-4">
           <div className="relative flex flex-col items-center gap-3">
             <HelperBoost
+              language={language}
               submitQuery={submitQuery}
               setInput={setInput}
               hasReachedLimit={false}
