@@ -11,7 +11,7 @@ const siteUrl = 'https://ai.ibboabdoli.com';
 const siteTitle = 'Ibbo AI Portfolio';
 const siteDescription =
   'Interactive AI-powered portfolio for Ibbo Abdoli — Service Engineer and Automation Technician in Sweden, focused on industrial automation, PLC, ABB robots, machine vision and technical troubleshooting.';
-const socialImage = '/og.svg';
+const socialImage = '/opengraph-image';
 
 const inter = Inter({
   subsets: ['latin'],
