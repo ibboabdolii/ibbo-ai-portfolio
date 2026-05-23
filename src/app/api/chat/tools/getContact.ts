@@ -7,17 +7,14 @@ export const getContact = tool({
   parameters: z.object({}),
   execute: async () => {
     return `
-You can contact me through my personal portfolio channels:
+You can contact me through these channels:
 
 - Email: ibbo.abdoli@gmail.com
 - Website: https://ibboabdoli.com
 - AI portfolio: https://ai.ibboabdoli.com
 - GitHub: https://github.com/ibboabdolii
-- Booking: https://cal.com/ibboabdoli/15min or https://cal.com/ibboabdoli/30min
-
-Important:
-- Do not use my Elektroautomatik work email for this personal portfolio contact flow.
-- For portfolio, recruiter, collaboration, or general automation questions, use my personal email or booking links above.
+- Book a 15-minute meeting: https://cal.com/ibboabdoli/15min
+- Book a 30-minute meeting: https://cal.com/ibboabdoli/30min
 
 Good topics to contact me about:
 - Industrial automation service and troubleshooting
@@ -27,7 +24,7 @@ Good topics to contact me about:
 - Electrical fault finding, sensors, motors, cabinets, and production stops
 - Service documentation and technical handover
 
-For urgent production issues, include the machine/cell name, alarm text, symptoms, what changed recently, and photos/screenshots if available.
+For technical support questions, please include the machine/cell name, alarm text, symptoms, what changed recently, and any useful photos or screenshots.
     `.trim();
   },
 });
