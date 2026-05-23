@@ -3,13 +3,26 @@ import { z } from 'zod';
 
 export const getContact = tool({
   description:
-    'Provides information on how to contact me. Use when the user asks how to get in touch.',
+    'Provides practical contact information for Ibbo Abdoli. Use when the user asks how to contact, book, hire, or discuss automation service work.',
   parameters: z.object({}),
   execute: async () => {
     return `
-You can reach me through the Contact section on this page.
-I am available for automation service, production troubleshooting and technical support work.
-If you need help with ABB robots, machine vision, PLC/I/O or electrical service, use the contact details above.
+You can contact me through the contact section on this portfolio or through my main website:
+
+- Website: https://ibboabdoli.com
+- AI portfolio: https://ai.ibboabdoli.com
+- GitHub: https://github.com/ibboabdolii
+- Booking: https://cal.com/ibboabdoli/15min or https://cal.com/ibboabdoli/30min
+
+Good topics to contact me about:
+- Industrial automation service and troubleshooting
+- PLC/I/O signal verification
+- ABB robot and RobotStudio troubleshooting
+- Machine vision issues with EA Vision Studio or Cognex VisionPro
+- Electrical fault finding, sensors, motors, cabinets, and production stops
+- Service documentation and technical handover
+
+For urgent production issues, include the machine/cell name, alarm text, symptoms, what changed recently, and photos/screenshots if available.
     `.trim();
   },
 });
