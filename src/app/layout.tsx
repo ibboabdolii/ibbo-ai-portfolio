@@ -10,7 +10,7 @@ import './globals.css';
 const siteUrl = 'https://ai.ibboabdoli.com';
 const siteTitle = 'Ibbo AI Portfolio';
 const siteDescription =
-  'Interactive AI-powered portfolio for Ibbo Abdoli — Service Engineer and Automation Technician in Sweden, focused on industrial automation, PLC, ABB robots, machine vision and technical troubleshooting.';
+  'Interaktiv AI-portfolio för Ibbo Abdoli — Servicetekniker och automationstekniker i Sverige med fokus på industriell automation, PLC/I/O, ABB-robotar, maskinvision och teknisk felsökning.';
 const socialImage = '/og-image.png';
 
 const inter = Inter({
@@ -40,20 +40,32 @@ export const metadata: Metadata = {
   keywords: [
     'Ibbo Abdoli',
     'AI portfolio',
+    'Servicetekniker',
+    'Automationstekniker',
+    'industriell automation',
+    'PLC felsökning',
+    'PLC/I/O',
+    'ABB robotar',
+    'RobotStudio',
+    'maskinvision',
+    'Cognex VisionPro',
+    'EA Vision Studio',
+    'teknisk felsökning',
+    'Sverige',
     'Service Engineer',
     'Automation Technician',
-    'industrial automation',
-    'PLC troubleshooting',
-    'ABB robots',
-    'machine vision',
-    'Sweden',
   ],
   alternates: {
     canonical: '/',
+    languages: {
+      sv: '/',
+      en: '/?lang=en',
+    },
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'sv_SE',
+    alternateLocale: ['en_US'],
     url: '/',
     siteName: siteTitle,
     title: siteTitle,
@@ -63,7 +75,7 @@ export const metadata: Metadata = {
         url: socialImage,
         width: 1200,
         height: 630,
-        alt: siteTitle,
+        alt: 'Ibbo Abdoli – AI Portfolio',
         type: 'image/png',
       },
     ],
@@ -87,7 +99,7 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="sv" suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
