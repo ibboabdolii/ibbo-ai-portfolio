@@ -27,15 +27,15 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
       className="h-auto w-auto cursor-pointer rounded-2xl bg-white/30 p-3 shadow-lg backdrop-blur-lg hover:bg-white/60 focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
       onClick={() => setIsOpen(true)}
     >
-<Image
-  src="/logo-ibbo.svg"
-  width={160}
-  height={160}
-  alt="Ibbo AI Logo"
-  className="h-14 w-14 md:h-20 md:w-20"
-  priority
-/>
-      <span className="sr-only">About Ibbo AI Profile</span>
+      <Image
+        src="/logo-ibbo.svg"
+        width={160}
+        height={160}
+        alt="Ibbo AI Portfolio logo"
+        className="h-14 w-14 md:h-20 md:w-20"
+        priority
+      />
+      <span className="sr-only">About Ibbo AI Portfolio</span>
     </Button>
   );
 
@@ -66,11 +66,11 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
             <DialogHeader className="relative flex flex-row items-start justify-between px-8 pt-8 pb-6">
               <div>
                 <DialogTitle className="flex items-center gap-2 text-4xl font-bold tracking-tight">
-                  Welcome to Ibbo AI Profile
+                  Welcome to Ibbo AI Portfolio
                 </DialogTitle>
                 <DialogDescription className="mt-2 text-base">
-                  An interactive AI version of me — here to talk about my work,
-                  projects, and experience in industrial automation.
+                  An interactive way to explore my service engineering work,
+                  automation projects, and technical troubleshooting experience.
                 </DialogDescription>
               </div>
               <Button
@@ -96,27 +96,26 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
                     This is my{' '}
                     <strong>AI-powered interactive portfolio.</strong>
                     <br />
-                    Instead of just scrolling through a static CV, you can chat
-                    with an AI version of me and ask about my background,
-                    experience, projects, and skills as a Service Engineer &
-                    Automation Technician.
+                    Instead of reading a static CV, you can ask specific
+                    questions about my hands-on work with PLC/I/O, ABB robots,
+                    machine vision, electrical troubleshooting, and production
+                    support.
                   </p>
                 </div>
 
                 {/* Why section */}
                 <div className="space-y-3">
                   <h3 className="text-primary flex items-center gap-2 text-xl font-semibold">
-                    Why this format?
+                    Who is it for?
                   </h3>
                   <p className="text-accent-foreground text-base leading-relaxed">
-                    Traditional portfolios and CVs are one-way. <br />
-                    They don&apos;t adapt to what <strong>you</strong> are
-                    looking for.
+                    Recruiters, maintenance teams, production managers, and
+                    technical colleagues can use this page to quickly understand
+                    my background, selected projects, service approach, and how
+                    I work when troubleshooting real production problems.
                     <br />
-                    Here, you can ask specific questions — about PLC work, ABB
-                    robots, electrical installations, or real projects at
-                    Scania, Lantmännen, Meritor, Volvo and more — and the AI
-                    will answer based on my real experience.
+                    Ask about skills, projects, fault-finding methods,
+                    automation tools, or how to contact me.
                   </p>
                 </div>
               </section>
@@ -136,8 +135,8 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
                 onClick={handleContactMe}
               >
                 <p className="text-muted-foreground">
-                  If you like this format or want to work together, you&apos;re
-                  welcome to reach out.
+                  Want to discuss automation, service, troubleshooting, or a
+                  technical collaboration?
                 </p>
                 <div className="flex cursor-pointer items-center text-blue-500 hover:underline">
                   Contact me.
