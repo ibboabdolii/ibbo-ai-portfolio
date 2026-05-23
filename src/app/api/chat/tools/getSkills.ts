@@ -3,19 +3,35 @@ import { z } from 'zod';
 
 export const getSkills = tool({
   description:
-    'This tool shows the main technical skills and service strengths of Ibbo Abdoli.',
+    'Shows Ibbo Abdoli\'s main technical skills and service strengths. Use when the user asks about technical skills, strengths, tools, or troubleshooting capability.',
   parameters: z.object({}),
   execute: async () => {
     return `
-My main skills are:
-- Machine vision systems: EA Vision Studio, Cognex VisionPro, camera settings, trigger functions, and robot integration
-- ABB robots: RobotStudio simulation, RAPID programming, gripper control, position verification, and safety signals
-- PLC/I/O troubleshooting: Siemens TIA Portal, S7-1200, signal verification, and communication checks
-- Electrical fault finding: thermography, motor troubleshooting, wiring, sensors, and cabinet work
-- Communication systems: Weber applicators, Zebra printers, signal timing, and configuration
-- Production support: preventive maintenance, root-cause analysis, documentation, and service reporting
-- Simulation and learning: Factory I/O, sorting logic, and GitHub practice projects
-- Safety-focused service: alarm verification, safety states, and operator support
+My strongest technical areas are:
+
+1. Industrial automation troubleshooting
+- Step-by-step fault finding in production environments
+- PLC/I/O signal checks, sequence logic, sensors, actuators, and communication
+- Focus on restoring stable production safely
+
+2. ABB robots and RobotStudio
+- RobotStudio simulation and offline checks
+- RAPID program review, robot positions, gripper behavior, and collision risk assessment
+- Robot status, alarm logic, motor signals, stop reasons, and I/O verification
+
+3. Machine vision systems
+- EA Vision Studio and Cognex VisionPro support
+- Camera acquisition, trigger timing, recipes, image timeout troubleshooting, and robot/vision communication
+
+4. Electrical fault finding
+- Motors, fans, sensors, cabinets, wiring, pressure switches, safety sensors, and thermography
+- Practical service reporting and documentation after troubleshooting
+
+5. Production support and communication systems
+- Support during breakdowns, commissioning, verification, and preventive maintenance
+- Device communication and configuration checks, including Weber/Zebra-type production systems
+
+My working style is structured: secure the machine, read the alarm, verify signals, isolate the cause, test safely, and document the result.
     `.trim();
   },
 });
