@@ -152,6 +152,15 @@ export default function Home() {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-10 md:pb-20">
+      <section className="sr-only" aria-label="Sökmotorbeskrivning">
+        <h2>Ibbo Abdoli – Servicetekniker och Automationstekniker</h2>
+        <p>
+          Interaktiv AI-portfolio på svenska för industriell automation,
+          PLC/I/O-felsökning, ABB-robotar, RobotStudio, maskinvision,
+          elservice, teknisk felsökning och produktionssupport i Sverige.
+        </p>
+      </section>
+
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
         <div
           className="hidden bg-gradient-to-b from-neutral-500/10 to-neutral-500/0 bg-clip-text text-[10rem] leading-none font-black text-transparent select-none sm:block lg:text-[16rem]"
