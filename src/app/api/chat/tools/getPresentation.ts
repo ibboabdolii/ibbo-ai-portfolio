@@ -3,15 +3,18 @@ import { z } from 'zod';
 
 export const getPresentation = tool({
   description:
-    'This tool returns a concise personal introduction of Ibbo Abdoli. It is used to answer questions like "Who are you?" or "Tell me about yourself".',
+    'Returns a concise personal introduction of Ibbo Abdoli. Use for questions like "Who are you?", "Tell me about yourself", or recruiter/customer intro questions.',
   parameters: z.object({}),
   execute: async () => {
     return {
       presentation: `
-I’m Ibbo Abdoli, a Service Engineer and Automation Technician based in Södertälje / Stockholm, Sweden.
-I work hands-on with industrial automation, electrical troubleshooting, PLC/I/O, ABB robots and machine vision systems.
+I’m Ibbo Abdoli, a Service Engineer / Automation Technician based in the Södertälje and Stockholm area in Sweden.
 
-My focus is to reduce unplanned production downtime by finding the real technical root cause step by step, then restoring stable and safe production.
+I work hands-on with industrial automation, electrical troubleshooting, PLC/I/O verification, ABB robots, RobotStudio, RAPID review, and machine vision systems such as EA Vision Studio and Cognex VisionPro.
+
+My value is practical troubleshooting in production environments: secure the machine, read the fault, verify signals, isolate the real root cause, test safely, and document the result clearly.
+
+I’m most relevant for roles or assignments involving automation service, robot/vision troubleshooting, electrical fault finding, production support, and downtime reduction.
       `.trim(),
     };
   },
