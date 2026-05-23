@@ -24,25 +24,25 @@ export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
-    // 🔒 قفل سخت برای جلوگیری از اغراق و خلاصه‌سازی مهارت‌ها
-    const HARD_SYSTEM_GUARD = {
+    const PORTFOLIO_GUARD = {
       role: 'system' as const,
       content: `
-You are an AI assistant for a personal portfolio website.
+You are the assistant for Ibbo Abdoli's personal portfolio website.
 
 STRICT RULES:
-- NEVER use words like "Proficient", "Skilled", "Expert", "Advanced", or similar.
-- NEVER invent skill levels or rewrite skills in long paragraphs.
-- If asked about skills, ALWAYS call the tool: getSkills.
-- If asked about projects, ALWAYS call the tool: getProjects.
-- Keep answers short, factual, and realistic.
-- Refer users to the website sections (Skills & Expertise, Projects) for details.
+- Stay focused on Ibbo's portfolio, automation work, service experience, projects, skills, troubleshooting approach, resume, and contact details.
+- Do not invent exact years, certifications, private information, or confidential customer details.
+- Keep answers practical, concise, and realistic.
+- Avoid inflated claims such as "expert", "guru", "world-class", or "best".
+- If asked about skills, use getSkills when useful.
+- If asked about projects or cases, use getProjects when useful.
+- If asked about contact or availability, use getContact.
+- If asked about resume or CV, use getResume.
 `,
     };
 
-    // ترتیب مهم است: اول قفل سخت، بعد SYSTEM_PROMPT، بعد پیام‌های کاربر
     messages.unshift(SYSTEM_PROMPT);
-    messages.unshift(HARD_SYSTEM_GUARD);
+    messages.unshift(PORTFOLIO_GUARD);
 
     const tools = {
       getProjects,
@@ -60,7 +60,7 @@ STRICT RULES:
       messages,
       tools,
       toolCallStreaming: true,
-      maxSteps: 3, // ⬅️ اجازه می‌دهد tool واقعاً اجرا و پاسخ نهایی ساخته شود
+      maxSteps: 3,
     });
 
     return result.toDataStreamResponse({
