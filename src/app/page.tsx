@@ -43,7 +43,6 @@ export default function Home() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // ✅ FIX: must be a string (template literal), not a regex
   const goToChat = (query: string) =>
     router.push(`/chat?query=${encodeURIComponent(query)}`);
 
@@ -106,7 +105,7 @@ export default function Home() {
 
       {/* header */}
       <motion.div
-        className="z-1 mt-24 mb-8 flex flex-col items-center text-center md:mt-4 md:mb-12"
+        className="z-1 mt-24 mb-8 flex max-w-4xl flex-col items-center text-center md:mt-4 md:mb-12"
         variants={topElementVariants}
         initial="hidden"
         animate="visible"
@@ -115,19 +114,23 @@ export default function Home() {
           <WelcomeModal />
         </div>
 
-        <h2 className="text-secondary-foreground mt-1 text-xl font-semibold md:text-2xl">
-          Hey, I&apos;m Ibbo 👋
-        </h2>
-        <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
+        <p className="text-secondary-foreground mt-4 text-sm font-semibold uppercase tracking-[0.28em] md:text-base">
+          Service Engineer / Automation Technician
+        </p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
           Ibbo AI Portfolio
         </h1>
+        <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
+          Ask an AI version of me about industrial automation, PLC/I/O troubleshooting,
+          ABB robots, machine vision, electrical service, and real production support work in Sweden.
+        </p>
       </motion.div>
 
       {/* centre memoji */}
       <div className="relative z-10 h-52 w-52 overflow-hidden rounded-full sm:h-72 sm:w-72">
         <Image
           src="/landing-memojis.png"
-          alt="Hero memoji"
+          alt="Ibbo Abdoli AI portfolio avatar"
           fill
           priority
           sizes="(max-width: 640px) 208px, 288px"
@@ -156,7 +159,7 @@ export default function Home() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask me anything about my experience, projects, or skills…"
+              placeholder="Ask about my automation experience, projects, or troubleshooting approach…"
               className="w-full border-none bg-transparent text-base text-neutral-800 placeholder:text-neutral-500 focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-500"
             />
             <button
