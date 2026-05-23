@@ -221,6 +221,16 @@ const Chat = () => {
     });
   };
 
+  const setPreferredLanguage = (nextLanguage: Language) => {
+    setLanguage(nextLanguage);
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+
+    const params = new URLSearchParams(window.location.search);
+    params.set('lang', nextLanguage);
+    const nextUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState(null, '', nextUrl);
+  };
+
   useEffect(() => {
     const nextLanguage =
       langParam === 'sv' || langParam === 'en'
@@ -283,7 +293,34 @@ const Chat = () => {
 
   return (
     <div className="relative h-screen overflow-hidden">
-      <div className="absolute top-6 right-8 z-50 flex flex-col-reverse items-center justify-center gap-1 md:flex-row">
+      <div className="absolute top-6 right-8 z-50 flex items-center justify-center gap-2">
+        <div className="flex rounded-full border border-neutral-200 bg-white/80 p-1 text-xs font-semibold shadow-sm backdrop-blur-md">
+          <button
+            type="button"
+            onClick={() => setPreferredLanguage('sv')}
+            className={`rounded-full px-3 py-1 transition ${
+              language === 'sv'
+                ? 'bg-[#0171E3] text-white'
+                : 'text-neutral-600 hover:text-neutral-900'
+            }`}
+            aria-label="Visa chatten på svenska"
+          >
+            SV
+          </button>
+          <button
+            type="button"
+            onClick={() => setPreferredLanguage('en')}
+            className={`rounded-full px-3 py-1 transition ${
+              language === 'en'
+                ? 'bg-[#0171E3] text-white'
+                : 'text-neutral-600 hover:text-neutral-900'
+            }`}
+            aria-label="Show chat in English"
+          >
+            EN
+          </button>
+        </div>
+
         <WelcomeModal
           trigger={
             <div className="hover:bg-accent cursor-pointer rounded-2xl px-3 py-1.5">
