@@ -28,7 +28,7 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
       onClick={() => setIsOpen(true)}
     >
       <Image
-        src="/logo-ibbo.svg"
+        src="/favicon.svg"
         width={160}
         height={160}
         alt="Ibbo AI Portfolio logo"
