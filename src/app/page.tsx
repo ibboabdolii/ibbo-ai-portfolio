@@ -16,17 +16,63 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
-/* ---------- quick-question data ---------- */
-const questions = {
-  Me: "Who are you? Tell me about your background as a Service Engineer and Automation Technician.",
-  Projects:
-    "Can you show me selected projects in industrial automation, ABB robots, machine vision, and troubleshooting?",
-  Skills:
-    "What are your strongest technical skills in PLC, electrical troubleshooting, ABB robots, and machine vision?",
-  Troubleshooting:
-    "How do you troubleshoot production stops and technical faults step by step?",
-  Contact:
-    "How can I contact you for automation, service, troubleshooting, or technical support work?",
+type Language = 'sv' | 'en';
+
+const content = {
+  sv: {
+    eyebrow: 'Servicetekniker / Automationstekniker',
+    title: 'Ibbo AI Portfolio',
+    subtitle:
+      'Fråga en AI-version av mig om industriell automation, PLC/I/O-felsökning, ABB-robotar, maskinvision, elservice och praktiskt produktionsstöd i Sverige.',
+    placeholder:
+      'Fråga om min automationserfarenhet, tekniska case eller felsökningsmetod…',
+    submitLabel: 'Skicka fråga',
+    quick: {
+      Me: 'Om mig',
+      Projects: 'Projekt',
+      Skills: 'Färdigheter',
+      Troubleshooting: 'Felsökning',
+      Contact: 'Kontakt',
+    },
+    questions: {
+      Me: 'Vem är Ibbo? Berätta kort om din bakgrund som servicetekniker och automationstekniker.',
+      Projects:
+        'Visa utvalda tekniska case inom industriell automation, ABB-robotar, maskinvision och felsökning.',
+      Skills:
+        'Vilka är dina starkaste tekniska färdigheter inom PLC, el-felsökning, ABB-robotar och maskinvision?',
+      Troubleshooting:
+        'Hur felsöker du driftstopp och tekniska fel steg för steg?',
+      Contact:
+        'Hur kan jag kontakta dig för automation, service, felsökning eller tekniskt samarbete?',
+    },
+  },
+  en: {
+    eyebrow: 'Service Engineer / Automation Technician',
+    title: 'Ibbo AI Portfolio',
+    subtitle:
+      'Ask an AI version of me about industrial automation, PLC/I/O troubleshooting, ABB robots, machine vision, electrical service, and real production support work in Sweden.',
+    placeholder:
+      'Ask about my automation experience, technical cases, or troubleshooting method…',
+    submitLabel: 'Submit question',
+    quick: {
+      Me: 'Me',
+      Projects: 'Projects',
+      Skills: 'Skills',
+      Troubleshooting: 'Troubleshooting',
+      Contact: 'Contact',
+    },
+    questions: {
+      Me: 'Who are you? Tell me about your background as a Service Engineer and Automation Technician.',
+      Projects:
+        'Can you show me selected projects in industrial automation, ABB robots, machine vision, and troubleshooting?',
+      Skills:
+        'What are your strongest technical skills in PLC, electrical troubleshooting, ABB robots, and machine vision?',
+      Troubleshooting:
+        'How do you troubleshoot production stops and technical faults step by step?',
+      Contact:
+        'How can I contact you for automation, service, troubleshooting, or technical support work?',
+    },
+  },
 } as const;
 
 const questionConfig = [
@@ -37,16 +83,16 @@ const questionConfig = [
   { key: 'Contact', color: '#C19433', icon: UserRoundSearch },
 ] as const;
 
-/* ---------- component ---------- */
 export default function Home() {
   const [input, setInput] = useState('');
+  const [language, setLanguage] = useState<Language>('sv');
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = content[language];
 
   const goToChat = (query: string) =>
     router.push(`/chat?query=${encodeURIComponent(query)}`);
 
-  /* hero animations */
   const topElementVariants: Variants = {
     hidden: { opacity: 0, y: -60 },
     visible: {
@@ -55,6 +101,7 @@ export default function Home() {
       transition: { type: 'tween', ease: 'easeOut', duration: 0.8 },
     },
   };
+
   const bottomElementVariants: Variants = {
     hidden: { opacity: 0, y: 80 },
     visible: {
@@ -65,11 +112,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Preload image (IMPORTANT: use window.Image)
     const img = new window.Image();
     img.src = '/landing-memojis.png';
 
-    // Preload videos
     const linkWebm = document.createElement('link');
     linkWebm.rel = 'preload';
     linkWebm.as = 'video';
@@ -93,7 +138,6 @@ export default function Home() {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-10 md:pb-20">
-      {/* big blurred footer word */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
         <div
           className="hidden bg-gradient-to-b from-neutral-500/10 to-neutral-500/0 bg-clip-text text-[10rem] leading-none font-black text-transparent select-none sm:block lg:text-[16rem]"
@@ -103,7 +147,33 @@ export default function Home() {
         </div>
       </div>
 
-      {/* header */}
+      <div className="absolute top-4 right-4 z-30 flex rounded-full border border-neutral-200 bg-white/60 p-1 text-xs font-semibold shadow-sm backdrop-blur-md dark:border-neutral-700 dark:bg-neutral-900/60">
+        <button
+          type="button"
+          onClick={() => setLanguage('sv')}
+          className={`rounded-full px-3 py-1 transition ${
+            language === 'sv'
+              ? 'bg-[#0171E3] text-white'
+              : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-300'
+          }`}
+          aria-label="Visa sidan på svenska"
+        >
+          SV
+        </button>
+        <button
+          type="button"
+          onClick={() => setLanguage('en')}
+          className={`rounded-full px-3 py-1 transition ${
+            language === 'en'
+              ? 'bg-[#0171E3] text-white'
+              : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-300'
+          }`}
+          aria-label="Show page in English"
+        >
+          EN
+        </button>
+      </div>
+
       <motion.div
         className="z-1 mt-24 mb-8 flex max-w-4xl flex-col items-center text-center md:mt-4 md:mb-12"
         variants={topElementVariants}
@@ -115,18 +185,16 @@ export default function Home() {
         </div>
 
         <p className="text-secondary-foreground mt-4 text-sm font-semibold uppercase tracking-[0.28em] md:text-base">
-          Service Engineer / Automation Technician
+          {t.eyebrow}
         </p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-          Ibbo AI Portfolio
+          {t.title}
         </h1>
         <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
-          Ask an AI version of me about industrial automation, PLC/I/O troubleshooting,
-          ABB robots, machine vision, electrical service, and real production support work in Sweden.
+          {t.subtitle}
         </p>
       </motion.div>
 
-      {/* centre memoji */}
       <div className="relative z-10 h-52 w-52 overflow-hidden rounded-full sm:h-72 sm:w-72">
         <Image
           src="/landing-memojis.png"
@@ -138,14 +206,12 @@ export default function Home() {
         />
       </div>
 
-      {/* input + quick buttons */}
       <motion.div
         variants={bottomElementVariants}
         initial="hidden"
         animate="visible"
         className="z-10 mt-4 flex w-full flex-col items-center justify-center md:px-0"
       >
-        {/* free-form question */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -159,13 +225,13 @@ export default function Home() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about my automation experience, projects, or troubleshooting approach…"
+              placeholder={t.placeholder}
               className="w-full border-none bg-transparent text-base text-neutral-800 placeholder:text-neutral-500 focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-500"
             />
             <button
               type="submit"
               disabled={!input.trim()}
-              aria-label="Submit question"
+              aria-label={t.submitLabel}
               className="flex items-center justify-center rounded-full bg-[#0171E3] p-2.5 text-white transition-colors hover:bg-blue-600 disabled:opacity-70 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
               <ArrowRight className="h-5 w-5" />
@@ -173,18 +239,19 @@ export default function Home() {
           </div>
         </form>
 
-        {/* quick-question grid */}
         <div className="mt-4 grid w-full max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-5">
           {questionConfig.map(({ key, color, icon: Icon }) => (
             <Button
               key={key}
-              onClick={() => goToChat(questions[key])}
+              onClick={() => goToChat(t.questions[key])}
               variant="outline"
               className="border-border hover:bg-border/30 aspect-square w-full cursor-pointer rounded-2xl border bg-white/30 py-8 shadow-none backdrop-blur-lg active:scale-95 md:p-10"
             >
               <div className="flex h-full flex-col items-center justify-center gap-1 text-gray-700">
                 <Icon size={22} strokeWidth={2} color={color} />
-                <span className="text-xs font-medium sm:text-sm">{key}</span>
+                <span className="text-xs font-medium sm:text-sm">
+                  {t.quick[key]}
+                </span>
               </div>
             </Button>
           ))}
