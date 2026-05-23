@@ -7,12 +7,17 @@ export const getContact = tool({
   parameters: z.object({}),
   execute: async () => {
     return `
-You can contact me through the contact section on this portfolio or through my main website:
+You can contact me through my personal portfolio channels:
 
+- Email: ibbo.abdoli@gmail.com
 - Website: https://ibboabdoli.com
 - AI portfolio: https://ai.ibboabdoli.com
 - GitHub: https://github.com/ibboabdolii
 - Booking: https://cal.com/ibboabdoli/15min or https://cal.com/ibboabdoli/30min
+
+Important:
+- Do not use my Elektroautomatik work email for this personal portfolio contact flow.
+- For portfolio, recruiter, collaboration, or general automation questions, use my personal email or booking links above.
 
 Good topics to contact me about:
 - Industrial automation service and troubleshooting
