@@ -29,21 +29,210 @@ import {
 import { useState, type ElementType } from 'react';
 import { Drawer } from 'vaul';
 
+type Language = 'sv' | 'en';
+
 interface HelperBoostProps {
+  language?: Language;
   submitQuery?: (query: string) => void;
   setInput?: (value: string) => void;
   hasReachedLimit?: boolean;
 }
 
-const questions = {
-  Me: 'Who are you? Tell me about your background as a Service Engineer and Automation Technician.',
-  Projects:
-    'Tell me about your field projects in industrial automation, ABB robots, PLC/I/O, machine vision, and electrical service.',
-  Skills: 'What are your main technical skills and tools?',
-  Troubleshooting:
-    'How do you troubleshoot production stops and technical faults step by step?',
-  Contact:
-    'How can I contact you, and what type of automation or service projects are you interested in?',
+const content = {
+  sv: {
+    hide: 'Dölj snabfrågor',
+    show: 'Visa snabfrågor',
+    quickLabels: {
+      Me: 'Om mig',
+      Projects: 'Projekt',
+      Skills: 'Färdigheter',
+      Troubleshooting: 'Felsökning',
+      Contact: 'Kontakt',
+    },
+    quickQuestions: {
+      Me: 'Vem är Ibbo? Berätta om din bakgrund som servicetekniker och automationstekniker.',
+      Projects:
+        'Berätta om dina tekniska case inom industriell automation, ABB-robotar, PLC/I/O, maskinvision och elservice.',
+      Skills: 'Vilka är dina viktigaste tekniska färdigheter och verktyg?',
+      Troubleshooting:
+        'Hur felsöker du driftstopp och tekniska fel steg för steg?',
+      Contact:
+        'Hur kan jag kontakta dig och vilka typer av automation- eller serviceuppdrag är du intresserad av?',
+    },
+    specialQuestions: [
+      'Hur felsöker du ett driftstopp steg för steg?',
+      'Kan jag se din CV?',
+      'Vilka industriella projekt är du mest stolt över?',
+      'Vilka är dina starkaste tekniska färdigheter?',
+      'Hur kan jag nå dig?',
+    ],
+    categories: [
+      {
+        id: 'about',
+        name: 'Om Ibbo',
+        icon: UserSearch,
+        questions: [
+          'Vem är du?',
+          'Vad är din nuvarande roll?',
+          'Vilken typ av arbete gör du som servicetekniker?',
+          'Vad motiverar dig inom industriell automation?',
+        ],
+      },
+      {
+        id: 'professional',
+        name: 'Professionellt',
+        icon: BriefcaseIcon,
+        questions: [
+          'Kan jag se din CV?',
+          'Vad gör dig värdefull ute på site?',
+          'Var arbetar du nu?',
+          'Varför ska man anlita dig?',
+          'Vad är din professionella bakgrund inom automation och service?',
+        ],
+      },
+      {
+        id: 'projects',
+        name: 'Projekt',
+        icon: CodeIcon,
+        questions: [
+          'Berätta om ditt arbete med ABB-robotar.',
+          'Berätta om din erfarenhet av maskinvision.',
+          'Vad har du gjort med PLC- och I/O-felsökning?',
+          'Kan du förklara ett tekniskt problem du löste i produktion?',
+        ],
+      },
+      {
+        id: 'skills',
+        name: 'Färdigheter',
+        icon: GraduationCapIcon,
+        questions: [
+          'Vilka är dina starkaste tekniska färdigheter?',
+          'Vilka verktyg och system arbetar du med?',
+          'Har du erfarenhet av ABB IRC5 och RobotStudio?',
+          'Arbetar du med Cognex VisionPro och EA Vision Studio?',
+        ],
+      },
+      {
+        id: 'troubleshooting',
+        name: 'Felsökning',
+        icon: Wrench,
+        questions: [
+          'Hur felsöker du ett driftstopp steg för steg?',
+          'Hur hittar du den verkliga rotorsaken till ett tekniskt fel?',
+          'Hur kontrollerar du PLC-signaler, I/O, givare och ställdon?',
+          'Hur hanterar du ABB-robot-, visionsystem- eller kommunikationslarm?',
+        ],
+      },
+      {
+        id: 'contact',
+        name: 'Kontakt & framtid',
+        icon: MailIcon,
+        questions: [
+          'Hur kan jag nå dig?',
+          'Vilken typ av uppdrag skulle du tacka ja till direkt?',
+          'Var finns du?',
+          'Är du öppen för automation- och serviceteknikroller?',
+        ],
+      },
+    ],
+  },
+  en: {
+    hide: 'Hide quick questions',
+    show: 'Show quick questions',
+    quickLabels: {
+      Me: 'Me',
+      Projects: 'Projects',
+      Skills: 'Skills',
+      Troubleshooting: 'Troubleshooting',
+      Contact: 'Contact',
+    },
+    quickQuestions: {
+      Me: 'Who are you? Tell me about your background as a Service Engineer and Automation Technician.',
+      Projects:
+        'Tell me about your field projects in industrial automation, ABB robots, PLC/I/O, machine vision, and electrical service.',
+      Skills: 'What are your main technical skills and tools?',
+      Troubleshooting:
+        'How do you troubleshoot production stops and technical faults step by step?',
+      Contact:
+        'How can I contact you, and what type of automation or service projects are you interested in?',
+    },
+    specialQuestions: [
+      'How do you troubleshoot a production stop step by step?',
+      'Can I see your resume?',
+      'What industrial projects are you most proud of?',
+      'What are your strongest technical skills?',
+      'How can I reach you?',
+    ],
+    categories: [
+      {
+        id: 'about',
+        name: 'About Ibbo',
+        icon: UserSearch,
+        questions: [
+          'Who are you?',
+          'What is your current role?',
+          'What kind of work do you do as a Service Engineer?',
+          'What motivates you in industrial automation?',
+        ],
+      },
+      {
+        id: 'professional',
+        name: 'Professional',
+        icon: BriefcaseIcon,
+        questions: [
+          'Can I see your resume?',
+          'What makes you valuable on site?',
+          'Where are you working now?',
+          'Why should I hire you?',
+          "What's your professional background in automation and service?",
+        ],
+      },
+      {
+        id: 'projects',
+        name: 'Projects',
+        icon: CodeIcon,
+        questions: [
+          'Tell me about your work with ABB robots.',
+          'Tell me about your machine vision experience.',
+          'What have you done with PLC and I/O troubleshooting?',
+          'Can you explain one technical problem you solved in production?',
+        ],
+      },
+      {
+        id: 'skills',
+        name: 'Skills',
+        icon: GraduationCapIcon,
+        questions: [
+          'What are your strongest technical skills?',
+          'Which tools and systems do you work with?',
+          'Do you have experience with ABB IRC5 and RobotStudio?',
+          'Do you work with Cognex VisionPro and EA Vision Studio?',
+        ],
+      },
+      {
+        id: 'troubleshooting',
+        name: 'Troubleshooting',
+        icon: Wrench,
+        questions: [
+          'How do you troubleshoot a production stop step by step?',
+          'How do you find the real root cause of a technical fault?',
+          'How do you check PLC signals, I/O, sensors, and actuators?',
+          'How do you handle ABB robot, vision system, or communication alarms?',
+        ],
+      },
+      {
+        id: 'contact',
+        name: 'Contact & Future',
+        icon: MailIcon,
+        questions: [
+          'How can I reach you?',
+          "What kind of project would make you say 'yes' immediately?",
+          'Where are you located?',
+          'Are you open to automation and service engineering opportunities?',
+        ],
+      },
+    ],
+  },
 } as const;
 
 const questionConfig = [
@@ -54,90 +243,10 @@ const questionConfig = [
   { key: 'Contact', color: '#C19433', icon: UserRoundSearch },
 ] as const;
 
-const specialQuestions = [
-  'How do you troubleshoot a production stop step by step?',
-  'Can I see your resume?',
-  'What industrial projects are you most proud of?',
-  'What are your strongest technical skills?',
-  'How can I reach you?',
-];
-
-const questionsByCategory = [
-  {
-    id: 'about',
-    name: 'About Ibbo',
-    icon: UserSearch,
-    questions: [
-      'Who are you?',
-      'What is your current role?',
-      'What kind of work do you do as a Service Engineer?',
-      'What motivates you in industrial automation?',
-    ],
-  },
-  {
-    id: 'professional',
-    name: 'Professional',
-    icon: BriefcaseIcon,
-    questions: [
-      'Can I see your resume?',
-      'What makes you valuable on site?',
-      'Where are you working now?',
-      'Why should I hire you?',
-      "What's your professional background in automation and service?",
-    ],
-  },
-  {
-    id: 'projects',
-    name: 'Projects',
-    icon: CodeIcon,
-    questions: [
-      'Tell me about your work with ABB robots.',
-      'Tell me about your machine vision experience.',
-      'What have you done with PLC and I/O troubleshooting?',
-      'Can you explain one technical problem you solved in production?',
-    ],
-  },
-  {
-    id: 'skills',
-    name: 'Skills',
-    icon: GraduationCapIcon,
-    questions: [
-      'What are your strongest technical skills?',
-      'Which tools and systems do you work with?',
-      'Do you have experience with ABB IRC5 and RobotStudio?',
-      'Do you work with Cognex VisionPro and EA Vision Studio?',
-    ],
-  },
-  {
-    id: 'troubleshooting',
-    name: 'Troubleshooting',
-    icon: Wrench,
-    questions: [
-      'How do you troubleshoot a production stop step by step?',
-      'How do you find the real root cause of a technical fault?',
-      'How do you check PLC signals, I/O, sensors, and actuators?',
-      'How do you handle ABB robot, vision system, or communication alarms?',
-    ],
-  },
-  {
-    id: 'contact',
-    name: 'Contact & Future',
-    icon: MailIcon,
-    questions: [
-      'How can I reach you?',
-      "What kind of project would make you say 'yes' immediately?",
-      'Where are you located?',
-      'Are you open to automation and service engineering opportunities?',
-    ],
-  },
-];
-
 const AnimatedChevron = () => {
   return (
     <motion.div
-      animate={{
-        y: [0, -4, 0],
-      }}
+      animate={{ y: [0, -4, 0] }}
       transition={{
         duration: 1.5,
         ease: 'easeInOut',
@@ -152,15 +261,17 @@ const AnimatedChevron = () => {
 };
 
 export default function HelperBoost({
+  language = 'sv',
   submitQuery,
   hasReachedLimit = false,
 }: HelperBoostProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [open, setOpen] = useState(false);
+  const t = content[language];
 
-  const handleQuestionClick = (questionKey: keyof typeof questions) => {
+  const handleQuestionClick = (questionKey: keyof typeof t.quickQuestions) => {
     if (submitQuery) {
-      submitQuery(questions[questionKey]);
+      submitQuery(t.quickQuestions[questionKey]);
     }
   };
 
@@ -168,7 +279,6 @@ export default function HelperBoost({
     if (submitQuery) {
       submitQuery(question);
     }
-
     setOpen(false);
   };
 
@@ -191,12 +301,12 @@ export default function HelperBoost({
             {isVisible ? (
               <>
                 <ChevronDown size={14} />
-                Hide quick questions
+                {t.hide}
               </>
             ) : (
               <>
                 <ChevronUp size={14} />
-                Show quick questions
+                {t.show}
               </>
             )}
           </button>
@@ -222,7 +332,9 @@ export default function HelperBoost({
                 >
                   <div className="flex items-center gap-3 text-gray-700">
                     <Icon size={18} strokeWidth={2} color={color} />
-                    <span className="text-sm font-medium">{key}</span>
+                    <span className="text-sm font-medium">
+                      {t.quickLabels[key]}
+                    </span>
                   </div>
                 </Button>
               ))}
@@ -276,12 +388,13 @@ export default function HelperBoost({
 
               <div className="mx-auto w-full max-w-md">
                 <div className="space-y-8 pb-16">
-                  {questionsByCategory.map((category) => (
+                  {t.categories.map((category) => (
                     <CategorySection
                       key={category.id}
                       name={category.name}
                       Icon={category.icon}
                       questions={category.questions}
+                      specialQuestions={t.specialQuestions}
                       onQuestionClick={handleDrawerQuestionClick}
                     />
                   ))}
@@ -298,7 +411,8 @@ export default function HelperBoost({
 interface CategorySectionProps {
   name: string;
   Icon: ElementType;
-  questions: string[];
+  questions: readonly string[];
+  specialQuestions: readonly string[];
   onQuestionClick: (question: string) => void;
 }
 
@@ -306,6 +420,7 @@ function CategorySection({
   name,
   Icon,
   questions,
+  specialQuestions,
   onQuestionClick,
 }: CategorySectionProps) {
   return (
@@ -354,9 +469,7 @@ function QuestionItem({ question, onClick, isSpecial }: QuestionItemProps) {
       onClick={onClick}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      whileHover={{
-        backgroundColor: isSpecial ? undefined : '#F0F0F2',
-      }}
+      whileHover={{ backgroundColor: isSpecial ? undefined : '#F0F0F2' }}
       whileTap={{
         scale: 0.98,
         backgroundColor: isSpecial ? undefined : '#E8E8EA',
@@ -371,11 +484,7 @@ function QuestionItem({ question, onClick, isSpecial }: QuestionItemProps) {
 
       <motion.div
         animate={{ x: isHovered ? 4 : 0 }}
-        transition={{
-          type: 'spring',
-          stiffness: 400,
-          damping: 25,
-        }}
+        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       >
         <ChevronRight
           className={cn(
