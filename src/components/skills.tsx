@@ -20,35 +20,36 @@ function getStoredLanguage(): Language {
 const content = {
   sv: {
     title: 'Färdigheter & teknisk erfarenhet',
+    subtitle: 'En praktisk översikt över mina viktigaste teknikområden i fältservice och automation.',
     sections: [
       {
         category: 'Industriell automation & PLC',
         iconType: 'cpu',
         skills: [
           'Felsökning av produktions- och förpackningslinjer',
-          'PLC-diagnostik och förståelse för sekvenslogik (Siemens / Codesys)',
+          'PLC-diagnostik och sekvenslogik (Siemens / Codesys)',
           'Siemens TIA Portal (grund till medelnivå)',
           'Codesys / SoMachine (grundläggande felsökning)',
-          'HMI / SCADA-grunder (larm, signaler, idrifttagning)',
+          'HMI / SCADA-grunder: larm, signaler, idrifttagning',
           'Givare och I/O-diagnostik (PNP/NPN, analog/digital)',
-          'Frekvensomriktare och drivsystem (grundparametrar och felsökning)',
-          'Serviceflöde: felisolering, rotorsaksanalys och rapportering',
+          'Frekvensomriktare och drivsystem',
+          'Felisolering, rotorsaksanalys och rapportering',
         ],
-        color: 'bg-blue-50 text-blue-600 border border-blue-200',
+        color: 'bg-blue-50 text-blue-700 border border-blue-200',
       },
       {
         category: 'Robotik & rörelsestyrning',
         iconType: 'code',
         skills: [
           'ABB-robotar (IRC5) – service och felsökning',
-          'SafeMove-grunder (vanliga fel och kontroller)',
+          'SafeMove-grunder och vanliga kontroller',
           'Verifiering av TCP, tooldata och workobject',
-          'Felsökning av kollisioner och Motion Supervision',
+          'Kollisioner och Motion Supervision',
           'Kalibrering och referenskontroller',
-          'Vision-offsets och plockgränser (grundförståelse)',
+          'Vision-offsets och plockgränser',
           'Mekanisk linjering: fixturer, chuckar, axlar och vridbord',
         ],
-        color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
+        color: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
       },
       {
         category: 'El & installation',
@@ -58,11 +59,11 @@ const content = {
           'Läsa och tolka elscheman',
           'Skåparbete: kablage, plintar, reläer och kontaktorer',
           'El-felsökning: glapp, kabelbrott och intermittenta fel',
-          'Mätning och verifiering med multimeter och grundkontroller',
+          'Mätning och verifiering med multimeter',
           'Grundläggande termografi och riskbedömning',
           'Industriuttag, kapslingar och kablage i verkstad och på site',
         ],
-        color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
+        color: 'bg-indigo-50 text-indigo-700 border border-indigo-200',
       },
       {
         category: 'Verktyg, dokumentation & IT',
@@ -71,10 +72,10 @@ const content = {
           'Windows-felsökning och grundläggande Linux',
           'Teknisk dokumentation och servicerapportering',
           'Strukturerade checklistor och överlämningsunderlag',
-          'Git (grund) för versionshantering av konfigurationer och projekt',
+          'Git (grund) för versionshantering',
           'Grundläggande webb/UI (HTML/CSS) för personliga projekt',
         ],
-        color: 'bg-purple-50 text-purple-600 border border-purple-200',
+        color: 'bg-purple-50 text-purple-700 border border-purple-200',
       },
       {
         category: 'Arbetssätt i fältservice',
@@ -88,41 +89,42 @@ const content = {
           'Säkerhetsfokus och disciplinerat arbetssätt',
           'Självständigt arbete med definierade uppgifter i fält',
         ],
-        color: 'bg-amber-50 text-amber-600 border border-amber-200',
+        color: 'bg-amber-50 text-amber-700 border border-amber-200',
       },
     ],
   },
   en: {
     title: 'Skills & Expertise',
+    subtitle: 'A practical overview of my main technical areas in field service and automation.',
     sections: [
       {
         category: 'Industrial Automation & PLC',
         iconType: 'cpu',
         skills: [
           'Troubleshooting production and packaging lines',
-          'PLC diagnostics and logic understanding (Siemens / Codesys)',
+          'PLC diagnostics and sequence logic (Siemens / Codesys)',
           'Siemens TIA Portal (basic to intermediate)',
-          'Codesys / SoMachine (basic troubleshooting)',
-          'HMI / SCADA basics (alarms, signals, commissioning)',
+          'Codesys / SoMachine basic troubleshooting',
+          'HMI / SCADA basics: alarms, signals, commissioning',
           'Sensors and I/O diagnostics (PNP/NPN, analog/digital)',
-          'Drives and frequency inverters (basic parameters and fault finding)',
-          'Field service workflows (fault isolation, root cause analysis, reporting)',
+          'Drives and frequency inverters',
+          'Fault isolation, root cause analysis and reporting',
         ],
-        color: 'bg-blue-50 text-blue-600 border border-blue-200',
+        color: 'bg-blue-50 text-blue-700 border border-blue-200',
       },
       {
         category: 'Robotics & Motion Control',
         iconType: 'code',
         skills: [
           'ABB robots (IRC5) — service and troubleshooting',
-          'SafeMove basics (common faults and checks)',
-          'TCP / tool data and workobject verification',
+          'SafeMove basics and common checks',
+          'TCP, tool data and workobject verification',
           'Collision and motion supervision troubleshooting',
           'Calibration and reference checks',
-          'Vision offsets / picking limits (basic understanding)',
-          'Mechanical alignment (fixtures, chucks, axes, turntables)',
+          'Vision offsets and picking limits',
+          'Mechanical alignment: fixtures, chucks, axes and turntables',
         ],
-        color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
+        color: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
       },
       {
         category: 'Electrical & Installation',
@@ -130,13 +132,13 @@ const content = {
         skills: [
           'Electrical installation with a safety-first mindset (SS 436 40 00)',
           'Reading and interpreting electrical schematics',
-          'Panel work: wiring, terminals, relays, contactors',
-          'Electrical fault finding: loose connections, cable breaks, intermittent faults',
-          'Measurement and verification (multimeter, basic checks)',
-          'Thermography (basic) and risk assessment thinking',
-          'Industrial outlets / enclosures / cabling (workshop and site work)',
+          'Panel work: wiring, terminals, relays and contactors',
+          'Electrical fault finding: loose connections, cable breaks and intermittent faults',
+          'Measurement and verification with multimeter',
+          'Basic thermography and risk assessment thinking',
+          'Industrial outlets, enclosures and cabling on site and in workshop',
         ],
-        color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
+        color: 'bg-indigo-50 text-indigo-700 border border-indigo-200',
       },
       {
         category: 'Tools, Documentation & IT',
@@ -145,24 +147,24 @@ const content = {
           'Windows troubleshooting and basic Linux',
           'Technical documentation and service reporting',
           'Structured checklists and handover notes',
-          'Git (basic) for versioning configs and projects',
+          'Git basics for versioning',
           'Basic web/UI (HTML/CSS) for personal projects',
         ],
-        color: 'bg-purple-50 text-purple-600 border border-purple-200',
+        color: 'bg-purple-50 text-purple-700 border border-purple-200',
       },
       {
-        category: 'Soft Skills (Field Service)',
+        category: 'Soft Skills in Field Service',
         iconType: 'users',
         skills: [
           'Structured troubleshooting under time pressure',
-          'Clear customer communication on-site',
+          'Clear customer communication on site',
           'Ownership and responsibility for assigned tasks',
-          'Teamwork with technicians, engineers, and suppliers',
-          'Learning agility (fast onboarding on new equipment)',
+          'Teamwork with technicians, engineers and suppliers',
+          'Fast onboarding on new equipment',
           'Safety-first mindset and disciplined work habits',
-          'Working independently on defined tasks in the field',
+          'Independent work on defined field tasks',
         ],
-        color: 'bg-amber-50 text-amber-600 border border-amber-200',
+        color: 'bg-amber-50 text-amber-700 border border-amber-200',
       },
     ],
   },
@@ -185,80 +187,71 @@ const Skills = () => {
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 14 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.19, 1, 0.22, 1] },
-    },
-  };
-
-  const badgeVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3, ease: 'easeOut' },
+      transition: { duration: 0.35, ease: 'easeOut' },
     },
   };
 
   return (
     <motion.div
-      initial={{ scale: 0.98, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-      className="mx-auto w-full max-w-5xl rounded-4xl"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
+      className="mx-auto w-full max-w-5xl"
     >
-      <Card className="w-full border-none px-0 pb-12 shadow-none">
-        <CardHeader className="px-0 pb-1">
-          <CardTitle className="text-primary px-0 text-4xl font-bold">
+      <Card className="w-full rounded-3xl border border-black/5 bg-white px-0 pb-8 shadow-sm">
+        <CardHeader className="px-5 pb-2 pt-6 sm:px-6">
+          <CardTitle className="text-primary text-2xl font-bold sm:text-3xl">
             {t.title}
           </CardTitle>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            {t.subtitle}
+          </p>
         </CardHeader>
 
-        <CardContent className="px-0">
+        <CardContent className="px-5 sm:px-6">
           <motion.div
-            className="space-y-8 px-0"
+            className="space-y-6"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             {t.sections.map((section, index) => (
-              <motion.div
+              <motion.section
                 key={index}
-                className="space-y-3 px-0"
+                className="rounded-2xl border border-black/5 bg-muted/20 p-4 sm:p-5"
                 variants={itemVariants}
               >
-                <div className="flex items-center gap-2">
-                  <SkillIcon iconType={section.iconType} />
-                  <h3 className="text-accent-foreground text-lg font-semibold">
+                <div className="mb-3 flex items-center gap-2">
+                  <div className="rounded-xl bg-white p-2 text-primary shadow-sm">
+                    <SkillIcon iconType={section.iconType} />
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground sm:text-lg">
                     {section.category}
                   </h3>
                 </div>
 
-                <motion.div
-                  className="flex flex-wrap gap-2"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
+                <div className="flex flex-wrap gap-2">
                   {section.skills.map((skill, idx) => (
-                    <motion.div
+                    <Badge
                       key={idx}
-                      variants={badgeVariants}
-                      whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
+                      className={cn(
+                        'rounded-full px-3 py-1.5 text-xs font-medium leading-relaxed sm:text-sm',
+                        section.color
+                      )}
                     >
-                      <Badge className={cn('px-3 py-1.5 font-normal', section.color)}>
-                        {skill}
-                      </Badge>
-                    </motion.div>
+                      {skill}
+                    </Badge>
                   ))}
-                </motion.div>
-              </motion.div>
+                </div>
+              </motion.section>
             ))}
           </motion.div>
         </CardContent>
