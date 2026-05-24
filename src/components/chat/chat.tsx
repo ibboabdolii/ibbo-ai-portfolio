@@ -293,14 +293,14 @@ const Chat = () => {
 
   return (
     <div className="relative h-screen overflow-hidden">
-      <div className="absolute top-6 right-8 z-50 flex items-center justify-center gap-2">
-        <div className="flex rounded-full border border-neutral-200 bg-white/80 p-1 text-xs font-semibold shadow-sm backdrop-blur-md">
+      <div className="absolute top-4 right-4 z-50 flex items-center justify-center gap-1.5 sm:top-6 sm:right-8 sm:gap-2">
+        <div className="flex rounded-full border border-neutral-200 bg-white/85 p-1 text-[11px] font-semibold shadow-sm backdrop-blur-md sm:text-xs">
           <button
             type="button"
             onClick={() => setPreferredLanguage('sv')}
-            className={`rounded-full px-3 py-1 transition ${
+            className={`rounded-full px-2.5 py-1 transition sm:px-3 ${
               language === 'sv'
-                ? 'bg-[#0171E3] text-white'
+                ? 'bg-[#0171E3] text-white shadow-sm'
                 : 'text-neutral-600 hover:text-neutral-900'
             }`}
             aria-label="Visa chatten på svenska"
@@ -310,9 +310,9 @@ const Chat = () => {
           <button
             type="button"
             onClick={() => setPreferredLanguage('en')}
-            className={`rounded-full px-3 py-1 transition ${
+            className={`rounded-full px-2.5 py-1 transition sm:px-3 ${
               language === 'en'
-                ? 'bg-[#0171E3] text-white'
+                ? 'bg-[#0171E3] text-white shadow-sm'
                 : 'text-neutral-600 hover:text-neutral-900'
             }`}
             aria-label="Show chat in English"
@@ -323,8 +323,8 @@ const Chat = () => {
 
         <WelcomeModal
           trigger={
-            <div className="hover:bg-accent cursor-pointer rounded-2xl px-3 py-1.5">
-              <Info className="text-accent-foreground h-8" />
+            <div className="hover:bg-accent flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/85 shadow-sm backdrop-blur-md transition sm:h-10 sm:w-10">
+              <Info className="text-accent-foreground h-5 w-5 sm:h-6 sm:w-6" />
             </div>
           }
         />
