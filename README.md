@@ -34,10 +34,10 @@ Environment:
 
 ```env
 OPENAI_API_KEY=...
-OPENAI_MODEL=gpt-4o-mini
+OPENAI_MODEL=gpt-5.6-luna
 ```
 
-`OPENAI_MODEL` is configurable so a newer compatible model can be tested without changing source code.
+`OPENAI_MODEL` is configurable. The default is `gpt-5.6-luna`, chosen for a cost-sensitive public portfolio workload; a different compatible model can be tested without changing source code.
 
 ## Chat safeguards
 
