@@ -34,10 +34,10 @@ Environment:
 
 ```env
 OPENAI_API_KEY=...
-OPENAI_MODEL=gpt-5.6-luna
+OPENAI_MODEL=gpt-4o-mini
 ```
 
-`OPENAI_MODEL` is configurable. The default is `gpt-5.6-luna`, chosen for a cost-sensitive public portfolio workload; a different compatible model can be tested without changing source code.
+`OPENAI_MODEL` is configurable. The production-safe default is `gpt-4o-mini` while this app uses the current Chat Completions + function-tools integration. Migrate the OpenAI provider to the Responses API before switching the tool-enabled chat back to GPT-5.6 reasoning models.
 
 ## Chat safeguards
 

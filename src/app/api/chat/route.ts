@@ -127,7 +127,7 @@ STRICT PORTFOLIO RULES:
       getExperience,
     };
 
-    const modelId = process.env.OPENAI_MODEL?.trim() || 'gpt-5.6-luna';
+    const modelId = process.env.OPENAI_MODEL?.trim() || 'gpt-4o-mini';
 
     const result = streamText({
       model: openai(modelId),
