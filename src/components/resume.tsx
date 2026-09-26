@@ -1,18 +1,9 @@
 'use client';
 
+import { portfolioCv } from '@/data/portfolio';
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import { motion } from 'framer-motion';
 import { Download, FileText, Languages } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-type Language = 'sv' | 'en';
-
-const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
-
-function getStoredLanguage(): Language {
-  if (typeof window === 'undefined') return 'sv';
-  const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  return storedLanguage === 'en' ? 'en' : 'sv';
-}
 
 const content = {
   sv: {
@@ -39,12 +30,12 @@ const content = {
 
 const cvLinks = {
   sv: {
-    href: '/Ibbo_Abdoli_CV_2026_SV_Final.pdf',
-    filename: 'Ibbo_Abdoli_CV_2026_SV_Final.pdf',
+    href: portfolioCv.sv,
+    filename: portfolioCv.sv.split('/').pop() || 'Ibbo_Abdoli_CV_2026_SV_Final.pdf',
   },
   en: {
-    href: '/Ibbo_Abdoli_CV_2026_EN_Final.pdf',
-    filename: 'Ibbo_Abdoli_CV_2026_EN_Final.pdf',
+    href: portfolioCv.en,
+    filename: portfolioCv.en.split('/').pop() || 'Ibbo_Abdoli_CV_2026_EN_Final.pdf',
   },
 };
 
@@ -58,12 +49,8 @@ function downloadFile(href: string, filename: string) {
 }
 
 export function Resume() {
-  const [language, setLanguage] = useState<Language>('sv');
+  const language = usePortfolioLanguage();
   const t = content[language];
-
-  useEffect(() => {
-    setLanguage(getStoredLanguage());
-  }, []);
 
   return (
     <div className="mx-auto w-full py-6 font-sans">

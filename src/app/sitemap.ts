@@ -1,22 +1,33 @@
 import type { MetadataRoute } from 'next';
 
 const siteUrl = 'https://ai.ibboabdoli.com';
+const lastModified = new Date('2026-09-26T00:00:00Z');
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
   return [
     {
-      url: siteUrl,
+      url: `${siteUrl}/`,
       lastModified,
-      changeFrequency: 'weekly',
+      changeFrequency: 'monthly',
       priority: 1,
+      alternates: {
+        languages: {
+          sv: `${siteUrl}/`,
+          en: `${siteUrl}/en`,
+        },
+      },
     },
     {
-      url: siteUrl + '/chat',
+      url: `${siteUrl}/en`,
       lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+      alternates: {
+        languages: {
+          sv: `${siteUrl}/`,
+          en: `${siteUrl}/en`,
+        },
+      },
     },
   ];
 }

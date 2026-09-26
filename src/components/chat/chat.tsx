@@ -16,6 +16,7 @@ import {
   ChatBubbleMessage,
 } from '@/components/ui/chat/chat-bubble';
 import WelcomeModal from '@/components/welcome-modal';
+import { announcePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import { Info } from 'lucide-react';
 import HelperBoost from './HelperBoost';
 
@@ -128,6 +129,7 @@ const Chat = () => {
     isLoading,
     stop,
     setInput,
+    setMessages,
     reload,
     addToolResult,
     append,
@@ -201,6 +203,12 @@ const Chat = () => {
     return result;
   }, [messages]);
 
+  useEffect(() => {
+    if (!isLoading && messages.length > 12) {
+      setMessages(messages.slice(-10));
+    }
+  }, [isLoading, messages, setMessages]);
+
   const isToolInProgress = messages.some(
     (m: any) =>
       m.role === 'assistant' &&
@@ -223,7 +231,8 @@ const Chat = () => {
 
   const setPreferredLanguage = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
-    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    announcePortfolioLanguage(nextLanguage);
+    document.documentElement.lang = nextLanguage;
 
     const params = new URLSearchParams(window.location.search);
     params.set('lang', nextLanguage);
@@ -239,7 +248,8 @@ const Chat = () => {
 
     if (nextLanguage === 'sv' || nextLanguage === 'en') {
       setLanguage(nextLanguage);
-      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+      announcePortfolioLanguage(nextLanguage);
+      document.documentElement.lang = nextLanguage;
     }
   }, [langParam]);
 
@@ -429,6 +439,7 @@ const Chat = () => {
               stop={handleStop}
               isToolInProgress={isToolInProgress}
               disabled={false}
+              language={language}
             />
           </div>
         </div>

@@ -1,167 +1,75 @@
 'use client';
 
-import React, { useState } from 'react';
+import { portfolioContact } from '@/data/portfolio';
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import { ChevronRight, Copy, Mail } from 'lucide-react';
-
-const PERSONAL_EMAIL = 'ibbo.abdoli@gmail.com';
+import { useState } from 'react';
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
+  const language = usePortfolioLanguage();
 
-  const contactInfo = {
-    name: 'Ibbo Abdoli',
-    email: PERSONAL_EMAIL,
-    handle: '@ibboabdoli',
-    socials: [
-      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ibbo-abdoli' },
-      { name: 'Website', url: 'https://ibboabdoli.com' },
-      { name: 'GitHub', url: 'https://github.com/ibboabdolii' },
-    ],
-  };
-
-  const openLink = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
-  const openWithFallback = (appUrl: string, fallbackUrl: string) => {
-    window.location.href = appUrl;
-
-    window.setTimeout(() => {
-      if (!document.hidden) {
-        openLink(fallbackUrl);
-      }
-    }, 900);
-  };
-
-  const openDefaultEmailApp = () => {
-    window.location.href = `mailto:${PERSONAL_EMAIL}`;
-  };
-
-  const openGmailCompose = () => {
-    const to = encodeURIComponent(PERSONAL_EMAIL);
-    openWithFallback(
-      `googlegmail://co?to=${to}`,
-      `https://mail.google.com/mail/?view=cm&fs=1&to=${to}`
-    );
-  };
-
-  const openOutlookCompose = () => {
-    const to = encodeURIComponent(PERSONAL_EMAIL);
-    openWithFallback(
-      `ms-outlook://compose?to=${to}`,
-      `https://outlook.office.com/mail/deeplink/compose?to=${to}`
-    );
-  };
-
+  const openLink = (url: string) => window.open(url, '_blank', 'noopener,noreferrer');
+  const openDefaultEmailApp = () => { window.location.href = `mailto:${portfolioContact.email}`; };
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(PERSONAL_EMAIL);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
+      await navigator.clipboard.writeText(portfolioContact.email);
     } catch {
-      const ta = document.createElement('textarea');
-      ta.value = PERSONAL_EMAIL;
-      document.body.appendChild(ta);
-      ta.select();
+      const textarea = document.createElement('textarea');
+      textarea.value = portfolioContact.email;
+      document.body.appendChild(textarea);
+      textarea.select();
       document.execCommand('copy');
-      document.body.removeChild(ta);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
+      document.body.removeChild(textarea);
     }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
   };
+
+  const socials = [
+    { name: 'LinkedIn', url: portfolioContact.linkedin },
+    { name: language === 'sv' ? 'Webbplats' : 'Website', url: portfolioContact.website },
+    { name: 'GitHub', url: portfolioContact.github },
+    { name: language === 'sv' ? 'Boka 15 min' : 'Book 15 min', url: portfolioContact.booking15 },
+    { name: language === 'sv' ? 'Boka 30 min' : 'Book 30 min', url: portfolioContact.booking30 },
+  ];
 
   return (
     <div className="mx-auto mt-8 w-full">
       <div className="bg-accent w-full overflow-hidden rounded-3xl px-6 py-8 font-sans sm:px-10 md:px-16 md:py-12">
-        {/* Header */}
-        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-            Contact
-          </h2>
-          <span className="mt-2 sm:mt-0">{contactInfo.handle}</span>
+        <div className="mb-7">
+          <h2 className="text-foreground text-3xl font-semibold md:text-4xl">{language === 'sv' ? 'Kontakt' : 'Contact'}</h2>
+          <p className="text-muted-foreground mt-2 max-w-2xl text-sm leading-relaxed">
+            {language === 'sv'
+              ? 'För frågor om automation, service, robot/vision-felsökning eller tekniskt samarbete.'
+              : 'For automation, service, robot/vision troubleshooting, or technical collaboration.'}
+          </p>
         </div>
 
-        {/* Email + Actions + Socials */}
-        <div className="mt-8 flex flex-col gap-4 md:mt-10">
-          {/* Email row */}
+        <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <button
-              type="button"
-              onClick={openDefaultEmailApp}
-              className="group inline-flex cursor-pointer items-center gap-2 text-left"
-              title="Open default email app"
-            >
+            <button type="button" onClick={openDefaultEmailApp} className="group inline-flex cursor-pointer items-center gap-2 text-left">
               <Mail className="h-4 w-4 text-blue-500" />
-              <span className="text-base font-medium text-blue-500 hover:underline sm:text-lg">
-                {PERSONAL_EMAIL}
-              </span>
-              <ChevronRight className="h-5 w-5 text-blue-500 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="text-base font-medium text-blue-500 hover:underline sm:text-lg">{portfolioContact.email}</span>
+              <ChevronRight className="h-5 w-5 text-blue-500 transition-transform group-hover:translate-x-1" />
             </button>
-
-            {/* Actions */}
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={openDefaultEmailApp}
-                className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
-                title="Open default email app"
-              >
-                Email app
-              </button>
-
-              <button
-                type="button"
-                onClick={openGmailCompose}
-                className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
-                title="Open Gmail app, fallback to Gmail Web"
-              >
-                Gmail
-              </button>
-
-              <button
-                type="button"
-                onClick={openOutlookCompose}
-                className="rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
-                title="Open Outlook app, fallback to Outlook Web"
-              >
-                Outlook
-              </button>
-
-              <button
-                type="button"
-                onClick={copyEmail}
-                className="inline-flex items-center gap-2 rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/15"
-                title="Copy email"
-              >
-                <Copy className="h-4 w-4" />
-                Copy
-              </button>
-            </div>
+            <button type="button" onClick={copyEmail} className="inline-flex w-fit items-center gap-2 rounded-xl bg-black/10 px-3 py-2 text-sm hover:bg-black/15">
+              <Copy className="h-4 w-4" />
+              {language === 'sv' ? 'Kopiera e-post' : 'Copy email'}
+            </button>
           </div>
 
-          <p className="text-xs text-muted-foreground">
-            Use <b>Email app</b> for the default mail app. Gmail and Outlook try the app first and fall back to web if the app is not available.
-          </p>
-
-          {/* Social Links */}
-          <div className="flex flex-wrap gap-x-6 gap-y-5 sm:gap-x-8">
-            {contactInfo.socials.map((social) => (
-              <button
-                key={social.name}
-                type="button"
-                className="text-muted-foreground hover:text-foreground cursor-pointer text-sm transition-colors"
-                onClick={() => openLink(social.url)}
-                title={social.name}
-              >
+          <div className="flex flex-wrap gap-x-6 gap-y-4 pt-2">
+            {socials.map((social) => (
+              <button key={social.url} type="button" className="text-muted-foreground hover:text-foreground cursor-pointer text-sm transition-colors" onClick={() => openLink(social.url)}>
                 {social.name}
               </button>
             ))}
           </div>
 
-          {/* Toast */}
           {copied && (
             <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-2xl bg-black px-4 py-2 text-sm text-white shadow-lg">
-              Email copied ✅
+              {language === 'sv' ? 'E-post kopierad ✓' : 'Email copied ✓'}
             </div>
           )}
         </div>

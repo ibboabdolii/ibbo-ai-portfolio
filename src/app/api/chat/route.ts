@@ -13,6 +13,18 @@ import { getSports } from './tools/getSport';
 
 export const maxDuration = 30;
 
+const MAX_BODY_BYTES = 128_000;
+const MAX_INCOMING_MESSAGES = 100;
+const MAX_CONTEXT_MESSAGES = 12;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_REQUESTS = 18;
+
+type RateEntry = { count: number; resetAt: number };
+type RateGlobal = typeof globalThis & { __ibboPortfolioRateLimit?: Map<string, RateEntry> };
+
+const rateStore = (globalThis as RateGlobal).__ibboPortfolioRateLimit ?? new Map<string, RateEntry>();
+(globalThis as RateGlobal).__ibboPortfolioRateLimit = rateStore;
+
 function errorHandler(error: unknown) {
   if (error == null) return 'Unknown error';
   if (typeof error === 'string') return error;
@@ -20,29 +32,89 @@ function errorHandler(error: unknown) {
   return JSON.stringify(error);
 }
 
+function clientKey(req: Request) {
+  return (
+    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    req.headers.get('x-real-ip') ||
+    'unknown'
+  );
+}
+
+function rateLimit(req: Request) {
+  const key = clientKey(req);
+  const now = Date.now();
+  const current = rateStore.get(key);
+
+  if (!current || current.resetAt <= now) {
+    rateStore.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true, retryAfter: 0 };
+  }
+
+  if (current.count >= RATE_LIMIT_REQUESTS) {
+    return { allowed: false, retryAfter: Math.max(1, Math.ceil((current.resetAt - now) / 1000)) };
+  }
+
+  current.count += 1;
+  return { allowed: true, retryAfter: 0 };
+}
+
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
+    const limit = rateLimit(req);
+    if (!limit.allowed) {
+      return new Response('Too many requests. Please try again shortly.', {
+        status: 429,
+        headers: { 'Retry-After': String(limit.retryAfter) },
+      });
+    }
+
+    const declaredLength = Number(req.headers.get('content-length') || '0');
+    if (declaredLength > MAX_BODY_BYTES) {
+      return new Response('Request too large.', { status: 413 });
+    }
+
+    const rawBody = await req.text();
+    if (new TextEncoder().encode(rawBody).byteLength > MAX_BODY_BYTES) {
+      return new Response('Request too large.', { status: 413 });
+    }
+
+    const body = JSON.parse(rawBody);
+    const messages = body?.messages;
+    if (
+      !Array.isArray(messages) ||
+      messages.length === 0 ||
+      messages.length > MAX_INCOMING_MESSAGES
+    ) {
+      return new Response('Invalid chat request.', { status: 400 });
+    }
+
+    const validRoles = new Set(['user', 'assistant']);
+    const hasInvalidMessage = messages.some(
+      (message: unknown) =>
+        typeof message !== 'object' ||
+        message === null ||
+        !validRoles.has(String((message as { role?: unknown }).role))
+    );
+
+    if (hasInvalidMessage) {
+      return new Response('Unsupported chat message role.', { status: 400 });
+    }
+
+    const contextMessages = messages.slice(-MAX_CONTEXT_MESSAGES);
 
     const PORTFOLIO_GUARD = {
       role: 'system' as const,
       content: `
-You are the assistant for Ibbo Abdoli's personal portfolio website.
-
-STRICT RULES:
-- Stay focused on Ibbo's portfolio, automation work, service experience, projects, skills, troubleshooting approach, resume, and contact details.
-- Do not invent exact years, certifications, private information, or confidential customer details.
-- Keep answers practical, concise, and realistic.
-- Avoid inflated claims such as "expert", "guru", "world-class", or "best".
-- If asked about skills, use getSkills when useful.
-- If asked about projects or cases, use getProjects when useful.
-- If asked about contact or availability, use getContact.
-- If asked about resume or CV, use getResume.
+STRICT PORTFOLIO RULES:
+- Use the portfolio tools as source of truth for Ibbo's projects, skills, experience, CV, and contact details.
+- Never invent customer identities behind anonymized cases, private information, credentials, exact production metrics, or unverified outcomes.
+- Keep answers practical and concise.
+- Do not claim unresolved or in-test work was fully solved.
 `,
     };
 
-    messages.unshift(SYSTEM_PROMPT);
-    messages.unshift(PORTFOLIO_GUARD);
+    contextMessages.unshift(SYSTEM_PROMPT);
+    contextMessages.unshift(PORTFOLIO_GUARD);
 
     const tools = {
       getProjects,
@@ -55,19 +127,19 @@ STRICT RULES:
       getExperience,
     };
 
+    const modelId = process.env.OPENAI_MODEL?.trim() || 'gpt-5.6-luna';
+
     const result = streamText({
-      model: openai('gpt-4o-mini'),
-      messages,
+      model: openai(modelId),
+      messages: contextMessages,
       tools,
       toolCallStreaming: true,
       maxSteps: 3,
     });
 
-    return result.toDataStreamResponse({
-      getErrorMessage: errorHandler,
-    });
+    return result.toDataStreamResponse({ getErrorMessage: errorHandler });
   } catch (err) {
-    const errorMessage = errorHandler(err);
-    return new Response(errorMessage, { status: 500 });
+    console.error('Portfolio chat request failed', err);
+    return new Response('Unable to process this chat request.', { status: 500 });
   }
 }
