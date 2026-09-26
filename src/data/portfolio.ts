@@ -10,6 +10,7 @@ export type PortfolioProject = {
   category: LocalizedText;
   title: LocalizedText;
   period: string;
+  track: 'featured' | 'field' | 'personal' | 'lab';
   summary: LocalizedText;
   problem: LocalizedText;
   diagnosis: LocalizedText;
@@ -125,6 +126,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: { sv: 'PLC / Seriell kommunikation', en: 'PLC / Serial Communication' },
     title: { sv: 'Poolrobot V2000 – gyro & seriell kommunikation', en: 'Pool Robot V2000 – Gyro & Serial Communication' },
     period: '2026',
+    track: 'featured',
     summary: {
       sv: 'Stegvis integration av gyrodata i en PLC-baserad poolrobot med seriell kommunikation, parserlogik, målriktningshantering och testpunkter.',
       en: 'Step-by-step integration of gyro data into a PLC-based pool robot using serial communication, parser logic, target heading handling, and staged test checkpoints.',
@@ -150,37 +152,42 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     id: 'robot-pallet-clearance',
-    category: { sv: 'ABB Robot / RobotStudio', en: 'ABB Robot / RobotStudio' },
-    title: { sv: 'Robotcell – pallclearance & utgångsbana', en: 'Robot Cell – Pallet Clearance & Exit Path' },
+    category: { sv: 'ABB Robot / SafeMove', en: 'ABB Robot / SafeMove' },
+    title: { sv: 'ABB-robot – SafeMove, rörelse & banfelsökning', en: 'ABB Robot – SafeMove, Motion & Path Troubleshooting' },
     period: '2026',
+    track: 'featured',
     summary: {
-      sv: 'Felsökning av en ABB-robot som kunde komma för nära pall eller struktur vid utgång efter plock, särskilt i vissa pallpositioner.',
-      en: 'Troubleshooting an ABB robot that could run too close to a pallet or surrounding structure when exiting after a pick, especially in specific pallet positions.',
+      sv: 'Produktionsnära felsökning av en ABB-robotcell med säkerhetsstopp och rörelselarm där robotens program, rörelsebana och SafeMove-villkor behövde analyseras tillsammans.',
+      en: 'Production troubleshooting of an ABB robot cell with safety stops and motion alarms where robot logic, path behaviour, and SafeMove conditions had to be analysed together.',
     },
     problem: {
-      sv: 'Rörelsen efter plock hade otillräcklig marginal i vissa lägen och kunde trigga Motion Supervision eller fysisk risk mot pall/robotstruktur.',
-      en: 'The post-pick movement had insufficient clearance in some positions and could trigger Motion Supervision or create physical risk around the pallet/robot structure.',
+      sv: 'Robotcellen fick återkommande säkerhetsstopp och rörelselarm som behövde skiljas från PLC-villkor och normala sekvensstopp.',
+      en: 'The robot cell had recurring safety stops and motion alarms that needed to be separated from PLC conditions and normal sequence stops.',
     },
     diagnosis: {
-      sv: 'Backup, RAPID-rörelser, via-punkter, tool-relativa förflyttningar och faktisk robotorientering jämfördes med den observerade felbilden.',
-      en: 'Backups, RAPID movements, via points, tool-relative moves, and actual robot orientation were compared with the observed fault behaviour.',
+      sv: 'Eventloggar, motion pointer, RAPID-program och robotens rörelseförlopp kontrollerades steg för steg för att hitta var stoppet uppstod.',
+      en: 'Event logs, motion pointer, RAPID logic, and the robot motion sequence were checked step by step to locate where the stop occurred.',
     },
     action: {
-      sv: 'En kontrollerad justering av utgångsrörelsen förbereddes med tydlig före/efter-backup och fokus på att öka clearance utan att ändra övrig sekvenslogik.',
-      en: 'A controlled exit-path adjustment was prepared with clear before/after backups, increasing clearance without changing unrelated sequence logic.',
+      sv: 'Kontrollerade ändringar gjordes i robotens rörelse och väg med fokus på att påverka endast den berörda delen av sekvensen.',
+      en: 'Controlled changes were made to the robot movement and path, focusing only on the affected part of the sequence.',
     },
     verification: {
-      sv: 'Ändringen verifierades mot backup och programstruktur före kontrollerad testkörning i produktion.',
-      en: 'The change was verified against the backup and program structure before controlled production testing.',
+      sv: 'Vid test på plats kom inte samma SafeMove-larm tillbaka och roboten kunde fortsätta till nästa vänteläge mot PLC.',
+      en: 'During the onsite test, the same SafeMove alarm did not return and the robot continued to the next PLC waiting state.',
     },
-    technologies: ['ABB IRC5', 'RobotStudio', 'RAPID', 'Motion Supervision', 'Tool-relative motion', 'Backup comparison'],
+    technologies: ['ABB IRC5', 'RAPID', 'SafeMove', 'PLC signals', 'Event logs', 'Motion diagnostics'],
     visual: 'robot',
+    links: [
+      { name: { sv: 'LinkedIn – ABB-case & offentlig projekthistorik', en: 'LinkedIn – ABB case & public project history' }, url: 'https://www.linkedin.com/in/ibbo-abdoli/' },
+    ],
   },
   {
     id: 'vision-datamatrix-glue',
     category: { sv: 'Maskinvision', en: 'Machine Vision' },
     title: { sv: 'Robotcell – DataMatrix & liminspektion', en: 'Robot Cell – DataMatrix & Adhesive Inspection' },
     period: '2026',
+    track: 'featured',
     summary: {
       sv: 'Produktionsnära felsökning av kameraflöde, recept, läsning och offset i en robotcell med flera GigE/PoE-kameror.',
       en: 'Production troubleshooting of camera flow, recipes, reading, and offsets in a robot cell using multiple GigE/PoE cameras.',
@@ -203,12 +210,16 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     technologies: ['EA Vision Studio', 'Cognex VisionPro', 'Basler GigE/PoE', 'ABB IRC5', 'DataMatrix', 'PLC signals'],
     visual: 'vision',
+    links: [
+      { name: { sv: 'LinkedIn – maskinvision i produktion', en: 'LinkedIn – machine vision in production' }, url: 'https://www.linkedin.com/posts/ibbo-abdoli_machinevision-eavs-abb-activity-7454920620259143681-x0Zq' },
+    ],
   },
   {
     id: 'abb-restart-safety',
     category: { sv: 'ABB Robot / Säkerhet', en: 'ABB Robot / Safety' },
     title: { sv: 'ABB-robotcell – restart, status & säkerhetsdiagnostik', en: 'ABB Robot Cell – Restart, Status & Safety Diagnostics' },
     period: '2026',
+    track: 'field',
     summary: {
       sv: 'Felsökning av robotstatus, stoppskäl, säkerhetssignaler och återstartssekvens i produktionsmiljö.',
       en: 'Troubleshooting robot status, stop reasons, safety signals, and restart sequences in a production environment.',
@@ -237,6 +248,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: { sv: 'Fältservice / El', en: 'Field Service / Electrical' },
     title: { sv: 'Produktionslinje – el, sensorer & driftstopp', en: 'Production Line – Electrical, Sensors & Downtime' },
     period: '2026',
+    track: 'field',
     summary: {
       sv: 'Praktisk service på produktionsutrustning med el-felsökning, givare, kablage, pneumatisk/elektrisk funktion och återstart.',
       en: 'Hands-on production support covering electrical troubleshooting, sensors, wiring, pneumatic/electrical functions, and restart verification.',
@@ -259,12 +271,16 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     technologies: ['Electrical schematics', 'Sensors', 'I/O', 'Motors', 'Safety circuits', 'Service reporting'],
     visual: 'service',
+    links: [
+      { name: { sv: 'LinkedIn – service & felsökningscase', en: 'LinkedIn – service & troubleshooting cases' }, url: 'https://www.linkedin.com/in/ibbo-abdoli/' },
+    ],
   },
   {
     id: 'laser-turntable',
     category: { sv: 'Commissioning / Integration', en: 'Commissioning / Integration' },
     title: { sv: 'Laserområde – vridbord, sensorer & mekanisk linjering', en: 'Laser Area – Turntable, Sensors & Mechanical Alignment' },
     period: '2025',
+    track: 'field',
     summary: {
       sv: 'Mekanisk och elektrisk integration runt ett skyddat laserområde med sensorflytt, montage, linjering och funktionsverifiering.',
       en: 'Mechanical and electrical integration around a protected laser area including sensor relocation, installation, alignment, and functional verification.',
@@ -289,10 +305,76 @@ export const portfolioProjects: PortfolioProject[] = [
     visual: 'service',
   },
   {
+    id: 'weber-zebra-communication',
+    category: { sv: 'Automation / Kommunikation', en: 'Automation / Communication' },
+    title: { sv: 'Weber & Zebra – kommunikationsfelsökning', en: 'Weber & Zebra – Communication Troubleshooting' },
+    period: '2026',
+    track: 'field',
+    summary: {
+      sv: 'Felsökning av återkommande kommunikationsproblem mellan etikettapplikator, skrivare och maskinstyrning i produktion.',
+      en: 'Troubleshooting recurring communication issues between a label applicator, printer, and machine control in production.',
+    },
+    problem: {
+      sv: 'Etikettering fungerade inte stabilt när signaler, timing eller konfiguration mellan delsystemen hamnade ur sekvens.',
+      en: 'Labelling became unstable when signals, timing, or configuration between the subsystems drifted out of sequence.',
+    },
+    diagnosis: {
+      sv: 'Signalväxling, timing, printer/applicator-inställningar och sekvenslogik kontrollerades tillsammans.',
+      en: 'Signal transitions, timing, printer/applicator settings, and sequence logic were checked together.',
+    },
+    action: {
+      sv: 'Kommunikationskedjan avgränsades stegvis för att identifiera vilka villkor som gjorde processen instabil.',
+      en: 'The communication chain was narrowed down step by step to identify the conditions making the process unstable.',
+    },
+    verification: {
+      sv: 'Funktionen verifierades genom kontrollerade produktionsnära tester efter justering av relevanta signal- och konfigurationspunkter.',
+      en: 'Function was verified through controlled production-oriented tests after adjusting the relevant signal and configuration points.',
+    },
+    technologies: ['Weber applicator', 'Zebra printer', 'PLC signals', 'Timing', 'Sequence logic'],
+    visual: 'service',
+    links: [
+      { name: { sv: 'LinkedIn – offentlig projektöversikt', en: 'LinkedIn – public project overview' }, url: 'https://www.linkedin.com/in/ibbo-abdoli/' },
+    ],
+  },
+  {
+    id: 'sorting-height-s7-1200',
+    category: { sv: 'Lärprojekt / PLC', en: 'Learning Project / PLC' },
+    title: { sv: 'Sorting by Height – Factory I/O & S7-1200', en: 'Sorting by Height – Factory I/O & S7-1200' },
+    period: '2026',
+    track: 'lab',
+    summary: {
+      sv: 'Ett tydligt lärprojekt för sensorbaserad sortering med Factory I/O och Siemens TIA Portal S7-1200.',
+      en: 'A focused learning project for sensor-based sorting using Factory I/O and Siemens TIA Portal S7-1200.',
+    },
+    problem: {
+      sv: 'Skapa en enkel och begriplig sorteringssekvens baserad på höjddetektering från sensorer.',
+      en: 'Build a simple and understandable sorting sequence based on sensor height detection.',
+    },
+    diagnosis: {
+      sv: 'I/O-signaler och sorteringsvillkor verifierades i simuleringen innan logiken kördes som hel sekvens.',
+      en: 'I/O signals and sorting conditions were verified in simulation before running the full sequence.',
+    },
+    action: {
+      sv: 'PLC-logik byggdes i TIA Portal och kopplades mot Factory I/O för visuell simulering och test.',
+      en: 'PLC logic was built in TIA Portal and connected to Factory I/O for visual simulation and testing.',
+    },
+    verification: {
+      sv: 'Projektet publicerades öppet som ett övnings- och demonstrationscase på GitHub och LinkedIn.',
+      en: 'The project was published publicly as a learning and demonstration case on GitHub and LinkedIn.',
+    },
+    technologies: ['Siemens S7-1200', 'TIA Portal', 'Factory I/O', 'Sensors', 'PLC logic'],
+    visual: 'serial',
+    links: [
+      { name: { sv: 'GitHub – källkod & projekt', en: 'GitHub – source & project' }, url: 'https://github.com/ibboabdolii/sorting-by-height-factoryio-s7-1200' },
+      { name: { sv: 'LinkedIn – projektinlägg', en: 'LinkedIn – project post' }, url: 'https://www.linkedin.com/posts/ibbo-abdoli_github-ibboabdoliisorting-by-height-factoryio-s7-activity-7406995237073698816-GAY6' },
+    ],
+  },
+  {
     id: 'proffera-saas',
     category: { sv: 'Personligt projekt / SaaS', en: 'Personal Project / SaaS' },
     title: { sv: 'Proffera – AI-assisterad SaaS & engineering workflow', en: 'Proffera – AI-assisted SaaS & Engineering Workflow' },
     period: '2026',
+    track: 'personal',
     summary: {
       sv: 'Ett personligt SaaS-projekt där jag arbetar med produktutveckling, webb, CI/CD, observability och strukturerade AI-assisterade utvecklingsflöden.',
       en: 'A personal SaaS project where I work with product development, web engineering, CI/CD, observability, and structured AI-assisted development workflows.',
@@ -317,6 +399,7 @@ export const portfolioProjects: PortfolioProject[] = [
     visual: 'software',
     links: [
       { name: { sv: 'Öppna Proffera', en: 'Open Proffera' }, url: 'https://proffera.se' },
+      { name: { sv: 'GitHub – Proffera', en: 'GitHub – Proffera' }, url: 'https://github.com/ibboabdoli-ai/Proffera' },
     ],
   },
 ];
@@ -344,13 +427,21 @@ export function localized(value: LocalizedText, language: PortfolioLanguage) {
 export function projectsToPrompt(language: PortfolioLanguage = 'en') {
   return portfolioProjects
     .map((project, index) => {
+      const publicLinks = project.links?.length
+        ? `\n- Public evidence/links: ${project.links
+            .map((link) => `${localized(link.name, language)}: ${link.url}`)
+            .join(' | ')}`
+        : '';
+
       return `${index + 1}. ${localized(project.title, language)} (${project.period})\n` +
+        `- Portfolio section: ${project.track}\n` +
         `- ${localized(project.summary, language)}\n` +
         `- Problem: ${localized(project.problem, language)}\n` +
         `- Diagnosis: ${localized(project.diagnosis, language)}\n` +
         `- Action: ${localized(project.action, language)}\n` +
         `- Verification: ${localized(project.verification, language)}\n` +
-        `- Technologies: ${project.technologies.join(', ')}`;
+        `- Technologies: ${project.technologies.join(', ')}` +
+        publicLinks;
     })
     .join('\n\n');
 }
