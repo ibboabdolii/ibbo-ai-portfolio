@@ -1,43 +1,32 @@
-import React from 'react';
+'use client';
 
-const AboutMe = () => {
+import type { PortfolioLanguage } from '@/data/portfolio';
+import { useEffect, useState } from 'react';
+
+const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
+
+export default function AboutMe() {
+  const [language, setLanguage] = useState<PortfolioLanguage>('sv');
+
+  useEffect(() => {
+    setLanguage(window.localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'sv');
+  }, []);
+
   return (
     <section className="mx-auto w-full max-w-3xl">
-      <div className="mb-8">
-        <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-          About Me
-        </h2>
-
-        <p className="mt-4 leading-relaxed text-muted-foreground">
-          I’m Ibbo Abdoli — a hands-on Service Engineer and Automation Technician
-          based in Sweden. I work in the field with industrial automation and
-          electrical systems, helping customers keep production running through
-          fast troubleshooting, safe interventions, and clear documentation.
-        </p>
-
-        <p className="mt-4 leading-relaxed text-muted-foreground">
-          My daily work includes fault diagnostics on PLC-driven equipment,
-          ABB robot cells, sensors/IO, and electrical panels — from on-site
-          commissioning to root-cause analysis and long-term improvements. I also
-          work with electrical inspections aligned with Swedish practices and
-          safety standards.
-        </p>
-
-        <ul className="mt-5 space-y-2 text-muted-foreground">
-          <li>• Troubleshooting & downtime reduction in real production environments</li>
-          <li>• PLC / automation systems, IO, sensors, and electrical installations</li>
-          <li>• Structured approach: safety first, diagnostics, fix, verification, documentation</li>
-          <li>• Calm under pressure, team-oriented, and focused on continuous improvement</li>
-        </ul>
-
-        <p className="mt-5 leading-relaxed text-muted-foreground">
-          Outside of work, I stay active and enjoy personal growth. That mindset
-          carries into my engineering approach — disciplined, detail-focused, and
-          always aiming to improve quality and reliability.
-        </p>
-      </div>
+      <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
+        {language === 'sv' ? 'Arbetssätt & mindset' : 'Working Style & Mindset'}
+      </h2>
+      <p className="text-muted-foreground mt-4 leading-relaxed">
+        {language === 'sv'
+          ? 'Jag arbetar lugnt och strukturerat även när produktionen står still. Säkerhet först, sedan fakta: larm, signaler, sekvens och det som faktiskt går att verifiera.'
+          : 'I work calmly and systematically even when production is down. Safety first, then facts: alarms, signals, sequence state, and what can actually be verified.'}
+      </p>
+      <p className="text-muted-foreground mt-4 leading-relaxed">
+        {language === 'sv'
+          ? 'Jag försöker undvika stora ändringar tidigt i felsökningen. Jag tar backup, isolerar ett felområde, gör en kontrollerad ändring och verifierar resultatet innan nästa steg.'
+          : 'I avoid large changes early in troubleshooting. I take a backup, isolate one fault area, make a controlled change, and verify the result before moving on.'}
+      </p>
     </section>
   );
-};
-
-export default AboutMe;
+}
