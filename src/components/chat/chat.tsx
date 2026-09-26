@@ -16,6 +16,7 @@ import {
   ChatBubbleMessage,
 } from '@/components/ui/chat/chat-bubble';
 import WelcomeModal from '@/components/welcome-modal';
+import { announcePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import { Info } from 'lucide-react';
 import HelperBoost from './HelperBoost';
 
@@ -223,7 +224,7 @@ const Chat = () => {
 
   const setPreferredLanguage = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
-    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    announcePortfolioLanguage(nextLanguage);
     document.documentElement.lang = nextLanguage;
 
     const params = new URLSearchParams(window.location.search);
@@ -240,7 +241,7 @@ const Chat = () => {
 
     if (nextLanguage === 'sv' || nextLanguage === 'en') {
       setLanguage(nextLanguage);
-      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+      announcePortfolioLanguage(nextLanguage);
       document.documentElement.lang = nextLanguage;
     }
   }, [langParam]);
