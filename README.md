@@ -47,7 +47,9 @@ The public chat route includes:
 - centralized tool data
 - request-size validation
 - message-count validation
+- rejection of client-supplied system/tool roles
 - basic per-instance rate limiting
+- baseline browser security headers
 - no private customer or credential data in the portfolio source
 
 For stronger distributed abuse protection, add a shared rate-limit store or platform firewall rule.
