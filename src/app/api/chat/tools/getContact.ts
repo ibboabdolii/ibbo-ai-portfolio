@@ -1,30 +1,23 @@
+import { portfolioContact } from '@/data/portfolio';
 import { tool } from 'ai';
 import { z } from 'zod';
 
 export const getContact = tool({
-  description:
-    'Provides practical contact information for Ibbo Abdoli. Use when the user asks how to contact, book, hire, or discuss automation service work.',
-  parameters: z.object({}),
-  execute: async () => {
+  description: 'Provides contact and booking information for Ibbo Abdoli.',
+  parameters: z.object({ language: z.enum(['sv', 'en']).optional() }),
+  execute: async ({ language }) => {
+    const sv = language === 'sv';
     return `
-You can contact me through these channels:
+${sv ? 'Kontakta mig via:' : 'Contact me via:'}
+- Email: ${portfolioContact.email}
+- Website: ${portfolioContact.website}
+- AI portfolio: ${portfolioContact.aiPortfolio}
+- LinkedIn: ${portfolioContact.linkedin}
+- GitHub: ${portfolioContact.github}
+- ${sv ? 'Boka 15 minuter' : 'Book 15 minutes'}: ${portfolioContact.booking15}
+- ${sv ? 'Boka 30 minuter' : 'Book 30 minutes'}: ${portfolioContact.booking30}
 
-- Email: ibbo.abdoli@gmail.com
-- Website: https://ibboabdoli.com
-- AI portfolio: https://ai.ibboabdoli.com
-- GitHub: https://github.com/ibboabdolii
-- Book a 15-minute meeting: https://cal.com/ibboabdoli/15min
-- Book a 30-minute meeting: https://cal.com/ibboabdoli/30min
-
-Good topics to contact me about:
-- Industrial automation service and troubleshooting
-- PLC/I/O signal verification
-- ABB robot and RobotStudio troubleshooting
-- Machine vision issues with EA Vision Studio or Cognex VisionPro
-- Electrical fault finding, sensors, motors, cabinets, and production stops
-- Service documentation and technical handover
-
-For technical support questions, please include the machine/cell name, alarm text, symptoms, what changed recently, and any useful photos or screenshots.
+${sv ? 'Bra ämnen: automationservice, PLC/I/O, ABB-robotar, RobotStudio, maskinvision, el-felsökning och produktionsstopp.' : 'Good topics: automation service, PLC/I/O, ABB robots, RobotStudio, machine vision, electrical troubleshooting, and production downtime.'}
     `.trim();
   },
 });
