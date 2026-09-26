@@ -19,7 +19,7 @@ export default function AllProjects() {
     return [
       {
         key: 'featured',
-        title: language === 'sv' ? 'Featured industrial cases' : 'Featured industrial cases',
+        title: language === 'sv' ? 'Utvalda industriprojekt' : 'Featured industrial cases',
         description:
           language === 'sv'
             ? 'Tre case som bäst visar hur jag arbetar med PLC, ABB-robotar, maskinvision och strukturerad verifiering.'
