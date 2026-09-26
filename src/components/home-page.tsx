@@ -29,6 +29,7 @@ const content = {
     placeholder:
       'Fråga om min automationserfarenhet, tekniska case eller felsökningsmetod…',
     submitLabel: 'Skicka fråga',
+    credibility: 'Siemens PLC · ABB IRC5 · RobotStudio · Maskinvision · Fältservice',
     quick: {
       Me: 'Om mig',
       Projects: 'Projekt',
@@ -56,6 +57,7 @@ const content = {
     placeholder:
       'Ask about my automation experience, technical cases, or troubleshooting method…',
     submitLabel: 'Submit question',
+    credibility: 'Siemens PLC · ABB IRC5 · RobotStudio · Machine Vision · Field Service',
     quick: {
       Me: 'Me',
       Projects: 'Projects',
@@ -233,6 +235,9 @@ export default function HomePage({ initialLanguage }: { initialLanguage: Languag
         </h1>
         <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
           {t.subtitle}
+        </p>
+        <p className="mt-4 text-xs font-medium tracking-wide text-neutral-500 sm:text-sm dark:text-neutral-400">
+          {t.credibility}
         </p>
       </motion.div>
 
