@@ -1,67 +1,67 @@
-![image](assets/readme-photo.png)
- 
-# Ibbo Abdoli – Service Engineering Portfolio 🤖✨  
+# Ibbo AI Portfolio
 
-**A practical automation portfolio with an AI-driven conversation layer.**  
-Ask about my work in industrial automation, ABB robots, machine vision, PLC/I/O and troubleshooting.
+Interactive bilingual portfolio for **Ibbo Abdoli**, Service Engineer / Automation Technician in Sweden.
 
-## 👇 What can you ask?
+Production: https://ai.ibboabdoli.com  
+Main portfolio: https://www.ibboabdoli.com
 
-- 🧠 **Tech recruiter?** Ask about my stack & results  
-- 💻 **Dev?** Dive into my code & mindset  
-- 🧑‍🤝‍🧑 **Friend or family?** See what I’ve been working on  
+## Stack
 
----
+- Next.js App Router
+- React + TypeScript
+- Vercel AI SDK + OpenAI
+- Tailwind CSS
+- Vercel Analytics
 
-This is not a portfolio.  
-It’s a **conversation tailored to your curiosity**.
+## Portfolio data
 
-➡️ **Try it now:** Use the local app or deploy the portfolio to see Ibbo's automation story in action.  
-*What will you ask?*
+Professional content has one source of truth:
 
-## 🚀 How to run
+`src/data/portfolio.ts`
 
-Want to run this project locally? Here's what you need:
+It contains the current profile, technical skills, selected projects, contact links and CV paths. UI cards and AI tools read from the same data to avoid drift.
 
-### Prerequisites
-- **Node.js** (v18 or higher)
-- **pnpm** package manager
-- **OpenAI API token** (for AI chat functionality)
-- **GitHub token** (for GitHub integration features)
+Industrial case studies intentionally anonymize customer-sensitive details. Verified results are kept separate from work that is still under test or follow-up.
 
-### Setup
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd portfolio
-   ```
+## Local setup
 
-2. **Install dependencies**
-   ```bash
-   pnpm install
-   ```
+```bash
+pnpm install
+pnpm dev
+```
 
-3. **Environment variables**
-   Create a `.env` file in the root directory:
-   ```env
-   OPENAI_API_KEY=your_openai_api_key_here
-   GITHUB_TOKEN=your_github_token_here
-   ```
+Environment:
 
-4. **Run the development server**
-   ```bash
-   pnpm dev
-   ```
+```env
+OPENAI_API_KEY=...
+OPENAI_MODEL=gpt-4o-mini
+```
 
-5. **Open your browser**
-   Navigate to `http://localhost:3000`
+`OPENAI_MODEL` is configurable so a newer compatible model can be tested without changing source code.
 
-### Getting your **tokens**
-- **OpenAI API Key**: Get it from [platform.openai.com](https://platform.openai.com/api-keys)
-- **GitHub Token**: Generate one at [github.com/settings/tokens](https://github.com/settings/personal-access-tokens) with repo access
+## Chat safeguards
 
+The public chat route includes:
 
+- portfolio-only system rules
+- centralized tool data
+- request-size validation
+- message-count validation
+- basic per-instance rate limiting
+- no private customer or credential data in the portfolio source
 
-#### 🔖 Tags
+For stronger distributed abuse protection, add a shared rate-limit store or platform firewall rule.
 
-`#AIPortfolio` `#InnovationInTech` `#DigitalResume` `#JobSearch` `#TechInnovation` `#WebDevelopment` `#FutureTech`
+## Release workflow
+
+Do not edit `main` directly for substantial changes.
+
+1. Create a work branch from the current production commit.
+2. Make content/code changes.
+3. Verify the Vercel preview.
+4. Review the PR.
+5. Merge only after the preview and checks are green.
+
+Current 2026 refresh branch:
+
+`work/portfolio-2026-refresh`
