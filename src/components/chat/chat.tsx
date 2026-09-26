@@ -224,6 +224,7 @@ const Chat = () => {
   const setPreferredLanguage = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    document.documentElement.lang = nextLanguage;
 
     const params = new URLSearchParams(window.location.search);
     params.set('lang', nextLanguage);
@@ -240,6 +241,7 @@ const Chat = () => {
     if (nextLanguage === 'sv' || nextLanguage === 'en') {
       setLanguage(nextLanguage);
       window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+      document.documentElement.lang = nextLanguage;
     }
   }, [langParam]);
 
