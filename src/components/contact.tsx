@@ -1,20 +1,13 @@
 'use client';
 
-import { portfolioContact, type PortfolioLanguage } from '@/data/portfolio';
+import { portfolioContact } from '@/data/portfolio';
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import { ChevronRight, Copy, Mail } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
-
-function getStoredLanguage(): PortfolioLanguage {
-  if (typeof window === 'undefined') return 'sv';
-  return window.localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'sv';
-}
+import { useState } from 'react';
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
-  const [language, setLanguage] = useState<PortfolioLanguage>('sv');
-  useEffect(() => setLanguage(getStoredLanguage()), []);
+  const language = usePortfolioLanguage();
 
   const openLink = (url: string) => window.open(url, '_blank', 'noopener,noreferrer');
   const openDefaultEmailApp = () => { window.location.href = `mailto:${portfolioContact.email}`; };
