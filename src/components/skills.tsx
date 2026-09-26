@@ -3,17 +3,10 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { localized, portfolioSkills, type PortfolioLanguage } from '@/data/portfolio';
+import { localized, portfolioSkills } from '@/data/portfolio';
 import { motion, type Variants } from 'framer-motion';
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import { Code, Cpu, PenTool, Users } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
-
-function getStoredLanguage(): PortfolioLanguage {
-  if (typeof window === 'undefined') return 'sv';
-  return window.localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'sv';
-}
 
 function SkillIcon({ iconType }: { iconType: string }) {
   if (iconType === 'cpu') return <Cpu className="h-5 w-5" />;
@@ -23,9 +16,7 @@ function SkillIcon({ iconType }: { iconType: string }) {
 }
 
 export default function Skills() {
-  const [language, setLanguage] = useState<PortfolioLanguage>('sv');
-
-  useEffect(() => setLanguage(getStoredLanguage()), []);
+  const language = usePortfolioLanguage();
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
