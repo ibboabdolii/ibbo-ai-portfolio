@@ -427,13 +427,21 @@ export function localized(value: LocalizedText, language: PortfolioLanguage) {
 export function projectsToPrompt(language: PortfolioLanguage = 'en') {
   return portfolioProjects
     .map((project, index) => {
+      const publicLinks = project.links?.length
+        ? `\n- Public evidence/links: ${project.links
+            .map((link) => `${localized(link.name, language)}: ${link.url}`)
+            .join(' | ')}`
+        : '';
+
       return `${index + 1}. ${localized(project.title, language)} (${project.period})\n` +
+        `- Portfolio section: ${project.track}\n` +
         `- ${localized(project.summary, language)}\n` +
         `- Problem: ${localized(project.problem, language)}\n` +
         `- Diagnosis: ${localized(project.diagnosis, language)}\n` +
         `- Action: ${localized(project.action, language)}\n` +
         `- Verification: ${localized(project.verification, language)}\n` +
-        `- Technologies: ${project.technologies.join(', ')}`;
+        `- Technologies: ${project.technologies.join(', ')}` +
+        publicLinks;
     })
     .join('\n\n');
 }
