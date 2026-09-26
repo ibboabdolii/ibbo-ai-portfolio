@@ -1,16 +1,9 @@
 'use client';
 
-import type { PortfolioLanguage } from '@/data/portfolio';
-import { useEffect, useState } from 'react';
-
-const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
 
 export default function Sports() {
-  const [language, setLanguage] = useState<PortfolioLanguage>('sv');
-
-  useEffect(() => {
-    setLanguage(window.localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'sv');
-  }, []);
+  const language = usePortfolioLanguage();
 
   return (
     <div className="mx-auto w-full">
