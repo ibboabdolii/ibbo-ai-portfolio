@@ -431,6 +431,7 @@ const Chat = () => {
               stop={handleStop}
               isToolInProgress={isToolInProgress}
               disabled={false}
+              language={language}
             />
           </div>
         </div>
