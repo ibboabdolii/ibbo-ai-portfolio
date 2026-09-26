@@ -1,5 +1,6 @@
 'use client';
 
+import { portfolioCv } from '@/data/portfolio';
 import { motion } from 'framer-motion';
 import { Download, FileText, Languages } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -39,12 +40,12 @@ const content = {
 
 const cvLinks = {
   sv: {
-    href: '/Ibbo_Abdoli_CV_2026_SV_Final.pdf',
-    filename: 'Ibbo_Abdoli_CV_2026_SV_Final.pdf',
+    href: portfolioCv.sv,
+    filename: portfolioCv.sv.split('/').pop() || 'Ibbo_Abdoli_CV_2026_SV_Final.pdf',
   },
   en: {
-    href: '/Ibbo_Abdoli_CV_2026_EN_Final.pdf',
-    filename: 'Ibbo_Abdoli_CV_2026_EN_Final.pdf',
+    href: portfolioCv.en,
+    filename: portfolioCv.en.split('/').pop() || 'Ibbo_Abdoli_CV_2026_EN_Final.pdf',
   },
 };
 
