@@ -129,6 +129,7 @@ const Chat = () => {
     isLoading,
     stop,
     setInput,
+    setMessages,
     reload,
     addToolResult,
     append,
@@ -201,6 +202,12 @@ const Chat = () => {
 
     return result;
   }, [messages]);
+
+  useEffect(() => {
+    if (!isLoading && messages.length > 12) {
+      setMessages(messages.slice(-10));
+    }
+  }, [isLoading, messages, setMessages]);
 
   const isToolInProgress = messages.some(
     (m: any) =>
