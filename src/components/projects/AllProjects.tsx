@@ -2,22 +2,11 @@
 
 import { Card, Carousel } from '@/components/projects/apple-cards-carousel';
 import { getProjectCards } from '@/components/projects/Data';
-import type { PortfolioLanguage } from '@/data/portfolio';
-import { useEffect, useMemo, useState } from 'react';
-
-const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
-
-function getStoredLanguage(): PortfolioLanguage {
-  if (typeof window === 'undefined') return 'sv';
-  return window.localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'sv';
-}
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
+import { useMemo } from 'react';
 
 export default function AllProjects() {
-  const [language, setLanguage] = useState<PortfolioLanguage>('sv');
-
-  useEffect(() => {
-    setLanguage(getStoredLanguage());
-  }, []);
+  const language = usePortfolioLanguage();
 
   const data = useMemo(() => getProjectCards(language), [language]);
   const cards = data.map((card, index) => (
