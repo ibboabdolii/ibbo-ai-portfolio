@@ -1,8 +1,10 @@
 'use client';
 
-import { ChevronRight, Link } from 'lucide-react';
+import { ChevronRight, Link as LinkIcon } from 'lucide-react';
+import NextLink from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import {
+  getProjectCasePath,
   localized,
   portfolioProjects,
   type PortfolioLanguage,
@@ -25,6 +27,7 @@ const labels = {
     verification: 'Verifiering',
     technologies: 'Teknik',
     links: 'Bevis & länkar',
+    casePage: 'Läs hela caset',
   },
   en: {
     problem: 'Problem',
@@ -33,6 +36,7 @@ const labels = {
     verification: 'Verification',
     technologies: 'Technologies',
     links: 'Evidence & links',
+    casePage: 'Read full case',
   },
 } as const;
 
@@ -96,13 +100,23 @@ const ProjectContent = ({
         </div>
       </div>
 
+      {project.caseSlug && (
+        <NextLink
+          href={getProjectCasePath(project, language) ?? '#'}
+          className="group flex items-center justify-between rounded-2xl border border-neutral-200 bg-white p-4 font-medium text-neutral-900 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
+        >
+          <span>{t.casePage}</span>
+          <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </NextLink>
+      )}
+
       {project.links && project.links.length > 0 && (
         <div className="mb-6">
           <div className="mb-4 flex items-center gap-2 px-2 sm:px-6">
             <h3 className="text-sm tracking-wide text-neutral-500 dark:text-neutral-400">
               {t.links}
             </h3>
-            <Link className="text-muted-foreground h-4 w-4" />
+            <LinkIcon className="text-muted-foreground h-4 w-4" />
           </div>
 
           <Separator className="my-4" />
