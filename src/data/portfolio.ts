@@ -18,6 +18,7 @@ export type PortfolioProject = {
   verification: LocalizedText;
   technologies: string[];
   visual: 'serial' | 'robot' | 'vision' | 'service' | 'software' | 'safety';
+  caseSlug?: string;
   links?: Array<{ name: LocalizedText; url: string }>;
 };
 
@@ -149,6 +150,7 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     technologies: ['Schneider PLC', 'Machine Expert / SoMachine', 'RS232', 'RS485', 'MOXA', 'Gyro sensor', 'Serial parsing'],
     visual: 'serial',
+    caseSlug: 'v2000-gyro-serial',
   },
   {
     id: 'robot-pallet-clearance',
@@ -178,6 +180,7 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     technologies: ['ABB IRC5', 'RAPID', 'SafeMove', 'PLC signals', 'Event logs', 'Motion diagnostics'],
     visual: 'robot',
+    caseSlug: 'abb-safemove',
     links: [
       { name: { sv: 'LinkedIn – ABB-case & offentlig projekthistorik', en: 'LinkedIn – ABB case & public project history' }, url: 'https://www.linkedin.com/in/ibbo-abdoli/' },
     ],
@@ -210,6 +213,7 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     technologies: ['EA Vision Studio', 'Cognex VisionPro', 'Basler GigE/PoE', 'ABB IRC5', 'DataMatrix', 'PLC signals'],
     visual: 'vision',
+    caseSlug: 'machine-vision',
     links: [
       { name: { sv: 'LinkedIn – maskinvision i produktion', en: 'LinkedIn – machine vision in production' }, url: 'https://www.linkedin.com/posts/ibbo-abdoli_machinevision-eavs-abb-activity-7454920620259143681-x0Zq' },
     ],
@@ -424,13 +428,34 @@ export function localized(value: LocalizedText, language: PortfolioLanguage) {
   return value[language];
 }
 
-export function projectsToPrompt(language: PortfolioLanguage = 'en') {
-  return portfolioProjects
+export function getProjectByCaseSlug(slug: string) {
+  return portfolioProjects.find((project) => project.caseSlug === slug);
+}
+
+export function getProjectCasePath(
+  project: PortfolioProject,
+  language: PortfolioLanguage = 'en'
+) {
+  if (!project.caseSlug) return null;
+  return language === 'en'
+    ? `/en/projects/${project.caseSlug}`
+    : `/projects/${project.caseSlug}`;
+}
+
+export function projectsToPrompt(
+  language: PortfolioLanguage = 'en',
+  projects: PortfolioProject[] = portfolioProjects
+) {
+  return projects
     .map((project, index) => {
       const publicLinks = project.links?.length
         ? `\n- Public evidence/links: ${project.links
             .map((link) => `${localized(link.name, language)}: ${link.url}`)
             .join(' | ')}`
+        : '';
+      const casePath = getProjectCasePath(project, language);
+      const caseLink = casePath
+        ? `\n- Full case page: https://ai.ibboabdoli.com${casePath}`
         : '';
 
       return `${index + 1}. ${localized(project.title, language)} (${project.period})\n` +
@@ -441,6 +466,7 @@ export function projectsToPrompt(language: PortfolioLanguage = 'en') {
         `- Action: ${localized(project.action, language)}\n` +
         `- Verification: ${localized(project.verification, language)}\n` +
         `- Technologies: ${project.technologies.join(', ')}` +
+        caseLink +
         publicLinks;
     })
     .join('\n\n');
