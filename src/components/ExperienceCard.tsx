@@ -1,17 +1,12 @@
 'use client';
 
-import { portfolioContact, portfolioProfile, type PortfolioLanguage } from '@/data/portfolio';
+import { portfolioContact, portfolioProfile } from '@/data/portfolio';
 import { motion } from 'framer-motion';
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import { CalendarDays, Globe, Wrench } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
 
 export default function ExperienceCard() {
-  const [language, setLanguage] = useState<PortfolioLanguage>('sv');
-  useEffect(() => {
-    setLanguage(window.localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'sv');
-  }, []);
+  const language = usePortfolioLanguage();
 
   return (
     <motion.div
