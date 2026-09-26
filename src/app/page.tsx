@@ -95,6 +95,16 @@ export default function Home() {
   const setPreferredLanguage = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    document.documentElement.lang = nextLanguage;
+
+    const params = new URLSearchParams(window.location.search);
+    if (nextLanguage === 'sv') {
+      params.delete('lang');
+    } else {
+      params.set('lang', nextLanguage);
+    }
+    const query = params.toString();
+    window.history.replaceState(null, '', query ? `/?${query}` : '/');
   };
 
   const goToChat = (query: string) =>
@@ -121,10 +131,18 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const queryLanguage = new URLSearchParams(window.location.search).get('lang');
     const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (storedLanguage === 'sv' || storedLanguage === 'en') {
-      setLanguage(storedLanguage);
-    }
+    const nextLanguage: Language =
+      queryLanguage === 'en' || queryLanguage === 'sv'
+        ? queryLanguage
+        : storedLanguage === 'en'
+          ? 'en'
+          : 'sv';
+
+    setLanguage(nextLanguage);
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    document.documentElement.lang = nextLanguage;
 
     const img = new window.Image();
     img.src = '/landing-memojis.png';
