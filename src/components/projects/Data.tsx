@@ -24,7 +24,7 @@ const labels = {
     action: 'Åtgärd',
     verification: 'Verifiering',
     technologies: 'Teknik',
-    links: 'Länkar',
+    links: 'Bevis & länkar',
   },
   en: {
     problem: 'Problem',
@@ -32,7 +32,7 @@ const labels = {
     action: 'Action',
     verification: 'Verification',
     technologies: 'Technologies',
-    links: 'Links',
+    links: 'Evidence & links',
   },
 } as const;
 
@@ -129,8 +129,11 @@ const ProjectContent = ({
   );
 };
 
-export function getProjectCards(language: PortfolioLanguage): ProjectCard[] {
-  return portfolioProjects.map((project) => ({
+export function getProjectCards(
+  language: PortfolioLanguage,
+  projects: PortfolioProject[] = portfolioProjects
+): ProjectCard[] {
+  return projects.map((project) => ({
     category: localized(project.category, language),
     title: localized(project.title, language),
     visual: project.visual,
