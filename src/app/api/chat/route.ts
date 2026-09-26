@@ -83,6 +83,18 @@ export async function POST(req: Request) {
       return new Response('Invalid chat request.', { status: 400 });
     }
 
+    const validRoles = new Set(['user', 'assistant']);
+    const hasInvalidMessage = messages.some(
+      (message: unknown) =>
+        typeof message !== 'object' ||
+        message === null ||
+        !validRoles.has(String((message as { role?: unknown }).role))
+    );
+
+    if (hasInvalidMessage) {
+      return new Response('Unsupported chat message role.', { status: 400 });
+    }
+
     const PORTFOLIO_GUARD = {
       role: 'system' as const,
       content: `
