@@ -1,11 +1,11 @@
-// src/components/chat/chat-bottombar.tsx
 'use client';
 
-import { ChatRequestOptions } from 'ai';
+import type { ChatRequestOptions } from 'ai';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUp } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { FastfolioTracking } from '@/lib/fastfolio-tracking';
+import { ArrowUp, Square } from 'lucide-react';
+import React from 'react';
+
+type Language = 'sv' | 'en';
 
 interface ChatBottombarProps {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,6 +18,7 @@ interface ChatBottombarProps {
   input: string;
   isToolInProgress: boolean;
   disabled?: boolean;
+  language?: Language;
 }
 
 export default function ChatBottombar({
@@ -28,14 +29,19 @@ export default function ChatBottombar({
   stop,
   isToolInProgress,
   disabled = false,
+  language = 'sv',
 }: ChatBottombarProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const [remainingMessages, setRemainingMessages] = useState(0);
-  
-  useEffect(() => {
-    // Update remaining messages count
-    setRemainingMessages(FastfolioTracking.getRemainingMessages());
-  }, [input]); // Update when input changes (user is typing)
+
+  const placeholder = disabled
+    ? ''
+    : isToolInProgress
+      ? language === 'sv'
+        ? 'Hämtar portfolio-information…'
+        : 'Loading portfolio information…'
+      : language === 'sv'
+        ? 'Fråga om projekt, erfarenhet eller teknik…'
+        : 'Ask about projects, experience, or technical work…';
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -49,11 +55,9 @@ export default function ChatBottombar({
     }
   };
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [inputRef]);
+  React.useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <motion.div
@@ -69,8 +73,11 @@ export default function ChatBottombar({
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyPress}
-            placeholder={
-              disabled ? '' : isToolInProgress ? 'Tool is in progress...' : 'Ask me anything'
+            placeholder={placeholder}
+            aria-label={
+              language === 'sv'
+                ? 'Skriv en fråga till Ibbo AI Portfolio'
+                : 'Write a question to Ibbo AI Portfolio'
             }
             className={`text-md w-full border-none bg-transparent placeholder:text-gray-500 focus:outline-none ${
               disabled ? 'text-muted-foreground font-medium' : 'text-black'
@@ -79,17 +86,21 @@ export default function ChatBottombar({
           />
 
           <button
-            type="submit"
-            disabled={isLoading || !input.trim() || isToolInProgress || disabled}
+            type={isLoading ? 'button' : 'submit'}
+            disabled={!isLoading && (!input.trim() || isToolInProgress || disabled)}
             className="flex items-center justify-center rounded-full bg-[#0171E3] p-2 text-white disabled:opacity-50"
-            onClick={(e) => {
-              if (isLoading) {
-                e.preventDefault();
-                stop();
-              }
-            }}
+            onClick={isLoading ? stop : undefined}
+            aria-label={
+              isLoading
+                ? language === 'sv'
+                  ? 'Stoppa svar'
+                  : 'Stop response'
+                : language === 'sv'
+                  ? 'Skicka fråga'
+                  : 'Send question'
+            }
           >
-            <ArrowUp className="h-6 w-6" />
+            {isLoading ? <Square className="h-5 w-5 fill-current" /> : <ArrowUp className="h-6 w-6" />}
           </button>
         </div>
       </form>
