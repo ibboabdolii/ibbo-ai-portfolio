@@ -12,6 +12,7 @@ import {
   UserSearch,
   Wrench,
 } from 'lucide-react';
+import { announcePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -94,7 +95,7 @@ export default function Home() {
 
   const setPreferredLanguage = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
-    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    announcePortfolioLanguage(nextLanguage);
     document.documentElement.lang = nextLanguage;
 
     const params = new URLSearchParams(window.location.search);
@@ -141,7 +142,7 @@ export default function Home() {
           : 'sv';
 
     setLanguage(nextLanguage);
-    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    announcePortfolioLanguage(nextLanguage);
     document.documentElement.lang = nextLanguage;
 
     const img = new window.Image();
