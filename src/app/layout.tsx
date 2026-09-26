@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/next';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import { headers } from 'next/headers';
 import type { ReactNode } from 'react';
 import './globals.css';
 
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     canonical: '/',
     languages: {
       sv: '/',
-      en: '/?lang=en',
+      en: '/en',
     },
   },
   openGraph: {
@@ -91,13 +92,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: ReactNode;
 }) {
+  const requestHeaders = await headers();
+  const language = requestHeaders.get('x-portfolio-lang') === 'en' ? 'en' : 'sv';
+
   return (
-    <html lang="sv" suppressHydrationWarning>
+    <html lang={language} suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
