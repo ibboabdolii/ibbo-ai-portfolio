@@ -1,20 +1,12 @@
 'use client';
 
-import { localized, portfolioProfile, type PortfolioLanguage } from '@/data/portfolio';
+import { localized, portfolioProfile } from '@/data/portfolio';
 import { motion, type Variants } from 'framer-motion';
+import { usePortfolioLanguage } from '@/hooks/use-portfolio-language';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-
-const LANGUAGE_STORAGE_KEY = 'ibbo-ai-language';
-
-function getStoredLanguage(): PortfolioLanguage {
-  if (typeof window === 'undefined') return 'sv';
-  return window.localStorage.getItem(LANGUAGE_STORAGE_KEY) === 'en' ? 'en' : 'sv';
-}
 
 export function Presentation() {
-  const [language, setLanguage] = useState<PortfolioLanguage>('sv');
-  useEffect(() => setLanguage(getStoredLanguage()), []);
+  const language = usePortfolioLanguage();
 
   const textVariants: Variants = {
     hidden: { opacity: 0, y: 16 },
