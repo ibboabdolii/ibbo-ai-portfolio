@@ -13,8 +13,9 @@ import { getSports } from './tools/getSport';
 
 export const maxDuration = 30;
 
-const MAX_BODY_BYTES = 32_000;
-const MAX_MESSAGES = 30;
+const MAX_BODY_BYTES = 128_000;
+const MAX_INCOMING_MESSAGES = 100;
+const MAX_CONTEXT_MESSAGES = 12;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_REQUESTS = 18;
 
@@ -79,7 +80,11 @@ export async function POST(req: Request) {
 
     const body = JSON.parse(rawBody);
     const messages = body?.messages;
-    if (!Array.isArray(messages) || messages.length === 0 || messages.length > MAX_MESSAGES) {
+    if (
+      !Array.isArray(messages) ||
+      messages.length === 0 ||
+      messages.length > MAX_INCOMING_MESSAGES
+    ) {
       return new Response('Invalid chat request.', { status: 400 });
     }
 
@@ -95,6 +100,8 @@ export async function POST(req: Request) {
       return new Response('Unsupported chat message role.', { status: 400 });
     }
 
+    const contextMessages = messages.slice(-MAX_CONTEXT_MESSAGES);
+
     const PORTFOLIO_GUARD = {
       role: 'system' as const,
       content: `
@@ -106,8 +113,8 @@ STRICT PORTFOLIO RULES:
 `,
     };
 
-    messages.unshift(SYSTEM_PROMPT);
-    messages.unshift(PORTFOLIO_GUARD);
+    contextMessages.unshift(SYSTEM_PROMPT);
+    contextMessages.unshift(PORTFOLIO_GUARD);
 
     const tools = {
       getProjects,
@@ -124,7 +131,7 @@ STRICT PORTFOLIO RULES:
 
     const result = streamText({
       model: openai(modelId),
-      messages,
+      messages: contextMessages,
       tools,
       toolCallStreaming: true,
       maxSteps: 3,
