@@ -26,7 +26,7 @@ Industrial case studies intentionally anonymize customer-sensitive details. Veri
 ## Local setup
 
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
@@ -46,7 +46,8 @@ The public chat route includes:
 - portfolio-only system rules
 - centralized tool data
 - request-size validation
-- message-count validation
+- bounded recent conversation context
+- client-side pruning of completed chat history
 - rejection of client-supplied system/tool roles
 - basic per-instance rate limiting
 - baseline browser security headers
@@ -54,9 +55,9 @@ The public chat route includes:
 
 For stronger distributed abuse protection, add a shared rate-limit store or platform firewall rule.
 
-## Dependency note
+## Dependencies
 
-The source now targets Next.js 15.5.26. Vercel resolves the updated dependency graph during build because the repository lockfile was generated on the previous dependency version. Regenerate and commit `pnpm-lock.yaml` from a registry-connected development environment before returning to frozen-lockfile installs.
+The repository targets **Next.js 15.5.26** and **eslint-config-next 15.5.26**. The matching dependency graph is committed in `pnpm-lock.yaml`, so local, CI, and Vercel installs use `--frozen-lockfile`.
 
 ## Release workflow
 
