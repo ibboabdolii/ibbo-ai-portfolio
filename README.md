@@ -52,6 +52,10 @@ The public chat route includes:
 
 For stronger distributed abuse protection, add a shared rate-limit store or platform firewall rule.
 
+## Dependency note
+
+The source now targets Next.js 15.5.26. Vercel resolves the updated dependency graph during build because the repository lockfile was generated on the previous dependency version. Regenerate and commit `pnpm-lock.yaml` from a registry-connected development environment before returning to frozen-lockfile installs.
+
 ## Release workflow
 
 Do not edit `main` directly for substantial changes.
